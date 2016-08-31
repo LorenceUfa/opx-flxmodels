@@ -96,6 +96,7 @@ type PortState struct {
 	IfOutErrors       int64  `DESCRIPTION: "RFC2233 Total number of packets discarded and not transmitted due to packet errors"`
 	ErrDisableReason  string `DESCRIPTION: "Reason explaining why port has been disabled by protocol code"`
 	PresentInHW       string `DESCRIPTION: "Indication of whether this port object maps to a physical port. Set to 'No' for ports that are not broken out."`
+	ConfigMode        string `DESCRIPTION: "The current mode of configuration on this port (L2/L3/Internal)"`
 }
 
 type MacTableEntryState struct {

@@ -50,7 +50,7 @@ type SystemSwVersionState struct {
 	Repos             []RepoInfo `DESCRIPTION: "Git repo details"`
 }
 
-type ApiCallState struct {
+type ConfigLogState struct {
 	baseObj
 	Time      string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "When the API was called", USESTATEDB:"true"`
 	API       string `SNAPROUTE: "KEY", DESCRIPTION: "Name of the API called"`

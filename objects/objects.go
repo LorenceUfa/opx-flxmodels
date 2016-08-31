@@ -29,6 +29,7 @@ import (
 
 type ConfigObj interface {
 	UnmarshalObject(data []byte) (ConfigObj, error)
+	UnmarshalObjectData(queryStr string) (ConfigObj, error)
 	StoreObjectInDb(dbHdl redis.Conn) error
 	DeleteObjectFromDb(dbHdl redis.Conn) error
 	GetKey() string
@@ -50,6 +51,9 @@ type baseObj struct {
 }
 
 func (obj baseObj) UnmarshalObject(data []byte) (ConfigObj, error) {
+	return nil, nil
+}
+func (obj baseObj) UnmarshalObjectData(data string) (ConfigObj, error) {
 	return nil, nil
 }
 func (obj baseObj) StoreObjectInDb(dbHdl redis.Conn) error {
