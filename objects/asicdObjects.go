@@ -72,6 +72,8 @@ type Port struct {
 	MediaType    string `DESCRIPTION: "Type of media inserted into this port", STRLEN:"16"`
 	Mtu          int32  `DESCRIPTION: "Maximum transmission unit size for this port"`
 	BreakOutMode string `DESCRIPTION: "Break out mode for the port. Only applicable on ports that support breakout. Valid modes - 1x40, 4x10", STRLEN:"6" SELECTION: 1x40(1)/4x10(2)`
+	LoopbackMode string `DESCRIPTION: "Desired loopback setting for this port", SELECTION: NONE/MAC/PHY, DEFAULT: NONE`
+	EnableFEC    bool   `DESCRIPTION: "Enable/Disable 802.3bj FEC on this interface", DEFAULT: false`
 }
 
 type PortState struct {
