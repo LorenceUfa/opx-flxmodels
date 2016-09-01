@@ -53,7 +53,7 @@ type DWDMModuleNwIntf struct {
 	ModuleId                  uint8   `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY: "*", AUTODISCOVER: "true", DESCRIPTION: "DWDM Module identifier"`
 	NwIntfId                  uint8   `SNAPROUTE: "KEY", DESCRIPTION: "DWDM Module network interface identifier"`
 	ModulationFmt             string  `DESCRIPTION: "Modulation format to use for this network interface", SELECTION: "QPSK"/"8QAM/"16QAM", DEFAULT:"16QAM"`
-	TxPower                   float64 `DESCRIPTION: "Transmit output power for this network interface in dBm, MIN:0, MAX:4294967295", DEFAULT:0`
+	TxPower                   float64 `DESCRIPTION: "Transmit output power for this network interface in dBm, MIN:0, MAX:4294967295", DEFAULT:0, UNIT:dBm`
 	ChannelNumber             uint8   `DESCRIPTION: "TX Channel number to use for this network interface", MIN:1, MAX:100, DEFAULT:48`
 	FECMode                   string  `DESCRIPTION: "DWDM Module network interface FEC mode", SELECTION: "15%SDFEC"/"15%OvrHeadSDFEC"/"25%OvrHeadSDFEC", DEFAULT:"15%SDFEC"`
 	DiffEncoding              bool    `DESCRIPTION: "Control to enable/disable DWDM Module network interface encoding type", DEFAULT: true`
@@ -74,7 +74,7 @@ type DWDMModuleNwIntfState struct {
 	baseObj
 	ModuleId                        uint8   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "DWDM Module identifier"`
 	NwIntfId                        uint8   `SNAPROUTE: "KEY", DESCRIPTION: "DWDM Module network interface identifier"`
-	TxChanGridSpacing               string  `DESCRIPTION: "The channel grid spacing used for this network interface in GHz"`
+	TxChanGridSpacing               string  `DESCRIPTION: "The channel grid spacing used for this network interface in GHz, UNIT: GHz"`
 	CurrentBER                      float64 `DESCRIPTION: "Current value of BER on the DWDM module network interface"`
 	MinBEROverPMInterval            float64 `DESCRIPTION: "Minimum value of BER over the last PM interval for the DWDM module network interface"`
 	AvgBEROverPMInterval            float64 `DESCRIPTION: "Average value of BER over the last PM interval for the DWDM module network interface"`
@@ -82,8 +82,8 @@ type DWDMModuleNwIntfState struct {
 	CurrUncorrectableFECBlkCnt      float64 `DESCRIPTION: "Current value of uncorrectable FEC code block count"`
 	UncorrectableFECBlkCntOverPMInt float64 `DESCRIPTION: "Average value of uncorrectable FEC code block count over the last PM interval"`
 	PRBSRxErrCnt                    float64 `DESCRIPTION: "RX PRBS error count for network interface"`
-	RxPower                         float64 `DESCRIPTION: "Current RX power for the DWDM module network interface"`
-	ChanFrequency                   float64 `DESCRIPTION: "Channel frequency corresponding to selected channel number for the DWDM module network interface"`
+	RxPower                         float64 `DESCRIPTION: "Current RX power for the DWDM module network interface", UNIT: dBm`
+	ChanFrequency                   float64 `DESCRIPTION: "Channel frequency corresponding to selected channel number for the DWDM module network interface", UNIT: GHz`
 }
 
 type DWDMModuleClntIntf struct {

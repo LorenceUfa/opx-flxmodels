@@ -67,9 +67,8 @@ type BfdSessionState struct {
 	IpAddr                    string `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"*",DESCRIPTION: "Neighbor IP address"`
 	SessionId                 int32  `DESCRIPTION: "Session index"`
 	ParamName                 string `DESCRIPTION: "Session parameters config"`
-	IfIndex                   int32  `DESCRIPTION: "Interface index"`
+	IntfRef                   string `DESCRIPTION: "Interface on which this session is running"`
 	InterfaceSpecific         bool   `DESCRIPTION: "This session is tied to an interface"`
-	IfName                    string `DESCRIPTION: "Interface to which this session is established on"`
 	PerLinkSession            bool   `DESCRIPTION: "This is a perlink session on LAG"`
 	LocalMacAddr              string `DESCRIPTION: "My MAC address"`
 	RemoteMacAddr             string `DESCRIPTION: "Neighbor MAC address"`
