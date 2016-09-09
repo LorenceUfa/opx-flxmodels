@@ -26,14 +26,14 @@ package objects
 type LLDPGlobal struct {
 	baseObj
 	Vrf    string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: "LLDP Global Config For Default VRF", DEFAULT:"default", AUTOCREATE:"true"`
-	Enable bool   `DESCRIPTION: "Enable/Disable LLDP Globally", DEFAULT:"false"`
+	Enable bool   `DESCRIPTION: "Enable/Disable LLDP Globally", DEFAULT:false`
 }
 
 type LLDPIntf struct {
 	baseObj
 	//IfIndex int32  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*",DESCRIPTION: "IfIndex where lldp needs is enabled/disabled", AUTODISCOVER:"true"`
 	IntfRef string `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", DESCRIPTION: "IfIndex where lldp needs is enabled/disabled", DEFAULT: "None", AUTODISCOVER:"true"`
-	Enable  bool   `DESCRIPTION: "Enable/Disable lldp config Per Port", DEFAULT:"true"`
+	Enable  bool   `DESCRIPTION: "Enable/Disable lldp config Per Port", DEFAULT:true`
 }
 
 type LLDPIntfState struct {

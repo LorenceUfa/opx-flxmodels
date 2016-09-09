@@ -33,11 +33,12 @@ type EventId uint32
 type KeyMap map[string]EventObjKeyIntf
 
 var EventKeyMap map[string]KeyMap = map[string]KeyMap{
-	"ASICD":  AsicdEventKeyMap,
-	"ARPD":   ArpdEventKeyMap,
-	"OPTICD": OpticdEventKeyMap,
-	"BGPD":   BGPdEventKeyMap,
-	"LLDP":   LLDPEventKeyMap,
+	"ASICD":     AsicdEventKeyMap,
+	"ARPD":      ArpdEventKeyMap,
+	"OPTICD":    OpticdEventKeyMap,
+	"BGPD":      BGPdEventKeyMap,
+	"LLDP":      LLDPEventKeyMap,
+	"PLATFORMD": PlatformdEventKeyMap,
 }
 
 type Event struct {

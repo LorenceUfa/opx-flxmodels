@@ -32,8 +32,8 @@ type DhcpRelayGlobal struct {
 	baseObj
 	// This will tell whether DHCP RELAY is enabled/disabled
 	// on the box right now or not.
-	DhcpRelay string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1",DESCRIPTION: "Global Dhcp Relay Agent Information"`
-	Enable    bool   `DESCRIPTION: "Global Config stating whether DHCP Relay Agent is enabled on the box or not", DEFAULT:"false"`
+	Vrf    string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: "Global Dhcp Relay Agent Information", AUTOCREATE: "true", DEFAULT:"default"`
+	Enable bool   `DESCRIPTION: "Global Config stating whether DHCP Relay Agent is enabled on the box or not", DEFAULT:false`
 }
 
 /*

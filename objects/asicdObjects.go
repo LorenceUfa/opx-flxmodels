@@ -23,6 +23,15 @@
 
 package objects
 
+type AsicGlobalState struct {
+	baseObj
+	ModuleId   uint8   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "1", DESCRIPTION:"Module identifier"`
+	VendorId   string  `DESCRIPTION: "Vendor identification value"`
+	PartNumber string  `DESCRIPTION: "Part number of underlying switching asic"`
+	RevisionId string  `DESCRIPTION: "Revision ID of underlying switching asic"`
+	ModuleTemp float64 `DESCRIPTION: "Current module temperature", UNIT: degC`
+}
+
 type Vlan struct {
 	baseObj
 	VlanId        int32    `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY: "*", MIN:"1", MAX: "4094", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
@@ -67,7 +76,7 @@ type Port struct {
 	AdminState   string `DESCRIPTION: "Administrative state of this port", STRLEN:"4" SELECTION: UP/DOWN, DEFAULT: DOWN`
 	MacAddr      string `DESCRIPTION: "Mac address associated with this port", STRLEN:"17"`
 	Speed        int32  `DESCRIPTION: "Port speed in Mbps", MIN: 10, MAX: "100000"`
-	Duplex       string `DESCRIPTION: "Duplex setting for this port", STRLEN:"16" SELECTION: Half Duplex/Full Duplex DEFAULT: Full Duplex`
+	Duplex       string `DESCRIPTION: "Duplex setting for this port", STRLEN:"16" SELECTION: Half Duplex/Full Duplex, DEFAULT: Full Duplex`
 	Autoneg      string `DESCRIPTION: "Autonegotiation setting for this port", STRLEN:"4" SELECTION: ON/OFF, DEFAULT: OFF`
 	MediaType    string `DESCRIPTION: "Type of media inserted into this port", STRLEN:"16"`
 	Mtu          int32  `DESCRIPTION: "Maximum transmission unit size for this port"`
@@ -264,4 +273,13 @@ type LinkScopeIpState struct {
 	IntfRef     string `DESCRIPTION: "Interface where the link scope ip is configured"`
 	IfIndex     int32  `DESCRIPTION: "System Generated Unique Interface Id"`
 	Used        bool   `DESCRIPTION : "states whether the ip being used"`
+}
+
+type CoppStatState struct {
+	baseObj
+	Protocol     string `SNAPROUTE: "KEY", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION:"Protocol type for which CoPP is configured."`
+	PeakRate     int32  `DESCRIPTION:"Peak rate (packets) for policer."`
+	BurstRate    int32  `DESCRIPTION:"Burst rate (packets) for policer."`
+	GreenPackets int64  `DESCRIPTION:"Packets marked with green for tri color policer."`
+	RedPackets   int64  `DESCRIPTION:"Dropped packets. Packets marked with red for tri color policer. "`
 }

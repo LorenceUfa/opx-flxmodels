@@ -415,9 +415,9 @@ list StpBridge {
   container Instance {
   
 	leaf Address {
-      type ieee:mac-address;
+      type string;
       config true;
-      default "00:00:00:00:00:00";
+      default "00-00-00-00-00-00";
       description   
        "The bridge identifier of the root of the spanning
         tree, as determined by the Spanning Tree Protocol,

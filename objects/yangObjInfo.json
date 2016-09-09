@@ -1,14 +1,5 @@
 {
-"BRIDGE-MIB" : { "owner": "stpd",
-                 "location" : "l2/stp/rpc/",
-                 "svcName" : "nil"},
-"RSTP-MIB" : { "owner": "stpd",
-               "location": "l2/stp/rpc/",
-               "svcName" : "nil"},
 "vxlan" : { "owner": "vxland",
             "location": "l3/tunnel/vxlan/rpc/",
-            "svcName" : "nil"},
-"openconfig-if-aggregate": { "owner": "lacpd",
-            "location": "l2/lacp/rpc/",
             "svcName" : "nil"}
 }

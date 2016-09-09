@@ -337,8 +337,7 @@
 					"EventEnable" : true,
 					"IsFault" : false
 				},
-
-                {
+                		{
 					"EventId" : 8,
 					"EventName" : "VoltageHiAlarm",
 					"Description" : "DWDM Module voltage high alarm",
@@ -448,7 +447,7 @@
 					"EventEnable" : true,
 					"IsFault" : false
 				},
-                {
+                		{
 					"EventId" : 130,
 					"EventName" : "TxPwrHiAlarm",
 					"Description" : "DWDM Module network interface TX laser power high alarm",
@@ -470,7 +469,7 @@
 					"EventEnable" : true,
 					"IsFault" : false
 				},
-                {
+                		{
 					"EventId" : 132,
 					"EventName" : "TxPwrHiWarn",
 					"Description" : "DWDM Module network interface TX laser power high warning",
@@ -492,7 +491,7 @@
 					"EventEnable" : true,
 					"IsFault" : false
 				},
-                {
+                		{
 					"EventId" : 134,
 					"EventName" : "TxPwrLoWarn",
 					"Description" : "DWDM Module network interface TX laser power low warning",
@@ -514,7 +513,7 @@
 					"EventEnable" : true,
 					"IsFault" : false
 				},
-                {
+                		{
 					"EventId" : 136,
 					"EventName" : "TxPwrLoAlarm",
 					"Description" : "DWDM Module network interface TX laser power low alarm",
@@ -536,7 +535,7 @@
 					"EventEnable" : true,
 					"IsFault" : false
 				},
-                {
+                		{
 					"EventId" : 138,
 					"EventName" : "RxPwrHiAlarm",
 					"Description" : "DWDM Module network interface RX power high alarm",
@@ -558,7 +557,7 @@
 					"EventEnable" : true,
 					"IsFault" : false
 				},
-                {
+		                {
 					"EventId" : 140,
 					"EventName" : "RxPwrHiWarn",
 					"Description" : "DWDM Module network interface RX power high warning",
@@ -580,7 +579,7 @@
 					"EventEnable" : true,
 					"IsFault" : false
 				},
-                {
+               			{
 					"EventId" : 142,
 					"EventName" : "RxPwrLoWarn",
 					"Description" : "DWDM Module network interface RX power low warning",
@@ -602,7 +601,7 @@
 					"EventEnable" : true,
 					"IsFault" : false
 				},
-                {
+                		{
 					"EventId" : 144,
 					"EventName" : "RxPwrLoAlarm",
 					"Description" : "DWDM Module network interface RX power low alarm",
@@ -624,6 +623,365 @@
 					"EventEnable" : true,
 					"IsFault" : false
 				}
+			]
+		},
+		{
+			"DaemonId" : 16,
+			"DaemonName" : "PLATFORMD",
+			"DaemonEventEnable" : true,
+			"EventList" : [
+				{
+					"EventId": 1,
+					"EventName": "FanHigherTCAAlarmClear",
+					"Description": "Fan higher alarm cleared",
+					"SrcObjName": "FanSensor",
+					"EventEnable": true,
+					"IsFault": false
+				},
+				{
+					"EventId": 2,
+					"EventName": "FanHigherTCAAlarm",
+					"Description": "Fan speed has exceeded higher alarm threshold",
+					"SrcObjName": "FanSensor",
+					"EventEnable": true,
+					"IsFault": true,
+					"Fault": {
+						"RaiseFault": true,
+						"ClearingEventId": 1,
+						"ClearingDaemonId": 16,
+						"AlarmSeverity": "Critical"
+					}
+				},
+				{
+					"EventId": 3,
+					"EventName": "FanHigherTCAWarnClear",
+					"Description": "Fan higher warning cleared",
+					"SrcObjName": "FanSensor",
+					"EventEnable": true,
+					"IsFault": false
+				},
+				{
+					"EventId": 4,
+					"EventName": "FanHigherTCAWarn",
+					"Description": "Fan speed has exceeded higher warn threshold",
+					"SrcObjName": "FanSensor",
+					"EventEnable": true,
+					"IsFault": true,
+					"Fault": {
+						"RaiseFault": true,
+						"ClearingEventId": 3,
+						"ClearingDaemonId": 16,
+						"AlarmSeverity": "Major"
+					}
+				},
+				{
+					"EventId": 5,
+					"EventName": "FanLowerTCAAlarmClear",
+					"Description": "Fan lower alarm cleared",
+					"SrcObjName": "FanSensor",
+					"EventEnable": true,
+					"IsFault": false
+				},
+				{
+					"EventId": 6,
+					"EventName": "FanLowerTCAAlarm",
+					"Description": "Fan speed is below lower alarm threshold",
+					"SrcObjName": "FanSensor",
+					"EventEnable": true,
+					"IsFault": true,
+					"Fault": {
+						"RaiseFault": true,
+						"ClearingEventId": 5,
+						"ClearingDaemonId": 16,
+						"AlarmSeverity": "Critical"
+					}
+				},
+				{
+					"EventId": 7,
+					"EventName": "FanLowerTCAWarnClear",
+					"Description": "Fan lower warning cleared",
+					"SrcObjName": "FanSensor",
+					"EventEnable": true,
+					"IsFault": false
+				},
+				{
+					"EventId": 8,
+					"EventName": "FanLowerTCAWarn",
+					"Description": "Fan speed is below Lower warn threshold",
+					"SrcObjName": "FanSensor",
+					"EventEnable": true,
+					"IsFault": true,
+					"Fault": {
+						"RaiseFault": true,
+						"ClearingEventId": 7,
+						"ClearingDaemonId": 16,
+						"AlarmSeverity": "Major"
+					}
+				},
+                                {   
+                                        "EventId": 9,
+                                        "EventName": "TemperatureHigherTCAAlarmClear",
+                                        "Description": "Temperature higher alarm cleared",
+                                        "SrcObjName": "TemperatureSensor",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 10,
+                                        "EventName": "TemperatureHigherTCAAlarm",
+                                        "Description": "Temperature speed has exceeded higher alarm threshold",
+                                        "SrcObjName": "TemperatureSensor",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 9,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },  
+                                {   
+                                        "EventId": 11,
+                                        "EventName": "TemperatureHigherTCAWarnClear",
+                                        "Description": "Temperature higher warning cleared",
+                                        "SrcObjName": "TemperatureSensor",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 12,
+                                        "EventName": "TemperatureHigherTCAWarn",
+                                        "Description": "Temperature speed has exceeded higher warn threshold",
+                                        "SrcObjName": "TemperatureSensor",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 11,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                },  
+                                {   
+                                        "EventId": 13,
+                                        "EventName": "TemperatureLowerTCAAlarmClear",
+                                        "Description": "Temperature lower alarm cleared",
+                                        "SrcObjName": "TemperatureSensor",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 14,
+                                        "EventName": "TemperatureLowerTCAAlarm",
+                                        "Description": "Temperature speed is below lower alarm threshold",
+                                        "SrcObjName": "TemperatureSensor",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 13,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },  
+                                {   
+                                        "EventId": 15,
+                                        "EventName": "TemperatureLowerTCAWarnClear",
+                                        "Description": "Temperature lower warning cleared",
+                                        "SrcObjName": "TemperatureSensor",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 16,
+                                        "EventName": "TemperatureLowerTCAWarn",
+                                        "Description": "Temperature speed is below Lower warn threshold",
+                                        "SrcObjName": "TemperatureSensor",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 15,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                },  
+                                {   
+                                        "EventId": 17,
+                                        "EventName": "VoltageHigherTCAAlarmClear",
+                                        "Description": "Voltage higher alarm cleared",
+                                        "SrcObjName": "VoltageSensor",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 18,
+                                        "EventName": "VoltageHigherTCAAlarm",
+                                        "Description": "Voltage speed has exceeded higher alarm threshold",
+                                        "SrcObjName": "VoltageSensor",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 17,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },  
+                                {   
+                                        "EventId": 19,
+                                        "EventName": "VoltageHigherTCAWarnClear",
+                                        "Description": "Voltage higher warning cleared",
+                                        "SrcObjName": "VoltageSensor",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 20,
+                                        "EventName": "VoltageHigherTCAWarn",
+                                        "Description": "Voltage speed has exceeded higher warn threshold",
+                                        "SrcObjName": "VoltageSensor",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 19,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                },  
+                                {   
+                                        "EventId": 21,
+                                        "EventName": "VoltageLowerTCAAlarmClear",
+                                        "Description": "Voltage lower alarm cleared",
+                                        "SrcObjName": "VoltageSensor",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 22,
+                                        "EventName": "VoltageLowerTCAAlarm",
+                                        "Description": "Voltage speed is below lower alarm threshold",
+                                        "SrcObjName": "VoltageSensor",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 21,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },  
+                                {   
+                                        "EventId": 23,
+                                        "EventName": "VoltageLowerTCAWarnClear",
+                                        "Description": "Voltage lower warning cleared",
+                                        "SrcObjName": "VoltageSensor",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 24,
+                                        "EventName": "VoltageLowerTCAWarn",
+                                        "Description": "Voltage speed is below Lower warn threshold",
+                                        "SrcObjName": "VoltageSensor",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 23,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                },  
+                                {   
+                                        "EventId": 25,
+                                        "EventName": "PowerConverterHigherTCAAlarmClear",
+                                        "Description": "PowerConverter higher alarm cleared",
+                                        "SrcObjName": "PowerConverterSensor",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 26,
+                                        "EventName": "PowerConverterHigherTCAAlarm",
+                                        "Description": "PowerConverter speed has exceeded higher alarm threshold",
+                                        "SrcObjName": "PowerConverterSensor",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 25,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },  
+                                {   
+                                        "EventId": 27,
+                                        "EventName": "PowerConverterHigherTCAWarnClear",
+                                        "Description": "PowerConverter higher warning cleared",
+                                        "SrcObjName": "PowerConverterSensor",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 28,
+                                        "EventName": "PowerConverterHigherTCAWarn",
+                                        "Description": "PowerConverter speed has exceeded higher warn threshold",
+                                        "SrcObjName": "PowerConverterSensor",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 27,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                },  
+                                {   
+                                        "EventId": 29,
+                                        "EventName": "PowerConverterLowerTCAAlarmClear",
+                                        "Description": "PowerConverter lower alarm cleared",
+                                        "SrcObjName": "PowerConverterSensor",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 30,
+                                        "EventName": "PowerConverterLowerTCAAlarm",
+                                        "Description": "PowerConverter speed is below lower alarm threshold",
+                                        "SrcObjName": "PowerConverterSensor",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 29,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },  
+                                {   
+                                        "EventId": 31,
+                                        "EventName": "PowerConverterLowerTCAWarnClear",
+                                        "Description": "PowerConverter lower warning cleared",
+                                        "SrcObjName": "PowerConverterSensor",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 32,
+                                        "EventName": "PowerConverterLowerTCAWarn",
+                                        "Description": "PowerConverter speed is below Lower warn threshold",
+                                        "SrcObjName": "PowerConverterSensor",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 31,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                }
 			]
 		}
 	]

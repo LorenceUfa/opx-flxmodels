@@ -1090,15 +1090,15 @@ grouping aggregation-lacp-members-statistics {
 			to share the tag space used by IPL frames";
 	}
 	
-	leaf-list DR-Port-Conversation-Passes {
-		type uint8;
-		description
-		   "A read-only current operational vector of Boolean values, with one value for each possible
-			Port Conversation ID. A 1 indicates that the Port Conversation ID is allowed to be distributed
-			through this DR Function’s Aggregator, and a 0 indicates that it cannot.
-			aDrniDRPortConversationPasses is referencing the current value of 
-			Drni_Portal_System_Port_Conversation ()";
-	}
+	//leaf-list DR-Port-Conversation-Passes {
+	//	type uint8;
+	//	description
+	//	   "A read-only current operational vector of Boolean values, with one value for each possible
+	//		Port Conversation ID. A 1 indicates that the Port Conversation ID is allowed to be distributed
+	//		through this DR Function’s Aggregator, and a 0 indicates that it cannot.
+	//		aDrniDRPortConversationPasses is referencing the current value of 
+	//		Drni_Portal_System_Port_Conversation ()";
+	//}
 
 	leaf-list DR-Gateway-Conversation-Passes {
 		type uint8;
@@ -1404,18 +1404,18 @@ grouping aggregation-lacp-members-statistics {
 			an IPP instance among the subordinate managed objects of the containing object.";
 	}
 	
-	leaf Port-Conversation-Passes {
-		type string;
-		config false;
-		description
-		   "A read-only current operational vector of Boolean values, with one value for each possible
-		  	Port Conversation ID. A 1 indicates that the Port Conversation ID is allowed to be
-			transmitted through this IPP Intra-Portal Port, and a 0 indicates that it cannot.
-			aIPPPortConversationPasses is referencing Ipp_Port_Conversation_Passes (9.3.4.3).";
-	}
+	//leaf-list Port-Conversation-Passes {
+	//	type uint8;
+	//	config false;
+	//	description
+	//	   "A read-only current operational vector of Boolean values, with one value for each possible
+	//	  	Port Conversation ID. A 1 indicates that the Port Conversation ID is allowed to be
+	//		transmitted through this IPP Intra-Portal Port, and a 0 indicates that it cannot.
+	//		aIPPPortConversationPasses is referencing Ipp_Port_Conversation_Passes (9.3.4.3).";
+	//}
 	
-	leaf Gateway-Conversation-Direction {
-		type string;
+	leaf-list Gateway-Conversation-Direction {
+		type uint8;
 		config false;
 		description
 		   "A read-only current operational vector of Boolean values, with one value for each possible
