@@ -68,6 +68,7 @@ type DWDMModuleNwIntf struct {
 	RxPRBSInvertPattern       bool    `DESCRIPTION: "Check against inverted PRBS polynomial pattern", DEFAULT:true`
 	ClntIntfIdToTributary0Map uint8   `DESCRIPTION: "Client interface ID to map to network interface tributary 0", MIN:0, MAX:3`
 	ClntIntfIdToTributary1Map uint8   `DESCRIPTION: "Client interface ID to map to network interface tributary 1", MIN:0, MAX:3`
+	TxPowerRampdBmPerSec      float64 `DESCRIPTION: "Rate of change of tx power on this network interface", UNIT: dBm/s, DEFAULT:1`
 }
 
 type DWDMModuleNwIntfState struct {
@@ -84,6 +85,10 @@ type DWDMModuleNwIntfState struct {
 	PRBSRxErrCnt                    float64 `DESCRIPTION: "RX PRBS error count for network interface"`
 	RxPower                         float64 `DESCRIPTION: "Current RX power for the DWDM module network interface", UNIT: dBm`
 	ChanFrequency                   float64 `DESCRIPTION: "Channel frequency corresponding to selected channel number for the DWDM module network interface", UNIT: GHz`
+	CurrChromDisp                   int32   `DESCRIPTION: "Current RX chromatic dispersion for the DWDM module network interface", UNIT:ps/nm`
+	AvgChromDispOverPMInt           int32   `DESCRIPTION: "Average RX chromatic dispersion over the last PM interval for the DWDM module network interface", UNIT:ps/nm`
+	MinChromDispOverPMInt           int32   `DESCRIPTION: "Current RX chromatic dispersion over the last PM interval for the DWDM module network interface", UNIT:ps/nm`
+	MaxChromDispOverPMInt           int32   `DESCRIPTION: "Current RX chromatic dispersion over the last PM interval for the DWDM module network interface", UNIT:ps/nm`
 }
 
 type DWDMModuleClntIntf struct {

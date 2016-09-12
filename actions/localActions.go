@@ -43,3 +43,8 @@ type ApplyConfig struct {
 	baseAction
 	ConfigData map[string][]json.RawMessage `json:"ConfigData"`
 }
+
+type ForceApplyConfig struct {
+	baseAction
+	ConfigData map[string][]json.RawMessage `json:"ConfigData"`
+}

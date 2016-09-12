@@ -25,22 +25,33 @@ package objects
 
 type LLDPGlobal struct {
 	baseObj
-	Vrf    string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: "LLDP Global Config For Default VRF", DEFAULT:"default", AUTOCREATE:"true"`
-	Enable bool   `DESCRIPTION: "Enable/Disable LLDP Globally", DEFAULT:false`
+	Vrf             string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: "LLDP Global Config For Default VRF", DEFAULT:"default", AUTOCREATE:"true"`
+	Enable          bool   `DESCRIPTION: "Enable/Disable LLDP Globally", DEFAULT:false`
+	TranmitInterval int32  `DESCRIPTION: "LLDP Re-Transmit Interval in seconds", DEFAULT:30`
+}
+
+type LLDPGlobalState struct {
+	baseObj
+	Vrf             string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION:"Vrf where LLDP Global Config is running"`
+	Enable          bool   `DESCRIPTION: "Enable/Disable LLDP Globally"`
+	TranmitInterval int32  `DESCRIPTION: "LLDP Re-Transmit Interval in seconds"`
+	Neighbors       int32  `DESCRIPTION: "Total lldp Neighbors learned on the system"`
+	TotalTxFrames   int32  `DESCRIPTION: "Total no.of lldp frames send out by the system"`
+	TotalRxFrames   int32  `DESCRIPTION: "Total no.of lldp frames received by the system"`
 }
 
 type LLDPIntf struct {
 	baseObj
-	//IfIndex int32  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*",DESCRIPTION: "IfIndex where lldp needs is enabled/disabled", AUTODISCOVER:"true"`
 	IntfRef string `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", DESCRIPTION: "IfIndex where lldp needs is enabled/disabled", DEFAULT: "None", AUTODISCOVER:"true"`
 	Enable  bool   `DESCRIPTION: "Enable/Disable lldp config Per Port", DEFAULT:true`
 }
 
 type LLDPIntfState struct {
 	baseObj
-	//IfIndex             int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*",DESCRIPTION: "IfIndex where lldp needs to be configured"`
 	IntfRef             string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*",DESCRIPTION: "IntfRef where lldp is configured"`
 	IfIndex             int32  `DESCRIPTION: "IfIndex where lldp needs to be configured"`
+	SendFrames          int32  `DESCRIPTION: "Total Frames send to the neighbor"`
+	ReceivedFrames      int32  `DESCRIPTION: "Total Frames received from neighbor"`
 	Enable              bool   `DESCRIPTION: "Enable/Disable lldp config"`
 	LocalPort           string `DESCRIPTION: "Local interface"`
 	PeerMac             string `DESCRIPTION: "Mac address of direct connection"`
