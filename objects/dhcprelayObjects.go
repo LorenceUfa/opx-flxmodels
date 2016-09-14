@@ -70,7 +70,7 @@ type DhcpRelayHostDhcpState struct {
 
 type DhcpRelayIntfState struct {
 	baseObj
-	IntfId            int32 `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface Index for which state is required to be collected"`
+	IfIndex           int32 `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface Index for which state is required to be collected"`
 	TotalDrops        int32 `DESCRIPTION: "Total number of Dhcp Packets dropped by relay agent"`
 	TotalDhcpClientRx int32 `DESCRIPTION: "Total number of client requests that camde to relay agent"`
 	TotalDhcpClientTx int32 `DESCRIPTION: "Total number of client responses send out by relay agent"`

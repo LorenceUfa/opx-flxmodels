@@ -633,7 +633,7 @@
 				{
 					"EventId": 1,
 					"EventName": "FanHigherTCAAlarmClear",
-					"Description": "Fan higher alarm cleared",
+					"Description": "Fan speed higher alarm cleared",
 					"SrcObjName": "FanSensor",
 					"EventEnable": true,
 					"IsFault": false
@@ -655,7 +655,7 @@
 				{
 					"EventId": 3,
 					"EventName": "FanHigherTCAWarnClear",
-					"Description": "Fan higher warning cleared",
+					"Description": "Fan speed higher warning cleared",
 					"SrcObjName": "FanSensor",
 					"EventEnable": true,
 					"IsFault": false
@@ -677,7 +677,7 @@
 				{
 					"EventId": 5,
 					"EventName": "FanLowerTCAAlarmClear",
-					"Description": "Fan lower alarm cleared",
+					"Description": "Fan speed lower alarm cleared",
 					"SrcObjName": "FanSensor",
 					"EventEnable": true,
 					"IsFault": false
@@ -699,7 +699,7 @@
 				{
 					"EventId": 7,
 					"EventName": "FanLowerTCAWarnClear",
-					"Description": "Fan lower warning cleared",
+					"Description": "Fan speed lower warning cleared",
 					"SrcObjName": "FanSensor",
 					"EventEnable": true,
 					"IsFault": false
@@ -729,7 +729,7 @@
                                 {   
                                         "EventId": 10,
                                         "EventName": "TemperatureHigherTCAAlarm",
-                                        "Description": "Temperature speed has exceeded higher alarm threshold",
+                                        "Description": "Temperature has exceeded higher alarm threshold",
                                         "SrcObjName": "TemperatureSensor",
                                         "EventEnable": true,
                                         "IsFault": true,
@@ -751,7 +751,7 @@
                                 {   
                                         "EventId": 12,
                                         "EventName": "TemperatureHigherTCAWarn",
-                                        "Description": "Temperature speed has exceeded higher warn threshold",
+                                        "Description": "Temperature has exceeded higher warn threshold",
                                         "SrcObjName": "TemperatureSensor",
                                         "EventEnable": true,
                                         "IsFault": true,
@@ -773,7 +773,7 @@
                                 {   
                                         "EventId": 14,
                                         "EventName": "TemperatureLowerTCAAlarm",
-                                        "Description": "Temperature speed is below lower alarm threshold",
+                                        "Description": "Temperature is below lower alarm threshold",
                                         "SrcObjName": "TemperatureSensor",
                                         "EventEnable": true,
                                         "IsFault": true,
@@ -795,7 +795,7 @@
                                 {   
                                         "EventId": 16,
                                         "EventName": "TemperatureLowerTCAWarn",
-                                        "Description": "Temperature speed is below Lower warn threshold",
+                                        "Description": "Temperature is below Lower warn threshold",
                                         "SrcObjName": "TemperatureSensor",
                                         "EventEnable": true,
                                         "IsFault": true,
@@ -817,7 +817,7 @@
                                 {   
                                         "EventId": 18,
                                         "EventName": "VoltageHigherTCAAlarm",
-                                        "Description": "Voltage speed has exceeded higher alarm threshold",
+                                        "Description": "Voltage has exceeded higher alarm threshold",
                                         "SrcObjName": "VoltageSensor",
                                         "EventEnable": true,
                                         "IsFault": true,
@@ -839,7 +839,7 @@
                                 {   
                                         "EventId": 20,
                                         "EventName": "VoltageHigherTCAWarn",
-                                        "Description": "Voltage speed has exceeded higher warn threshold",
+                                        "Description": "Voltage has exceeded higher warn threshold",
                                         "SrcObjName": "VoltageSensor",
                                         "EventEnable": true,
                                         "IsFault": true,
@@ -861,7 +861,7 @@
                                 {   
                                         "EventId": 22,
                                         "EventName": "VoltageLowerTCAAlarm",
-                                        "Description": "Voltage speed is below lower alarm threshold",
+                                        "Description": "Voltage is below lower alarm threshold",
                                         "SrcObjName": "VoltageSensor",
                                         "EventEnable": true,
                                         "IsFault": true,
@@ -883,7 +883,7 @@
                                 {   
                                         "EventId": 24,
                                         "EventName": "VoltageLowerTCAWarn",
-                                        "Description": "Voltage speed is below Lower warn threshold",
+                                        "Description": "Voltage is below Lower warn threshold",
                                         "SrcObjName": "VoltageSensor",
                                         "EventEnable": true,
                                         "IsFault": true,
@@ -905,7 +905,7 @@
                                 {   
                                         "EventId": 26,
                                         "EventName": "PowerConverterHigherTCAAlarm",
-                                        "Description": "PowerConverter speed has exceeded higher alarm threshold",
+                                        "Description": "PowerConverter has exceeded higher alarm threshold",
                                         "SrcObjName": "PowerConverterSensor",
                                         "EventEnable": true,
                                         "IsFault": true,
@@ -927,7 +927,7 @@
                                 {   
                                         "EventId": 28,
                                         "EventName": "PowerConverterHigherTCAWarn",
-                                        "Description": "PowerConverter speed has exceeded higher warn threshold",
+                                        "Description": "PowerConverter has exceeded higher warn threshold",
                                         "SrcObjName": "PowerConverterSensor",
                                         "EventEnable": true,
                                         "IsFault": true,
@@ -949,7 +949,7 @@
                                 {   
                                         "EventId": 30,
                                         "EventName": "PowerConverterLowerTCAAlarm",
-                                        "Description": "PowerConverter speed is below lower alarm threshold",
+                                        "Description": "PowerConverter is below lower alarm threshold",
                                         "SrcObjName": "PowerConverterSensor",
                                         "EventEnable": true,
                                         "IsFault": true,
@@ -971,13 +971,453 @@
                                 {   
                                         "EventId": 32,
                                         "EventName": "PowerConverterLowerTCAWarn",
-                                        "Description": "PowerConverter speed is below Lower warn threshold",
+                                        "Description": "PowerConverter is below Lower warn threshold",
                                         "SrcObjName": "PowerConverterSensor",
                                         "EventEnable": true,
                                         "IsFault": true,
                                         "Fault": {
                                                 "RaiseFault": true,
                                                 "ClearingEventId": 31,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 33,
+                                        "EventName": "QsfpTemperatureHigherTCAAlarmClear",
+                                        "Description": "Qsfp Temperature Higher Alarm cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 34,
+                                        "EventName": "QsfpTemperatureHigherTCAAlarm",
+                                        "Description": "Qsfp Temperature Higher threshold crossing alarm",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 33,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 35,
+                                        "EventName": "QsfpTemperatureHigherTCAWarnClear",
+                                        "Description": "Qsfp Temperature Higher Warn cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 36,
+                                        "EventName": "QsfpTemperatureHigherTCAWarn",
+                                        "Description": "Qsfp Temperature Higher threshold crossing warn",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 35,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 37,
+                                        "EventName": "QsfpTemperatureLowerTCAAlarmClear",
+                                        "Description": "Qsfp Temperature Lower Alarm cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 38,
+                                        "EventName": "QsfpTemperatureLowerTCAAlarm",
+                                        "Description": "Qsfp Temperature Lower threshold crossing alarm",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 37,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 39,
+                                        "EventName": "QsfpTemperatureLowerTCAWarnClear",
+                                        "Description": "Qsfp Temperature Lower Warn cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 40,
+                                        "EventName": "QsfpTemperatureLowerTCAWarn",
+                                        "Description": "Qsfp Temperature Lower threshold crossing warn",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 39,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 41,
+                                        "EventName": "QsfpVoltageHigherTCAAlarmClear",
+                                        "Description": "Qsfp Voltage Higher Alarm cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 42,
+                                        "EventName": "QsfpVoltageHigherTCAAlarm",
+                                        "Description": "Qsfp Voltage Higher threshold crossing alarm",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 41,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 43,
+                                        "EventName": "QsfpVoltageHigherTCAWarnClear",
+                                        "Description": "Qsfp Voltage Higher Warn cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 44,
+                                        "EventName": "QsfpVoltageHigherTCAWarn",
+                                        "Description": "Qsfp Voltage Higher threshold crossing warn",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 43,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 45,
+                                        "EventName": "QsfpVoltageLowerTCAAlarmClear",
+                                        "Description": "Qsfp Voltage Lower Alarm cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 46,
+                                        "EventName": "QsfpVoltageLowerTCAAlarm",
+                                        "Description": "Qsfp Voltage Lower threshold crossing alarm",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 45,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 47,
+                                        "EventName": "QsfpVoltageLowerTCAWarnClear",
+                                        "Description": "Qsfp Voltage Lower Warn cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 48,
+                                        "EventName": "QsfpVoltageLowerTCAWarn",
+                                        "Description": "Qsfp Voltage Lower threshold crossing warn",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 47,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 49,
+                                        "EventName": "QsfpRXPowerHigherTCAAlarmClear",
+                                        "Description": "Qsfp RX Power Higher Alarm cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 50,
+                                        "EventName": "QsfpRXPowerHigherTCAAlarm",
+                                        "Description": "Qsfp RX Power Higher threshold crossing alarm",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 49,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 51,
+                                        "EventName": "QsfpRXPowerHigherTCAWarnClear",
+                                        "Description": "Qsfp RX Power Higher Warn cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 52,
+                                        "EventName": "QsfpRXPowerHigherTCAWarn",
+                                        "Description": "Qsfp RX Power Higher threshold crossing warn",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 51,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 53,
+                                        "EventName": "QsfpRXPowerLowerTCAAlarmClear",
+                                        "Description": "Qsfp RX Power Lower Alarm cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 54,
+                                        "EventName": "QsfpRXPowerLowerTCAAlarm",
+                                        "Description": "Qsfp RX Power Lower threshold crossing alarm",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 53,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 55,
+                                        "EventName": "QsfpRXPowerLowerTCAWarnClear",
+                                        "Description": "Qsfp RX Power Lower Warn cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 56,
+                                        "EventName": "QsfpRXPowerLowerTCAWarn",
+                                        "Description": "Qsfp RX Power Lower threshold crossing warn",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 55,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 57,
+                                        "EventName": "QsfpTXPowerHigherTCAAlarmClear",
+                                        "Description": "Qsfp TX Power Higher Alarm cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 58,
+                                        "EventName": "QsfpTXPowerHigherTCAAlarm",
+                                        "Description": "Qsfp TX Power Higher threshold crossing alarm",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 57,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 59,
+                                        "EventName": "QsfpTXPowerHigherTCAWarnClear",
+                                        "Description": "Qsfp TX Power Higher Warn cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 60,
+                                        "EventName": "QsfpTXPowerHigherTCAWarn",
+                                        "Description": "Qsfp TX Power Higher threshold crossing warn",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 59,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 61,
+                                        "EventName": "QsfpTXPowerLowerTCAAlarmClear",
+                                        "Description": "Qsfp TX Power Lower Alarm cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 62,
+                                        "EventName": "QsfpTXPowerLowerTCAAlarm",
+                                        "Description": "Qsfp TX Power Lower threshold crossing alarm",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 61,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 63,
+                                        "EventName": "QsfpTXPowerLowerTCAWarnClear",
+                                        "Description": "Qsfp TX Power Lower Warn cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 64,
+                                        "EventName": "QsfpTXPowerLowerTCAWarn",
+                                        "Description": "Qsfp TX Power Lower threshold crossing warn",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 63,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 65,
+                                        "EventName": "QsfpTXBiasHigherTCAAlarmClear",
+                                        "Description": "Qsfp TX Bias Higher Alarm cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 66,
+                                        "EventName": "QsfpTXBiasHigherTCAAlarm",
+                                        "Description": "Qsfp TX Bias Higher threshold crossing alarm",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 65,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 67,
+                                        "EventName": "QsfpTXBiasHigherTCAWarnClear",
+                                        "Description": "Qsfp TX Bias Higher Warn cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 68,
+                                        "EventName": "QsfpTXBiasHigherTCAWarn",
+                                        "Description": "Qsfp TX Bias Higher threshold crossing warn",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 67,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Major"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 69,
+                                        "EventName": "QsfpTXBiasLowerTCAAlarmClear",
+                                        "Description": "Qsfp TX Bias Lower Alarm cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 70,
+                                        "EventName": "QsfpTXBiasLowerTCAAlarm",
+                                        "Description": "Qsfp TX Bias Lower threshold crossing alarm",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 69,
+                                                "ClearingDaemonId": 16, 
+                                                "AlarmSeverity": "Critical"
+                                        }   
+                                },
+                                {   
+                                        "EventId": 71,
+                                        "EventName": "QsfpTXBiasLowerTCAWarnClear",
+                                        "Description": "Qsfp TX Bias Lower Warn cleared",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": false
+                                },  
+                                {   
+                                        "EventId": 72,
+                                        "EventName": "QsfpTXBiasLowerTCAWarn",
+                                        "Description": "Qsfp TX Bias Lower threshold crossing warn",
+                                        "SrcObjName": "Qsfp",
+                                        "EventEnable": true,
+                                        "IsFault": true,
+                                        "Fault": {
+                                                "RaiseFault": true,
+                                                "ClearingEventId": 71,
                                                 "ClearingDaemonId": 16, 
                                                 "AlarmSeverity": "Major"
                                         }   

@@ -77,6 +77,7 @@ type BGPv4Neighbor struct {
 	NeighborAddress         string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Address of the BGP neighbor"`
 	IntfRef                 string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface of the BGP neighbor"`
 	Description             string `DESCRIPTION: "Description of the BGP neighbor", DEFAULT: ""`
+	Disabled                bool   `DESCRIPTION: "Enable/Disable the BGP neighbor", DEFAULT: "false"`
 	PeerGroup               string `DESCRIPTION: "Peer group of the BGP neighbor", DEFAULT: ""`
 	PeerAS                  string `DESCRIPTION: "Peer AS of the BGP neighbor", DEFAULT: ""`
 	LocalAS                 string `DESCRIPTION: "Local AS of the BGP neighbor", DEFAULT: ""`
@@ -106,6 +107,7 @@ type BGPv4NeighborState struct {
 	NeighborAddress         string      `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Address of the BGP neighbor"`
 	IntfRef                 string      `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface of the BGP neighbor"`
 	Description             string      `DESCRIPTION: "Description of the BGP neighbor"`
+	Disabled                bool        `DESCRIPTION: "Enable/Disable the BGP neighbor"`
 	PeerGroup               string      `DESCRIPTION: "Peer group of the BGP neighbor"`
 	PeerType                int8        `DESCRIPTION: "Type of the peer (internal/external)"`
 	SessionState            uint32      `DESCRIPTION: "Session state of the BGP neighbor"`
@@ -132,6 +134,7 @@ type BGPv4NeighborState struct {
 	AdjRIBOutFilter         string      `DESCRIPTION: "Policy that is applied for Adj-RIB-Out prefix filtering"`
 	Messages                BGPMessages `DESCRIPTION: "Rx/Tx counter for BGP update and notification packets"`
 	Queues                  BGPQueues   `DESCRIPTION: "Input/Output size of BGP packet queues"`
+	SessionStateUpdatedTime string      `DESCRIPTION: "Time when this neighbor's session state was last updated."`
 }
 
 type BGPv6Neighbor struct {
@@ -139,6 +142,7 @@ type BGPv6Neighbor struct {
 	NeighborAddress         string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Address of the BGP neighbor"`
 	IntfRef                 string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface of the BGP neighbor"`
 	Description             string `DESCRIPTION: "Description of the BGP neighbor", DEFAULT: ""`
+	Disabled                bool   `DESCRIPTION: "Enable/Disable the BGP neighbor", DEFAULT: "false"`
 	PeerGroup               string `DESCRIPTION: "Peer group of the BGP neighbor", DEFAULT: ""`
 	PeerAS                  string `DESCRIPTION: "Peer AS of the BGP neighbor", DEFAULT: ""`
 	LocalAS                 string `DESCRIPTION: "Local AS of the BGP neighbor", DEFAULT: ""`
@@ -167,6 +171,7 @@ type BGPv6NeighborState struct {
 	NeighborAddress         string      `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Address of the BGP neighbor"`
 	IntfRef                 string      `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface of the BGP neighbor"`
 	Description             string      `DESCRIPTION: "Description of the BGP neighbor"`
+	Disabled                bool        `DESCRIPTION: "Enable/Disable the BGP neighbor", DEFAULT: "false"`
 	PeerGroup               string      `DESCRIPTION: "Peer group of the BGP neighbor"`
 	PeerType                int8        `DESCRIPTION: "Type of the peer (internal/external)"`
 	SessionState            uint32      `DESCRIPTION: "Session state of the BGP neighbor"`
@@ -192,6 +197,7 @@ type BGPv6NeighborState struct {
 	AdjRIBOutFilter         string      `DESCRIPTION: "Policy that is applied for Adj-RIB-Out prefix filtering"`
 	Messages                BGPMessages `DESCRIPTION: "Rx/Tx counter for BGP update and notification packets"`
 	Queues                  BGPQueues   `DESCRIPTION: "Input/Output size of BGP packet queues"`
+	SessionStateUpdatedTime string      `DESCRIPTION: "Time when this neighbor's session state was updated."`
 }
 
 type BGPv4PeerGroup struct {

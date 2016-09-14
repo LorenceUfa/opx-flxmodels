@@ -41,6 +41,7 @@ type ConfigObj interface {
 	UpdateObjectInDb(dbV4Route ConfigObj, attrSet []bool, dbHdl redis.Conn) error
 	GetAllObjFromDb(dbHdl redis.Conn) ([]ConfigObj, error)
 	GetBulkObjFromDb(startIndex int64, count int64, dbHdl redis.Conn) (error, int64, int64, bool, []ConfigObj)
+	MergeDbObjKeys(dbObj ConfigObj) (ConfigObj, error)
 }
 type PatchOpInfo struct {
 	Op    string
@@ -88,4 +89,7 @@ func (obj baseObj) GetAllObjFromDb(dbHdl redis.Conn) ([]ConfigObj, error) {
 }
 func (obj baseObj) GetBulkObjFromDb(startIndex int64, count int64, dbHdl redis.Conn) (error, int64, int64, bool, []ConfigObj) {
 	return nil, 0, 0, false, nil
+}
+func (obj baseObj) MergeDbObjKeys(dbObj ConfigObj) (ConfigObj, error) {
+	return nil, nil
 }

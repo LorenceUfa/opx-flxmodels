@@ -125,6 +125,14 @@ type IPv4RouteHwState struct {
 	RouteUpdatedTime string `DESCRIPTION :"Time when the route was last updated"`
 }
 
+type IPv6RouteHwState struct {
+	baseObj
+	DestinationNw    string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "IP address of the route in CIDR format"`
+	NextHopIps       string `DESCRIPTION: "next hop ip list for the route"`
+	RouteCreatedTime string `DESCRIPTION :"Time when the route was added"`
+	RouteUpdatedTime string `DESCRIPTION :"Time when the route was last updated"`
+}
+
 type ArpEntryHwState struct {
 	baseObj
 	IpAddr  string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", QPARAM: "optional" ,DESCRIPTION: "Neighbor's IP Address"`

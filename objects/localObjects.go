@@ -52,6 +52,7 @@ type SystemSwVersionState struct {
 
 type ConfigLogState struct {
 	baseObj
+	SeqNum    uint32 `SNAPROUTE: "KEY", DESCRIPTION: "Sequence number of the API call"`
 	Time      string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "When the API was called", USESTATEDB:"true"`
 	API       string `SNAPROUTE: "KEY", DESCRIPTION: "Name of the API called"`
 	Operation string `DESCRIPTION: "Oprtation executed on this API"`
@@ -74,4 +75,9 @@ type XponderGlobalState struct {
 	XponderId          uint8  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "1", DESCRIPTION: "Xponder module identifier"`
 	XponderMode        string `DESCRIPTION: "Global operational mode of Xponder module"`
 	XponderDescription string `DESCRIPTION: "User configurable description string for the xponder module"`
+}
+
+type ApiInfoState struct {
+	baseObj
+	Url string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "1", DESCRIPTION: "URL"`
 }
