@@ -102,7 +102,7 @@ type StpBridgeInstance struct {
 	TxHoldCount  int32  `DESCRIPTION: Configures the number of BPDUs that can be sent before pausing for 1 second., MIN: "1" ,  MAX: "10", DEFAULT: 6`
 }
 
-type StpBridgeState struct {
+type StpBridgeInstanceState struct {
 	baseObj
 	Vlan                    uint16 `SNAPROUTE: "KEY",  ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: Each bridge is associated with a domain.  Typically this domain is represented as the vlan; The default domain is typically 1, MIN: "1" ,  MAX: "4095"`
 	IfIndex                 int32  `DESCRIPTION: The value of the instance of the ifIndex object for the bridge, MIN: "1" ,  MAX: "2147483647"`

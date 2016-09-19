@@ -38,10 +38,11 @@ type LaPortChannelIntfRefListState struct {
 	PartnerCdsChurnCount       uint64 `DESCRIPTION: If supported the number of times the Actor CDS Churn state has entered the ACTOR_CDS_CHURN state`
 	LacpInPkts                 uint64 `DESCRIPTION: Number of LACPDUs received`
 	LacpOutPkts                uint64 `DESCRIPTION: Number of LACPDUs transmitted`
-	LacpRxErrors               uint64 `DESCRIPTION: Number of LACPDU receive packet errors`
+	LacpRxErrors               uint64 `DESCRIPTION: The number of frames received that carry the Slow Protocols Ethernet Type value (IEEE Std 802.3-2008, Annex 57A.4), but contain a badly formed PDU or an illegal value of Protocol Subtype (IEEE Std 802.3-2008, Annex 57A.3).`
 	LacpTxErrors               uint64 `DESCRIPTION: Number of LACPDU transmit packet errors`
-	LacpUnknownErrors          uint64 `DESCRIPTION: Number of LACPDU unknown packet errors`
-	LacpErrors                 uint64 `DESCRIPTION: Number of LACPDU illegal packet errors`
+	LacpUnknownErrors          uint64 `DESCRIPTION: Carry the Slow Protocols Ethernet Type value (IEEE Std 802.3-2008, Annex 57A.4), but contain an unknown PDU or are addressed to the Slow Protocols group MAC Address (IEEE Std 802.3-2008, Annex 57A.3), but do not carry the Slow Protocols Ethernet Type.`
+	LacpErrors                 uint64 `DESCRIPTION: Number of LACPDU Errors; sum of all Rx Errors`
+	LacpInMissMatchPkts        uint64 `DESCRIPTION: Numeer of LACPDU which are received with mismatched info from Peer`
 	LampInPdu                  uint64 `DESCRIPTION: Number of LAMPDU received`
 	LampInResponsePdu          uint64 `DESCRIPTION: Number of LAMPDU Response received`
 	LampOutPdu                 uint64 `DESCRIPTION: Number of LAMPDU transmited`
@@ -58,7 +59,7 @@ type LaPortChannel struct {
 	SystemIdMac    string   `DESCRIPTION: The MAC address portion of the nodes System ID. This is combined with the system priority to construct the 8-octet system-id, DEFAULT: "00-00-00-00-00-00"`
 	SystemPriority uint16   `DESCRIPTION: Sytem priority used by the node on this LAG interface. Lower value is higher priority for determining which node is the controlling system., DEFAULT: 32768`
 	LagHash        int32    `DESCRIPTION: The tx hashing algorithm used by the lag group, SELECTION: LAYER2(0)/LAYER3_4(2)/LAYER2_3(1), DEFAULT: 0`
-	AdminState     string   `DESCRIPTION: Convenient way to disable/enable a lag group.  The behaviour should be such that all traffic should stop.  LACP frames should continue to be processed, DEFAULT: "enable"`
+	AdminState     string   `DESCRIPTION: Convenient way to disable/enable a lag group.  The behaviour should be such that all traffic should stop.  LACP frames should continue to be processed, SELECTION: UP/DOWN, DEFAULT: "UP"`
 	IntfRefList    []string `DESCRIPTION: List of current member interfaces for the aggregate, expressed as references to existing interfaces`
 }
 
@@ -140,4 +141,19 @@ type LacpGlobal struct {
 	baseObj
 	Vrf        string `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"1", AUTOCREATE: "true", DEFAULT: "default", DESCRIPTION: global system object defining the global state of LACPD.`
 	AdminState string `DESCRIPTION: Administrative state of LACPD, UP will allow for lacp configuration to be applied, DOWN will disallow and de-provision from daemon, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: "DOWN"`
+}
+
+type LacpGlobalState struct {
+	baseObj
+	Vrf                          string   `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"1", DEFAULT: "default", DESCRIPTION: global system object defining the global state of LACPD.`
+	AdminState                   string   `DESCRIPTION: Administrative state of LACPD, UP will allow for lacp configuration to be applied, DOWN will disallow and de-provision from daemon, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: "DOWN"`
+	AggList                      []string `DESCRIPTION: List of Aggregation objects that have been created`
+	DistributedRelayList         []string `DESCRIPTION: List of Distributed Relay objects`
+	DistributedRelayAttachedList []string `DESCRIPTION: List of Distributed Relay objects who are attached to an Aggregator in the form of "DRName-AggName"`
+	AggOperStateUpList           []string `DESCRIPTION: List of Aggregation objects which have at least one port in Distributed State`
+	DistributedRelayUpList       []string `DESCRIPTION: List of Distributed Relay objects whose Aggregator is in Oper State Up`
+	LacpErrorsInPkts             uint64   `DESCRIPTION: Total number of Error pkts received; Unknown or Illegal`
+	LacpMissMatchPkts            uint64   `DESCRIPTION: Total number of pkts received which have received missmatched info from peer`
+	LacpTotalRxPkts              uint64   `DESCRIPTION: Total Rx pkts accross all LACP Ports`
+	LacpTotalTxPkts              uint64   `DESCRIPTION: Total Tx pkts accross all LACP Ports`
 }

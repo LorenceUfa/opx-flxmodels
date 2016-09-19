@@ -131,6 +131,9 @@ type FanSensor struct {
 	HigherWarningThreshold int32  `DESCRIPTION: "Higher Warning Threshold for TCA"`
 	LowerWarningThreshold  int32  `DESCRIPTION: "Lower Warning Threshold for TCA"`
 	LowerAlarmThreshold    int32  `DESCRIPTION: "Lower Alarm Threshold for TCA"`
+	PMClassAAdminState     string `DESCRIPTION: "PM Class-A Admin State", DEFAULT: Enable, SELECTION: Enable/Disable`
+	PMClassBAdminState     string `DESCRIPTION: "PM Class-B Admin State", DEFAULT: Enable, SELECTION: Enable/Disable`
+	PMClassCAdminState     string `DESCRIPTION: "PM Class-C Admin State", DEFAULT: Enable, SELECTION: Enable/Disable`
 }
 
 type FanSensorState struct {
@@ -159,6 +162,9 @@ type TemperatureSensor struct {
 	HigherWarningThreshold float64 `DESCRIPTION: "Higher Warning Threshold for TCA"`
 	LowerWarningThreshold  float64 `DESCRIPTION: "Lower Warning Threshold for TCA"`
 	LowerAlarmThreshold    float64 `DESCRIPTION: "Lower Alarm Threshold for TCA"`
+	PMClassAAdminState     string  `DESCRIPTION: "PM Class-A Admin State", DEFAULT: Enable, SELECTION: Enable/Disable`
+	PMClassBAdminState     string  `DESCRIPTION: "PM Class-B Admin State", DEFAULT: Enable, SELECTION: Enable/Disable`
+	PMClassCAdminState     string  `DESCRIPTION: "PM Class-C Admin State", DEFAULT: Enable, SELECTION: Enable/Disable`
 }
 
 type TemperatureSensorState struct {
@@ -187,6 +193,9 @@ type VoltageSensor struct {
 	HigherWarningThreshold float64 `DESCRIPTION: "Higher Warning Threshold for TCA"`
 	LowerWarningThreshold  float64 `DESCRIPTION: "Lower Warning Threshold for TCA"`
 	LowerAlarmThreshold    float64 `DESCRIPTION: "Lower Alarm Threshold for TCA"`
+	PMClassAAdminState     string  `DESCRIPTION: "PM Class-A Admin State", DEFAULT: Enable, SELECTION: Enable/Disable`
+	PMClassBAdminState     string  `DESCRIPTION: "PM Class-B Admin State", DEFAULT: Enable, SELECTION: Enable/Disable`
+	PMClassCAdminState     string  `DESCRIPTION: "PM Class-C Admin State", DEFAULT: Enable, SELECTION: Enable/Disable`
 }
 
 type VoltageSensorState struct {
@@ -215,6 +224,9 @@ type PowerConverterSensor struct {
 	HigherWarningThreshold float64 `DESCRIPTION: "Higher Warning Threshold for TCA"`
 	LowerWarningThreshold  float64 `DESCRIPTION: "Lower Warning Threshold for TCA"`
 	LowerAlarmThreshold    float64 `DESCRIPTION: "Lower Alarm Threshold for TCA"`
+	PMClassAAdminState     string  `DESCRIPTION: "PM Class-A Admin State", DEFAULT: Enable, SELECTION: Enable/Disable`
+	PMClassBAdminState     string  `DESCRIPTION: "PM Class-B Admin State", DEFAULT: Enable, SELECTION: Enable/Disable`
+	PMClassCAdminState     string  `DESCRIPTION: "PM Class-C Admin State", DEFAULT: Enable, SELECTION: Enable/Disable`
 }
 
 type PowerConverterSensorState struct {
@@ -259,6 +271,9 @@ type Qsfp struct {
 	LowerWarningRXPower      float64 `DESCRIPTION: "Lower Warning Rx power Threshold for TCA"`
 	LowerWarningTXPower      float64 `DESCRIPTION: "Lower Warning Rx power for TCA"`
 	LowerWarningTXBias       float64 `DESCRIPTION: "Lower Warning Tx Current Bias for TCA"`
+	PMClassAAdminState       string  `DESCRIPTION: "PM Class-A Admin State", DEFAULT: Disable, SELECTION: Enable/Disable`
+	PMClassBAdminState       string  `DESCRIPTION: "PM Class-B Admin State", DEFAULT: Disable, SELECTION: Enable/Disable`
+	PMClassCAdminState       string  `DESCRIPTION: "PM Class-C Admin State", DEFAULT: Disable, SELECTION: Enable/Disable`
 }
 
 type QsfpState struct {
