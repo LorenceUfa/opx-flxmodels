@@ -1162,7 +1162,7 @@
                                         "EventId": 49,
                                         "EventName": "QsfpRXPowerHigherTCAAlarmClear",
                                         "Description": "Qsfp RX Power Higher Alarm cleared",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": false
                                 },  
@@ -1170,7 +1170,7 @@
                                         "EventId": 50,
                                         "EventName": "QsfpRXPowerHigherTCAAlarm",
                                         "Description": "Qsfp RX Power Higher threshold crossing alarm",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": true,
                                         "Fault": {
@@ -1184,7 +1184,7 @@
                                         "EventId": 51,
                                         "EventName": "QsfpRXPowerHigherTCAWarnClear",
                                         "Description": "Qsfp RX Power Higher Warn cleared",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": false
                                 },  
@@ -1192,7 +1192,7 @@
                                         "EventId": 52,
                                         "EventName": "QsfpRXPowerHigherTCAWarn",
                                         "Description": "Qsfp RX Power Higher threshold crossing warn",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": true,
                                         "Fault": {
@@ -1206,7 +1206,7 @@
                                         "EventId": 53,
                                         "EventName": "QsfpRXPowerLowerTCAAlarmClear",
                                         "Description": "Qsfp RX Power Lower Alarm cleared",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": false
                                 },  
@@ -1214,7 +1214,7 @@
                                         "EventId": 54,
                                         "EventName": "QsfpRXPowerLowerTCAAlarm",
                                         "Description": "Qsfp RX Power Lower threshold crossing alarm",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": true,
                                         "Fault": {
@@ -1228,7 +1228,7 @@
                                         "EventId": 55,
                                         "EventName": "QsfpRXPowerLowerTCAWarnClear",
                                         "Description": "Qsfp RX Power Lower Warn cleared",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": false
                                 },  
@@ -1236,7 +1236,7 @@
                                         "EventId": 56,
                                         "EventName": "QsfpRXPowerLowerTCAWarn",
                                         "Description": "Qsfp RX Power Lower threshold crossing warn",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": true,
                                         "Fault": {
@@ -1250,7 +1250,7 @@
                                         "EventId": 57,
                                         "EventName": "QsfpTXPowerHigherTCAAlarmClear",
                                         "Description": "Qsfp TX Power Higher Alarm cleared",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": false
                                 },  
@@ -1258,7 +1258,7 @@
                                         "EventId": 58,
                                         "EventName": "QsfpTXPowerHigherTCAAlarm",
                                         "Description": "Qsfp TX Power Higher threshold crossing alarm",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": true,
                                         "Fault": {
@@ -1272,7 +1272,7 @@
                                         "EventId": 59,
                                         "EventName": "QsfpTXPowerHigherTCAWarnClear",
                                         "Description": "Qsfp TX Power Higher Warn cleared",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": false
                                 },  
@@ -1280,7 +1280,7 @@
                                         "EventId": 60,
                                         "EventName": "QsfpTXPowerHigherTCAWarn",
                                         "Description": "Qsfp TX Power Higher threshold crossing warn",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": true,
                                         "Fault": {
@@ -1294,7 +1294,7 @@
                                         "EventId": 61,
                                         "EventName": "QsfpTXPowerLowerTCAAlarmClear",
                                         "Description": "Qsfp TX Power Lower Alarm cleared",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": false
                                 },  
@@ -1302,7 +1302,7 @@
                                         "EventId": 62,
                                         "EventName": "QsfpTXPowerLowerTCAAlarm",
                                         "Description": "Qsfp TX Power Lower threshold crossing alarm",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": true,
                                         "Fault": {
@@ -1316,7 +1316,7 @@
                                         "EventId": 63,
                                         "EventName": "QsfpTXPowerLowerTCAWarnClear",
                                         "Description": "Qsfp TX Power Lower Warn cleared",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": false
                                 },  
@@ -1324,7 +1324,7 @@
                                         "EventId": 64,
                                         "EventName": "QsfpTXPowerLowerTCAWarn",
                                         "Description": "Qsfp TX Power Lower threshold crossing warn",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": true,
                                         "Fault": {
@@ -1338,7 +1338,7 @@
                                         "EventId": 65,
                                         "EventName": "QsfpTXBiasHigherTCAAlarmClear",
                                         "Description": "Qsfp TX Bias Higher Alarm cleared",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": false
                                 },  
@@ -1346,7 +1346,7 @@
                                         "EventId": 66,
                                         "EventName": "QsfpTXBiasHigherTCAAlarm",
                                         "Description": "Qsfp TX Bias Higher threshold crossing alarm",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": true,
                                         "Fault": {
@@ -1360,7 +1360,7 @@
                                         "EventId": 67,
                                         "EventName": "QsfpTXBiasHigherTCAWarnClear",
                                         "Description": "Qsfp TX Bias Higher Warn cleared",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": false
                                 },  
@@ -1368,7 +1368,7 @@
                                         "EventId": 68,
                                         "EventName": "QsfpTXBiasHigherTCAWarn",
                                         "Description": "Qsfp TX Bias Higher threshold crossing warn",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": true,
                                         "Fault": {
@@ -1382,7 +1382,7 @@
                                         "EventId": 69,
                                         "EventName": "QsfpTXBiasLowerTCAAlarmClear",
                                         "Description": "Qsfp TX Bias Lower Alarm cleared",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": false
                                 },  
@@ -1390,7 +1390,7 @@
                                         "EventId": 70,
                                         "EventName": "QsfpTXBiasLowerTCAAlarm",
                                         "Description": "Qsfp TX Bias Lower threshold crossing alarm",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": true,
                                         "Fault": {
@@ -1404,7 +1404,7 @@
                                         "EventId": 71,
                                         "EventName": "QsfpTXBiasLowerTCAWarnClear",
                                         "Description": "Qsfp TX Bias Lower Warn cleared",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": false
                                 },  
@@ -1412,7 +1412,7 @@
                                         "EventId": 72,
                                         "EventName": "QsfpTXBiasLowerTCAWarn",
                                         "Description": "Qsfp TX Bias Lower threshold crossing warn",
-                                        "SrcObjName": "Qsfp",
+                                        "SrcObjName": "QsfpChannel",
                                         "EventEnable": true,
                                         "IsFault": true,
                                         "Fault": {

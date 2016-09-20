@@ -253,24 +253,12 @@ type Qsfp struct {
 	AdminState               string  `DESCRIPTION: "Enable/Disable", DEFAULT: Disable, SELECTION: Enable/Disable`
 	HigherAlarmTemperature   float64 `DESCRIPTION: "Higher Alarm temperature threshold for TCA"`
 	HigherAlarmVoltage       float64 `DESCRIPTION: "Higher Alarm Voltage threshold for TCA"`
-	HigherAlarmRXPower       float64 `DESCRIPTION: "Higher Alarm Rx power Threshold for TCA"`
-	HigherAlarmTXPower       float64 `DESCRIPTION: "Higher Alarm Rx power for TCA"`
-	HigherAlarmTXBias        float64 `DESCRIPTION: "Higher Alarm Tx Current Bias for TCA"`
 	HigherWarningTemperature float64 `DESCRIPTION: "Higher Warning temperature threshold for TCA"`
 	HigherWarningVoltage     float64 `DESCRIPTION: "Higher Warning Voltage threshold for TCA"`
-	HigherWarningRXPower     float64 `DESCRIPTION: "Higher Warning Rx power Threshold for TCA"`
-	HigherWarningTXPower     float64 `DESCRIPTION: "Higher Warning Rx power for TCA"`
-	HigherWarningTXBias      float64 `DESCRIPTION: "Higher Warning Tx Current Bias for TCA"`
 	LowerAlarmTemperature    float64 `DESCRIPTION: "Lower Alarm temperature threshold for TCA"`
 	LowerAlarmVoltage        float64 `DESCRIPTION: "Lower Alarm Voltage threshold for TCA"`
-	LowerAlarmRXPower        float64 `DESCRIPTION: "Lower Alarm Rx power Threshold for TCA"`
-	LowerAlarmTXPower        float64 `DESCRIPTION: "Lower Alarm Rx power for TCA"`
-	LowerAlarmTXBias         float64 `DESCRIPTION: "Lower Alarm Tx Current Bias for TCA"`
 	LowerWarningTemperature  float64 `DESCRIPTION: "Lower Warning temperature threshold for TCA"`
 	LowerWarningVoltage      float64 `DESCRIPTION: "Lower Warning Voltage threshold for TCA"`
-	LowerWarningRXPower      float64 `DESCRIPTION: "Lower Warning Rx power Threshold for TCA"`
-	LowerWarningTXPower      float64 `DESCRIPTION: "Lower Warning Rx power for TCA"`
-	LowerWarningTXBias       float64 `DESCRIPTION: "Lower Warning Tx Current Bias for TCA"`
 	PMClassAAdminState       string  `DESCRIPTION: "PM Class-A Admin State", DEFAULT: Disable, SELECTION: Enable/Disable`
 	PMClassBAdminState       string  `DESCRIPTION: "PM Class-B Admin State", DEFAULT: Disable, SELECTION: Enable/Disable`
 	PMClassCAdminState       string  `DESCRIPTION: "PM Class-C Admin State", DEFAULT: Disable, SELECTION: Enable/Disable`
@@ -288,18 +276,6 @@ type QsfpState struct {
 	DataCode           string  `DESCRIPTION: Data Code"`
 	Temperature        float64 `DESCRIPTION: "Current temperature"`
 	Voltage            float64 `DESCRIPTION: "Current Voltage"`
-	RX1Power           float64 `DESCRIPTION: "Rx power on channel 1"`
-	RX2Power           float64 `DESCRIPTION: "Rx power on channel 2"`
-	RX3Power           float64 `DESCRIPTION: "Rx power on channel 3"`
-	RX4Power           float64 `DESCRIPTION: "Rx power on channel 4"`
-	TX1Power           float64 `DESCRIPTION: "Rx power on channel 1"`
-	TX2Power           float64 `DESCRIPTION: "Rx power on channel 2"`
-	TX3Power           float64 `DESCRIPTION: "Rx power on channel 3"`
-	TX4Power           float64 `DESCRIPTION: "Rx power on channel 4"`
-	TX1Bias            float64 `DESCRIPTION: "Tx Current Bias on channel 1"`
-	TX2Bias            float64 `DESCRIPTION: "Tx Current Bias on channel 2"`
-	TX3Bias            float64 `DESCRIPTION: "Tx Current Bias on channel 3"`
-	TX4Bias            float64 `DESCRIPTION: "Tx Current Bias on channel 4"`
 }
 
 type QsfpPMData struct {
@@ -313,6 +289,52 @@ type QsfpPMDataState struct {
 	Resource string `SNAPROUTE: "KEY", DESCRIPTION: "QSFP PM Resource Name"`
 	Class    string `SNAPROUTE: "KEY", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
 	Data     []QsfpPMData
+}
+
+type QsfpChannel struct {
+	baseObj
+	QsfpId               int32   `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "Qsfp Id"`
+	ChannelNum           int32   `SNAPROUTE: "KEY", DESCRIPTION: "Qsfp Channel Number"`
+	AdminState           string  `DESCRIPTION: "Enable/Disable", DEFAULT: Disable, SELECTION: Enable/Disable`
+	HigherAlarmRXPower   float64 `DESCRIPTION: "Higher Alarm Rx power Threshold for TCA"`
+	HigherAlarmTXPower   float64 `DESCRIPTION: "Higher Alarm Rx power for TCA"`
+	HigherAlarmTXBias    float64 `DESCRIPTION: "Higher Alarm Tx Current Bias for TCA"`
+	HigherWarningRXPower float64 `DESCRIPTION: "Higher Warning Rx power Threshold for TCA"`
+	HigherWarningTXPower float64 `DESCRIPTION: "Higher Warning Rx power for TCA"`
+	HigherWarningTXBias  float64 `DESCRIPTION: "Higher Warning Tx Current Bias for TCA"`
+	LowerAlarmRXPower    float64 `DESCRIPTION: "Lower Alarm Rx power Threshold for TCA"`
+	LowerAlarmTXPower    float64 `DESCRIPTION: "Lower Alarm Rx power for TCA"`
+	LowerAlarmTXBias     float64 `DESCRIPTION: "Lower Alarm Tx Current Bias for TCA"`
+	LowerWarningRXPower  float64 `DESCRIPTION: "Lower Warning Rx power Threshold for TCA"`
+	LowerWarningTXPower  float64 `DESCRIPTION: "Lower Warning Rx power for TCA"`
+	LowerWarningTXBias   float64 `DESCRIPTION: "Lower Warning Tx Current Bias for TCA"`
+	PMClassAAdminState   string  `DESCRIPTION: "PM Class-A Admin State", DEFAULT: Disable, SELECTION: Enable/Disable`
+	PMClassBAdminState   string  `DESCRIPTION: "PM Class-B Admin State", DEFAULT: Disable, SELECTION: Enable/Disable`
+	PMClassCAdminState   string  `DESCRIPTION: "PM Class-C Admin State", DEFAULT: Disable, SELECTION: Enable/Disable`
+}
+
+type QsfpChannelState struct {
+	baseObj
+	QsfpId     int32   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "QSFP Id"`
+	ChannelNum int32   `SNAPROUTE: "KEY", DESCRIPTION: "Qsfp Channel Number"`
+	Present    bool    `DESCRIPTION: "Present or Not Value: true if present and false if not present"`
+	RXPower    float64 `DESCRIPTION: "Rx power on channel 1"`
+	TXPower    float64 `DESCRIPTION: "Rx power on channel 1"`
+	TXBias     float64 `DESCRIPTION: "Tx Current Bias on channel 1"`
+}
+
+type QsfpChannelPMData struct {
+	TimeStamp string  `DESCRIPTION: "Timestamp at which data is collected"`
+	Value     float64 `DESCRIPTION: "Qsfp PM Data Value"`
+}
+
+type QsfpChannelPMDataState struct {
+	baseObj
+	QsfpId     int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "QSFP Id"`
+	ChannelNum int32  `SNAPROUTE: "KEY", DESCRIPTION: "Qsfp Channel Number"`
+	Resource   string `SNAPROUTE: "KEY", DESCRIPTION: "QSFP PM Resource Name"`
+	Class      string `SNAPROUTE: "KEY", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
+	Data       []QsfpChannelPMData
 }
 
 type PlatformMgmtDeviceState struct {

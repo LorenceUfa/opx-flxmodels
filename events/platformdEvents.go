@@ -49,6 +49,11 @@ type QsfpKey struct {
 	QsfpId int32
 }
 
+type QsfpChannelKey struct {
+	QsfpId     int32
+	ChannelNum int32
+}
+
 const (
 	FanHigherTCAAlarmClear             EventId = 1
 	FanHigherTCAAlarm                  EventId = 2
@@ -130,6 +135,7 @@ var PlatformdEventKeyMap KeyMap = KeyMap{
 	"VoltageSensor":        VoltageSensorKey{},
 	"PowerConverterSensor": PowerConverterSensorKey{},
 	"Qsfp":                 QsfpKey{},
+	"QsfpChannel":          QsfpChannelKey{},
 }
 
 func (obj FanSensorKey) GetObjDBKey(bytes []byte) (string, string, error) {
@@ -179,10 +185,21 @@ func (obj PowerConverterSensorKey) GetObjDBKey(bytes []byte) (string, string, er
 func (obj QsfpKey) GetObjDBKey(bytes []byte) (string, string, error) {
 	var err error
 	if len(bytes) == 0 {
-		return "", "", errors.New("Empty byte stream")
+		return "", "", errors.New("empty byte stream")
 	}
 	if err = json.Unmarshal(bytes, &obj); err != nil {
 		return "", "", err
 	}
-	return fmt.Sprintf("Name:%d", obj.QsfpId), fmt.Sprintf("Qsfp#%d", obj.QsfpId), nil
+	return fmt.Sprintf("QsfpId:%d", obj.QsfpId), fmt.Sprintf("Qsfp#%d", obj.QsfpId), nil
+}
+
+func (obj QsfpChannelKey) GetObjDBKey(bytes []byte) (string, string, error) {
+	var err error
+	if len(bytes) == 0 {
+		return "", "", errors.New("empty byte stream")
+	}
+	if err = json.Unmarshal(bytes, &obj); err != nil {
+		return "", "", err
+	}
+	return fmt.Sprintf("QsfpId:%d ChannelNum: %d", obj.QsfpId, obj.ChannelNum), fmt.Sprintf("QsfpChannel#%d#%d", obj.QsfpId, obj.ChannelNum), nil
 }
