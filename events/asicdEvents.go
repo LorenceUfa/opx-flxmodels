@@ -45,22 +45,155 @@ type IPv6IntfKey struct {
 	IntfRef string
 }
 
+type AsicGlobalPMTCAKey struct {
+	ModuleId uint8
+	Resource string
+}
+
+type EthernetPMTCAKey struct {
+	IntfRef  string
+	Resource string
+}
+
 const (
-	PortOperStateUp       EventId = 1
-	PortOperStateDown     EventId = 2
-	VlanOperStateUp       EventId = 3
-	VlanOperStateDown     EventId = 4
-	IPv4IntfOperStateUp   EventId = 5
-	IPv4IntfOperStateDown EventId = 6
-	IPv6IntfOperStateUp   EventId = 7
-	IPv6IntfOperStateDown EventId = 8
+	_ EventId = iota
+	PortOperStateUp
+	PortOperStateDown
+	VlanOperStateUp
+	VlanOperStateDown
+	IPv4IntfOperStateUp
+	IPv4IntfOperStateDown
+	IPv6IntfOperStateUp
+	IPv6IntfOperStateDown
+	TemperatureHighAlarm
+	TemperatureHighAlarmClear
+	TemperatureHighWarn
+	TemperatureHighWarnClear
+	TemperatureLowAlarm
+	TemperatureLowAlarmClear
+	TemperatureLowWarn
+	TemperatureLowWarnClear
+	EthIfUnderSizePktsHighAlarm
+	EthIfUnderSizePktsHighAlarmClear
+	EthIfUnderSizePktsHighWarn
+	EthIfUnderSizePktsHighWarnClear
+	EthIfUnderSizePktsLowAlarm
+	EthIfUnderSizePktsLowAlarmClear
+	EthIfUnderSizePktsLowWarn
+	EthIfUnderSizePktsLowWarnClear
+	EthIfOverSizePktsHighAlarm
+	EthIfOverSizePktsHighAlarmClear
+	EthIfOverSizePktsHighWarn
+	EthIfOverSizePktsHighWarnClear
+	EthIfOverSizePktsLowAlarm
+	EthIfOverSizePktsLowAlarmClear
+	EthIfOverSizePktsLowWarn
+	EthIfOverSizePktsLowWarnClear
+	EthIfFragmentedPktsHighAlarm
+	EthIfFragmentedPktsHighAlarmClear
+	EthIfFragmentedPktsHighWarn
+	EthIfFragmentedPktsHighWarnClear
+	EthIfFragmentedPktsLowAlarm
+	EthIfFragmentedPktsLowAlarmClear
+	EthIfFragmentedPktsLowWarn
+	EthIfFragmentedPktsLowWarnClear
+	EthIfCRCAlignErrHighAlarm
+	EthIfCRCAlignErrHighAlarmClear
+	EthIfCRCAlignErrHighWarn
+	EthIfCRCAlignErrHighWarnClear
+	EthIfCRCAlignErrLowAlarm
+	EthIfCRCAlignErrLowAlarmClear
+	EthIfCRCAlignErrLowWarn
+	EthIfCRCAlignErrLowWarnClear
+	EthIfJabberFramesHighAlarm
+	EthIfJabberFramesHighAlarmClear
+	EthIfJabberFramesHighWarn
+	EthIfJabberFramesHighWarnClear
+	EthIfJabberFramesLowAlarm
+	EthIfJabberFramesLowAlarmClear
+	EthIfJabberFramesLowWarn
+	EthIfJabberFramesLowWarnClear
+	EthIfEthernetPktsHighAlarm
+	EthIfEthernetPktsHighAlarmClear
+	EthIfEthernetPktsHighWarn
+	EthIfEthernetPktsHighWarnClear
+	EthIfEthernetPktsLowAlarm
+	EthIfEthernetPktsLowAlarmClear
+	EthIfEthernetPktsLowWarn
+	EthIfEthernetPktsLowWarnClear
+	EthIfMCPktsHighAlarm
+	EthIfMCPktsHighAlarmClear
+	EthIfMCPktsHighWarn
+	EthIfMCPktsHighWarnClear
+	EthIfMCPktsLowAlarm
+	EthIfMCPktsLowAlarmClear
+	EthIfMCPktsLowWarn
+	EthIfMCPktsLowWarnClear
+	EthIfBCPktsHighAlarm
+	EthIfBCPktsHighAlarmClear
+	EthIfBCPktsHighWarn
+	EthIfBCPktsHighWarnClear
+	EthIfBCPktsLowAlarm
+	EthIfBCPktsLowAlarmClear
+	EthIfBCPktsLowWarn
+	EthIfBCPktsLowWarnClear
+	EthIf64BOrLessPktsHighAlarm
+	EthIf64BOrLessPktsHighAlarmClear
+	EthIf64BOrLessPktsHighWarn
+	EthIf64BOrLessPktsHighWarnClear
+	EthIf64BOrLessPktsLowAlarm
+	EthIf64BOrLessPktsLowAlarmClear
+	EthIf64BOrLessPktsLowWarn
+	EthIf64BOrLessPktsLowWarnClear
+	EthIf65BTo127BPktsHighAlarm
+	EthIf65BTo127BPktsHighAlarmClear
+	EthIf65BTo127BPktsHighWarn
+	EthIf65BTo127BPktsHighWarnClear
+	EthIf65BTo127BPktsLowAlarm
+	EthIf65BTo127BPktsLowAlarmClear
+	EthIf65BTo127BPktsLowWarn
+	EthIf65BTo127BPktsLowWarnClear
+	EthIf128BTo255BPktsHighAlarm
+	EthIf128BTo255BPktsHighAlarmClear
+	EthIf128BTo255BPktsHighWarn
+	EthIf128BTo255BPktsHighWarnClear
+	EthIf128BTo255BPktsLowAlarm
+	EthIf128BTo255BPktsLowAlarmClear
+	EthIf128BTo255BPktsLowWarn
+	EthIf128BTo255BPktsLowWarnClear
+	EthIf256BTo511BPktsHighAlarm
+	EthIf256BTo511BPktsHighAlarmClear
+	EthIf256BTo511BPktsHighWarn
+	EthIf256BTo511BPktsHighWarnClear
+	EthIf256BTo511BPktsLowAlarm
+	EthIf256BTo511BPktsLowAlarmClear
+	EthIf256BTo511BPktsLowWarn
+	EthIf256BTo511BPktsLowWarnClear
+	EthIf512BTo1023BPktsHighAlarm
+	EthIf512BTo1023BPktsHighAlarmClear
+	EthIf512BTo1023BPktsHighWarn
+	EthIf512BTo1023BPktsHighWarnClear
+	EthIf512BTo1023BPktsLowAlarm
+	EthIf512BTo1023BPktsLowAlarmClear
+	EthIf512BTo1023BPktsLowWarn
+	EthIf512BTo1023BPktsLowWarnClear
+	EthIf1024BTo1518BPktsHighAlarm
+	EthIf1024BTo1518BPktsHighAlarmClear
+	EthIf1024BTo1518BPktsHighWarn
+	EthIf1024BTo1518BPktsHighWarnClear
+	EthIf1024BTo1518BPktsLowAlarm
+	EthIf1024BTo1518BPktsLowAlarmClear
+	EthIf1024BTo1518BPktsLowWarn
+	EthIf1024BTo1518BPktsLowWarnClear
 )
 
 var AsicdEventKeyMap KeyMap = KeyMap{
-	"Port":     PortKey{},
-	"Vlan":     VlanKey{},
-	"IPv4Intf": IPv4IntfKey{},
-	"IPv6Intf": IPv6IntfKey{},
+	"Port":         PortKey{},
+	"Vlan":         VlanKey{},
+	"IPv4Intf":     IPv4IntfKey{},
+	"IPv6Intf":     IPv6IntfKey{},
+	"AsicGlobalPM": AsicGlobalPMTCAKey{},
+	"EthernetPM":   EthernetPMTCAKey{},
 }
 
 func (obj PortKey) GetObjDBKey(bytes []byte) (string, string, error) {
@@ -105,4 +238,26 @@ func (obj IPv6IntfKey) GetObjDBKey(bytes []byte) (string, string, error) {
 		return "", "", err
 	}
 	return fmt.Sprintf("IntfRef:%s", obj.IntfRef), fmt.Sprintf("IPv6Intf#%s", obj.IntfRef), nil
+}
+
+func (obj AsicGlobalPMTCAKey) GetObjDBKey(bytes []byte) (string, string, error) {
+	var err error
+	if len(bytes) == 0 {
+		return "", "", errors.New("Empty byte stream")
+	}
+	if err = json.Unmarshal(bytes, &obj); err != nil {
+		return "", "", err
+	}
+	return fmt.Sprintf("ModuleId:%d Resource:%s", obj.ModuleId, obj.Resource), fmt.Sprintf("AsicGlobalPM#%d#", obj.ModuleId) + obj.Resource, nil
+}
+
+func (obj EthernetPMTCAKey) GetObjDBKey(bytes []byte) (string, string, error) {
+	var err error
+	if len(bytes) == 0 {
+		return "", "", errors.New("Empty byte stream")
+	}
+	if err = json.Unmarshal(bytes, &obj); err != nil {
+		return "", "", err
+	}
+	return fmt.Sprintf("IntfRef:%s Resource:%s", obj.IntfRef, obj.Resource), fmt.Sprintf("EthernetPM#%s#", obj.IntfRef) + obj.Resource, nil
 }

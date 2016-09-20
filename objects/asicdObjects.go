@@ -32,6 +32,55 @@ type AsicGlobalState struct {
 	ModuleTemp float64 `DESCRIPTION: "Current module temperature", UNIT: degC`
 }
 
+type PMData struct {
+	TimeStamp string  `DESCRIPTION: "Timestamp at which data is collected"`
+	Value     float64 `DESCRIPTION: "PM Data Value"`
+}
+
+type AsicGlobalPM struct {
+	baseObj
+	ModuleId           uint8   `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY: "1", AUTODISCOVER:"true", DESCRIPTION:"Module identifier"`
+	Resource           string  `SNAPROUTE: "KEY", DESCRIPTION: "Resource identifier", SELECTION: Temperature`
+	PMClassAEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-A PM", DEFAULT:true`
+	PMClassBEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-B PM", DEFAULT:true`
+	PMClassCEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-C PM", DEFAULT:true`
+	HighAlarmThreshold float64 `DESCRIPTION: "High alarm threshold value for this PM", DEFAULT: 100000`
+	HighWarnThreshold  float64 `DESCRIPTION: "High warning threshold value for this PM", DEFAULT: 100000`
+	LowAlarmThreshold  float64 `DESCRIPTION: "Low alarm threshold value for this PM", DEFAULT: -100000`
+	LowWarnThreshold   float64 `DESCRIPTION: "Low warning threshold value for this PM", DEFAULT: -100000`
+}
+
+type AsicGlobalPMState struct {
+	baseObj
+	ModuleId     uint8    `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "1", DESCRIPTION:"Module identifier"`
+	Resource     string   `SNAPROUTE: "KEY", DESCRIPTION: "Resource identifier"`
+	ClassAPMData []PMData `DESCRIPTION: "PM Data corresponding to PM Class A"`
+	ClassBPMData []PMData `DESCRIPTION: "PM Data corresponding to PM Class B"`
+	ClassCPMData []PMData `DESCRIPTION: "PM Data corresponding to PM Class C"`
+}
+
+type EthernetPM struct {
+	baseObj
+	IntfRef            string  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY: "*", AUTODISCOVER:"true", DESCRIPTION: "Interface name of port"`
+	Resource           string  `SNAPROUTE: "KEY", DESCRIPTION: "Resource identifier", SELECTION:StatUnderSizePkts/StatOverSizePkts/StatFragments/StatCRCAlignErrors/StatJabber/StatEtherPkts/StatMCPkts/StatBCPkts/Stat64OctOrLess/Stat65OctTo126Oct/Stat128OctTo255Oct/Stat128OctTo255Oct/Stat256OctTo511Oct/Stat512OctTo1023Oct/Statc1024OctTo1518Oct`
+	PMClassAEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-A PM", DEFAULT:true`
+	PMClassBEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-B PM", DEFAULT:true`
+	PMClassCEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-C PM", DEFAULT:true`
+	HighAlarmThreshold float64 `DESCRIPTION: "High alarm threshold value for this PM", DEFAULT: 100000`
+	HighWarnThreshold  float64 `DESCRIPTION: "High warning threshold value for this PM", DEFAULT: 100000`
+	LowAlarmThreshold  float64 `DESCRIPTION: "Low alarm threshold value for this PM", DEFAULT: -100000`
+	LowWarnThreshold   float64 `DESCRIPTION: "Low warning threshold value for this PM", DEFAULT: -100000`
+}
+
+type EthernetPMState struct {
+	baseObj
+	IntfRef      string   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION:"Interface name of port"`
+	Resource     string   `SNAPROUTE: "KEY", DESCRIPTION: "Resource identifier"`
+	ClassAPMData []PMData `DESCRIPTION: "PM Data corresponding to PM Class A"`
+	ClassBPMData []PMData `DESCRIPTION: "PM Data corresponding to PM Class B"`
+	ClassCPMData []PMData `DESCRIPTION: "PM Data corresponding to PM Class C"`
+}
+
 type Vlan struct {
 	baseObj
 	VlanId        int32    `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY: "*", MIN:"1", MAX: "4094", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
@@ -87,27 +136,41 @@ type Port struct {
 
 type PortState struct {
 	baseObj
-	IntfRef           string `SNAPROUTE: "KEY", ACCESS:"r", DESCRIPTION: "Front panel port name or system assigned interface id"`
-	IfIndex           int32  `DESCRIPTION: "System assigned interface id for this port"`
-	Name              string `DESCRIPTION: "System assigned vlan name"`
-	OperState         string `DESCRIPTION: "Operational state of front panel port"`
-	NumUpEvents       int32  `DESCRIPTION: "Number of times the operational state transitioned from DOWN to UP"`
-	LastUpEventTime   string `DESCRIPTION: "Timestamp corresponding to the last DOWN to UP operational state change event"`
-	NumDownEvents     int32  `DESCRIPTION: "Number of times the operational state transitioned from UP to DOWN"`
-	LastDownEventTime string `DESCRIPTION: "Timestamp corresponding to the last UP to DOWN operational state change event"`
-	Pvid              int32  `DESCRIPTION: "The vlanid assigned to untagged traffic ingressing this port"`
-	IfInOctets        int64  `DESCRIPTION: "RFC2233 Total number of octets received on this port"`
-	IfInUcastPkts     int64  `DESCRIPTION: "RFC2233 Total number of unicast packets received on this port"`
-	IfInDiscards      int64  `DESCRIPTION: "RFC2233 Total number of inbound packets that were discarded"`
-	IfInErrors        int64  `DESCRIPTION: "RFC2233 Total number of inbound packets that contained an error"`
-	IfInUnknownProtos int64  `DESCRIPTION: "RFC2233 Total number of inbound packets discarded due to unknown protocol"`
-	IfOutOctets       int64  `DESCRIPTION: "RFC2233 Total number of octets transmitted on this port"`
-	IfOutUcastPkts    int64  `DESCRIPTION: "RFC2233 Total number of unicast packets transmitted on this port"`
-	IfOutDiscards     int64  `DESCRIPTION: "RFC2233 Total number of error free packets discarded and not transmitted"`
-	IfOutErrors       int64  `DESCRIPTION: "RFC2233 Total number of packets discarded and not transmitted due to packet errors"`
-	ErrDisableReason  string `DESCRIPTION: "Reason explaining why port has been disabled by protocol code"`
-	PresentInHW       string `DESCRIPTION: "Indication of whether this port object maps to a physical port. Set to 'No' for ports that are not broken out."`
-	ConfigMode        string `DESCRIPTION: "The current mode of configuration on this port (L2/L3/Internal)"`
+	IntfRef                     string `SNAPROUTE: "KEY", ACCESS:"r", DESCRIPTION: "Front panel port name or system assigned interface id"`
+	IfIndex                     int32  `DESCRIPTION: "System assigned interface id for this port"`
+	Name                        string `DESCRIPTION: "System assigned vlan name"`
+	OperState                   string `DESCRIPTION: "Operational state of front panel port"`
+	NumUpEvents                 int32  `DESCRIPTION: "Number of times the operational state transitioned from DOWN to UP"`
+	LastUpEventTime             string `DESCRIPTION: "Timestamp corresponding to the last DOWN to UP operational state change event"`
+	NumDownEvents               int32  `DESCRIPTION: "Number of times the operational state transitioned from UP to DOWN"`
+	LastDownEventTime           string `DESCRIPTION: "Timestamp corresponding to the last UP to DOWN operational state change event"`
+	Pvid                        int32  `DESCRIPTION: "The vlanid assigned to untagged traffic ingressing this port"`
+	IfInOctets                  int64  `DESCRIPTION: "RFC2233 Total number of octets received on this port"`
+	IfInUcastPkts               int64  `DESCRIPTION: "RFC2233 Total number of unicast packets received on this port"`
+	IfInDiscards                int64  `DESCRIPTION: "RFC2233 Total number of inbound packets that were discarded"`
+	IfInErrors                  int64  `DESCRIPTION: "RFC2233 Total number of inbound packets that contained an error"`
+	IfInUnknownProtos           int64  `DESCRIPTION: "RFC2233 Total number of inbound packets discarded due to unknown protocol"`
+	IfOutOctets                 int64  `DESCRIPTION: "RFC2233 Total number of octets transmitted on this port"`
+	IfOutUcastPkts              int64  `DESCRIPTION: "RFC2233 Total number of unicast packets transmitted on this port"`
+	IfOutDiscards               int64  `DESCRIPTION: "RFC2233 Total number of error free packets discarded and not transmitted"`
+	IfOutErrors                 int64  `DESCRIPTION: "RFC2233 Total number of packets discarded and not transmitted due to packet errors"`
+	IfEtherUnderSizePktCnt      int64  `DESCRIPTION: "RFC 1757 Total numbe of undersized packets received and transmitted"`
+	IfEtherOverSizePktCnt       int64  `DESCRIPTION: "RFC 1757 Total number of oversized packets received and transmitted"`
+	IfEtherFragments            int64  `DESCRIPTION: "RFC1757 Total number of ethernet fragments received and transmitted"`
+	IfEtherCRCAlignError        int64  `DESCRIPTION: "RFC 1757 Total number of CRC alignment errors"`
+	IfEtherJabber               int64  `DESCRIPTION: "RFC 1757 Total number of jabber frames received and transmitted"`
+	IfEtherPkts                 int64  `DESCRIPTION: "RFC 1757 Total number of ethernet packets received and transmitted"`
+	IfEtherMCPkts               int64  `DESCRIPTION: "RFC 1757 Total number of multicast packets received and transmitted"`
+	IfEtherBcastPkts            int64  `DESCRIPTION: "RFC 1757 Total number of ethernet broadcast packets received and transmitted"`
+	IfEtherPkts64OrLessOctets   int64  `DESCRIPTION: "RFC1757 Total number of ethernet packets sized 64 bytes or lesser"`
+	IfEtherPkts65To127Octets    int64  `DESCRIPTION: "RFC 1757 Total number of ethernet packets sized between 65 and 127 bytes"`
+	IfEtherPkts128To255Octets   int64  `DESCRIPTION: "RFC 1757 Total number of ethernet packets sized between 128 and 255 bytes"`
+	IfEtherPkts256To511Octets   int64  `DESCRIPTION: "RFC 1757 Total number of ethernet packets sized between 256 and 511 bytes"`
+	IfEtherPkts512To1023Octets  int64  `DESCRIPTION: "RFC 1757 Total number of ethernet packets sized between 512 and 1023 bytes"`
+	IfEtherPkts1024To1518Octets int64  `DESCRIPTION: "RFC 1757 Total number of ethernet packets sized between 1024 and 1518 bytes"`
+	ErrDisableReason            string `DESCRIPTION: "Reason explaining why port has been disabled by protocol code"`
+	PresentInHW                 string `DESCRIPTION: "Indication of whether this port object maps to a physical port. Set to 'No' for ports that are not broken out."`
+	ConfigMode                  string `DESCRIPTION: "The current mode of configuration on this port (L2/L3/Internal)"`
 }
 
 type MacTableEntryState struct {

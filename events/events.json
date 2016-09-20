@@ -28,7 +28,7 @@
 					}
 				},
 				{
-					"EventID" : 3,
+					"EventId" : 3,
 					"EventName": "VlanOperStateUp",
 					"Description" : "Vlan Operational State UP Event",
 					"SrcObjName" : "Vlan",
@@ -36,7 +36,7 @@
 					"IsFault" : false
 				},
 				{
-					"EventID" : 4,
+					"EventId" : 4,
 					"EventName": "VlanOperStateDown",
 					"Description" : "Vlan Operational State DOWN Event",
 					"SrcObjName" : "Vlan",
@@ -50,7 +50,7 @@
 					}
 				},
 				{
-					"EventID" : 5,
+					"EventId" : 5,
 					"EventName": "IPv4IntfOperStateUp",
 					"Description" : "IPv4 Interface Operational State UP Event",
 					"SrcObjName" : "IPv4Intf",
@@ -58,7 +58,7 @@
 					"IsFault" : false
 				},
 				{
-					"EventID" : 6,
+					"EventId" : 6,
 					"EventName": "IPv4IntfOperStateDown",
 					"Description" : "IPv4 Interface Operational State DOWN Event",
 					"SrcObjName" : "IPv4Intf",
@@ -72,7 +72,7 @@
 					}
 				},
 				{
-					"EventID" : 7,
+					"EventId" : 7,
 					"EventName": "IPv6IntfOperStateUp",
 					"Description" : "IPv6 Interface Operational State UP Event",
 					"SrcObjName" : "IPv6Intf",
@@ -80,7 +80,7 @@
 					"IsFault" : false
 				},
 				{
-					"EventID" : 8,
+					"EventId" : 8,
 					"EventName": "IPv6IntfOperStateDown",
 					"Description" : "IPv6 Interface Operational State DOWN Event",
 					"SrcObjName" : "IPv6Intf",
@@ -88,11 +88,1331 @@
 					"IsFault" : true,
 					"Fault" : {
 						"RaiseFault" : true,
-						"ClearingEventId" : 5,
+						"ClearingEventId" : 7,
 						"ClearingDaemonId" : 1,
 						"AlarmSeverity" : "Critical"
 					}
-				}
+				},
+				{
+					"EventId" : 9,
+					"EventName": "TemperatureHighAlarm",
+					"Description" : "Asic temperature high alarm",
+					"SrcObjName" : "AsicGlobalPM",
+					"EventEnable" : true,
+					"IsFault" : true,
+					"Fault" : {
+						"RaiseFault" : true,
+						"ClearingEventId" : 10,
+						"ClearingDaemonId" : 1,
+						"AlarmSeverity" : "Critical"
+					}
+				},
+				{
+					"EventId" : 10,
+					"EventName": "TemperatureHighAlarmClear",
+					"Description" : "Asic temperature high alarm cleared",
+					"SrcObjName" : "AsicGlobalPM",
+					"EventEnable" : true,
+					"IsFault" : false
+				},
+				{
+					"EventId" : 11,
+					"EventName": "TemperatureHighWarn",
+					"Description" : "Asic temperature high warning",
+					"SrcObjName" : "AsicGlobalPM",
+					"EventEnable" : true,
+					"IsFault" : true,
+					"Fault" : {
+						"RaiseFault" : true,
+						"ClearingEventId" : 12,
+						"ClearingDaemonId" : 1,
+						"AlarmSeverity" : "Major"
+					}
+				},
+				{
+					"EventId" : 12,
+					"EventName": "TemperatureHighWarnClear",
+					"Description" : "Asic temperature high warning cleared",
+					"SrcObjName" : "AsicGlobalPM",
+					"EventEnable" : true,
+					"IsFault" : false
+				},
+				{
+					"EventId" : 13,
+					"EventName": "TemperatureLowAlarm",
+					"Description" : "Asic temperature low alarm",
+					"SrcObjName" : "AsicGlobalPM",
+					"EventEnable" : true,
+					"IsFault" : true,
+					"Fault" : {
+						"RaiseFault" : true,
+						"ClearingEventId" : 14,
+						"ClearingDaemonId" : 1,
+						"AlarmSeverity" : "Critical"
+					}
+				},
+				{
+					"EventId" : 14,
+					"EventName": "TemperatureHighAlarmClear",
+					"Description" : "Asic temperature low alarm cleared",
+					"SrcObjName" : "AsicGlobalPM",
+					"EventEnable" : true,
+					"IsFault" : false
+				},
+				{
+					"EventId" : 15,
+					"EventName": "TemperatureHighWarn",
+					"Description" : "Asic temperature low warning",
+					"SrcObjName" : "AsicGlobalPM",
+					"EventEnable" : true,
+					"IsFault" : true,
+					"Fault" : {
+						"RaiseFault" : true,
+						"ClearingEventId" : 16,
+						"ClearingDaemonId" : 1,
+						"AlarmSeverity" : "Major"
+					}
+				},
+				{
+					"EventId" : 16,
+					"EventName": "TemperatureHighWarnClear",
+					"Description" : "Asic temperature low warning cleared",
+					"SrcObjName" : "AsicGlobalPM",
+					"EventEnable" : true,
+					"IsFault" : false
+				},
+                {
+                    "Description": "Ethernet interface Under Size Pkts High Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 17, 
+                    "EventName": "EthIfUnderSizePktsHighAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 18, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Under Size Pkts High Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 18, 
+                    "EventName": "EthIfUnderSizePktsHighAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Under Size Pkts High Warn", 
+                    "EventEnable": true, 
+                    "EventId": 19, 
+                    "EventName": "EthIfUnderSizePktsHighWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 20, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Under Size Pkts High Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 20, 
+                    "EventName": "EthIfUnderSizePktsHighWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Under Size Pkts Low Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 21, 
+                    "EventName": "EthIfUnderSizePktsLowAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 22, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Under Size Pkts Low Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 22, 
+                    "EventName": "EthIfUnderSizePktsLowAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Under Size Pkts Low Warn", 
+                    "EventEnable": true, 
+                    "EventId": 23, 
+                    "EventName": "EthIfUnderSizePktsLowWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 24, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Under Size Pkts Low Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 24, 
+                    "EventName": "EthIfUnderSizePktsLowWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Over Size Pkts High Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 25, 
+                    "EventName": "EthIfOverSizePktsHighAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 26, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Over Size Pkts High Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 26, 
+                    "EventName": "EthIfOverSizePktsHighAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Over Size Pkts High Warn", 
+                    "EventEnable": true, 
+                    "EventId": 27, 
+                    "EventName": "EthIfOverSizePktsHighWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 28, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Over Size Pkts High Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 28, 
+                    "EventName": "EthIfOverSizePktsHighWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Over Size Pkts Low Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 29, 
+                    "EventName": "EthIfOverSizePktsLowAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 30, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Over Size Pkts Low Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 30, 
+                    "EventName": "EthIfOverSizePktsLowAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Over Size Pkts Low Warn", 
+                    "EventEnable": true, 
+                    "EventId": 31, 
+                    "EventName": "EthIfOverSizePktsLowWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 32, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Over Size Pkts Low Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 32, 
+                    "EventName": "EthIfOverSizePktsLowWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Fragmented Pkts High Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 33, 
+                    "EventName": "EthIfFragmentedPktsHighAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 34, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Fragmented Pkts High Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 34, 
+                    "EventName": "EthIfFragmentedPktsHighAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Fragmented Pkts High Warn", 
+                    "EventEnable": true, 
+                    "EventId": 35, 
+                    "EventName": "EthIfFragmentedPktsHighWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 36, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Fragmented Pkts High Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 36, 
+                    "EventName": "EthIfFragmentedPktsHighWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Fragmented Pkts Low Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 37, 
+                    "EventName": "EthIfFragmentedPktsLowAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 38, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Fragmented Pkts Low Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 38, 
+                    "EventName": "EthIfFragmentedPktsLowAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Fragmented Pkts Low Warn", 
+                    "EventEnable": true, 
+                    "EventId": 39, 
+                    "EventName": "EthIfFragmentedPktsLowWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 40, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Fragmented Pkts Low Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 40, 
+                    "EventName": "EthIfFragmentedPktsLowWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface CRC Align Err High Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 41, 
+                    "EventName": "EthIfCRCAlignErrHighAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 42, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface CRC Align Err High Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 42, 
+                    "EventName": "EthIfCRCAlignErrHighAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface CRC Align Err High Warn", 
+                    "EventEnable": true, 
+                    "EventId": 43, 
+                    "EventName": "EthIfCRCAlignErrHighWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 44, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface CRC Align Err High Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 44, 
+                    "EventName": "EthIfCRCAlignErrHighWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface CRC Align Err Low Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 45, 
+                    "EventName": "EthIfCRCAlignErrLowAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 46, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface CRC Align Err Low Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 46, 
+                    "EventName": "EthIfCRCAlignErrLowAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface CRC Align Err Low Warn", 
+                    "EventEnable": true, 
+                    "EventId": 47, 
+                    "EventName": "EthIfCRCAlignErrLowWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 48, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface CRC Align Err Low Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 48, 
+                    "EventName": "EthIfCRCAlignErrLowWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Jabber Frames High Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 49, 
+                    "EventName": "EthIfJabberFramesHighAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 50, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Jabber Frames High Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 50, 
+                    "EventName": "EthIfJabberFramesHighAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Jabber Frames High Warn", 
+                    "EventEnable": true, 
+                    "EventId": 51, 
+                    "EventName": "EthIfJabberFramesHighWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 52, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Jabber Frames High Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 52, 
+                    "EventName": "EthIfJabberFramesHighWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Jabber Frames Low Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 53, 
+                    "EventName": "EthIfJabberFramesLowAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 54, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Jabber Frames Low Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 54, 
+                    "EventName": "EthIfJabberFramesLowAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Jabber Frames Low Warn", 
+                    "EventEnable": true, 
+                    "EventId": 55, 
+                    "EventName": "EthIfJabberFramesLowWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 56, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Jabber Frames Low Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 56, 
+                    "EventName": "EthIfJabberFramesLowWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Ethernet Pkts High Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 57, 
+                    "EventName": "EthIfEthernetPktsHighAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 58, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Ethernet Pkts High Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 58, 
+                    "EventName": "EthIfEthernetPktsHighAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Ethernet Pkts High Warn", 
+                    "EventEnable": true, 
+                    "EventId": 59, 
+                    "EventName": "EthIfEthernetPktsHighWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 60, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Ethernet Pkts High Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 60, 
+                    "EventName": "EthIfEthernetPktsHighWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Ethernet Pkts Low Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 61, 
+                    "EventName": "EthIfEthernetPktsLowAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 62, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Ethernet Pkts Low Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 62, 
+                    "EventName": "EthIfEthernetPktsLowAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Ethernet Pkts Low Warn", 
+                    "EventEnable": true, 
+                    "EventId": 63, 
+                    "EventName": "EthIfEthernetPktsLowWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 64, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface Ethernet Pkts Low Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 64, 
+                    "EventName": "EthIfEthernetPktsLowWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface MC Pkts High Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 65, 
+                    "EventName": "EthIfMCPktsHighAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 66, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface MC Pkts High Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 66, 
+                    "EventName": "EthIfMCPktsHighAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface MC Pkts High Warn", 
+                    "EventEnable": true, 
+                    "EventId": 67, 
+                    "EventName": "EthIfMCPktsHighWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 68, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface MC Pkts High Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 68, 
+                    "EventName": "EthIfMCPktsHighWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface MC Pkts Low Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 69, 
+                    "EventName": "EthIfMCPktsLowAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 70, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface MC Pkts Low Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 70, 
+                    "EventName": "EthIfMCPktsLowAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface MC Pkts Low Warn", 
+                    "EventEnable": true, 
+                    "EventId": 71, 
+                    "EventName": "EthIfMCPktsLowWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 72, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface MC Pkts Low Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 72, 
+                    "EventName": "EthIfMCPktsLowWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface BC Pkts High Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 73, 
+                    "EventName": "EthIfBCPktsHighAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 74, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface BC Pkts High Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 74, 
+                    "EventName": "EthIfBCPktsHighAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface BC Pkts High Warn", 
+                    "EventEnable": true, 
+                    "EventId": 75, 
+                    "EventName": "EthIfBCPktsHighWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 76, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface BC Pkts High Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 76, 
+                    "EventName": "EthIfBCPktsHighWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface BC Pkts Low Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 77, 
+                    "EventName": "EthIfBCPktsLowAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 78, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface BC Pkts Low Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 78, 
+                    "EventName": "EthIfBCPktsLowAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface BC Pkts Low Warn", 
+                    "EventEnable": true, 
+                    "EventId": 79, 
+                    "EventName": "EthIfBCPktsLowWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 80, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface BC Pkts Low Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 80, 
+                    "EventName": "EthIfBCPktsLowWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 64 Bytes Or Less Pkts High Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 81, 
+                    "EventName": "EthIf64BOrLessPktsHighAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 82, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 64 Bytes Or Less Pkts High Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 82, 
+                    "EventName": "EthIf64BOrLessPktsHighAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 64 Bytes Or Less Pkts High Warn", 
+                    "EventEnable": true, 
+                    "EventId": 83, 
+                    "EventName": "EthIf64BOrLessPktsHighWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 84, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 64 Bytes Or Less Pkts High Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 84, 
+                    "EventName": "EthIf64BOrLessPktsHighWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 64 Bytes Or Less Pkts Low Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 85, 
+                    "EventName": "EthIf64BOrLessPktsLowAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 86, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 64 Bytes Or Less Pkts Low Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 86, 
+                    "EventName": "EthIf64BOrLessPktsLowAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 64 Bytes Or Less Pkts Low Warn", 
+                    "EventEnable": true, 
+                    "EventId": 87, 
+                    "EventName": "EthIf64BOrLessPktsLowWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 88, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 64 Bytes Or Less Pkts Low Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 88, 
+                    "EventName": "EthIf64BOrLessPktsLowWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 65 Bytes To127 Bytes Pkts High Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 89, 
+                    "EventName": "EthIf65BTo127BPktsHighAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 90, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 65 Bytes To127 Bytes Pkts High Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 90, 
+                    "EventName": "EthIf65BTo127BPktsHighAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 65 Bytes To127 Bytes Pkts High Warn", 
+                    "EventEnable": true, 
+                    "EventId": 91, 
+                    "EventName": "EthIf65BTo127BPktsHighWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 92, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 65 Bytes To127 Bytes Pkts High Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 92, 
+                    "EventName": "EthIf65BTo127BPktsHighWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 65 Bytes To127 Bytes Pkts Low Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 93, 
+                    "EventName": "EthIf65BTo127BPktsLowAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 94, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 65 Bytes To127 Bytes Pkts Low Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 94, 
+                    "EventName": "EthIf65BTo127BPktsLowAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 65 Bytes To127 Bytes Pkts Low Warn", 
+                    "EventEnable": true, 
+                    "EventId": 95, 
+                    "EventName": "EthIf65BTo127BPktsLowWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 96, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 65 Bytes To127 Bytes Pkts Low Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 96, 
+                    "EventName": "EthIf65BTo127BPktsLowWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 128 Bytes To255 Bytes Pkts High Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 97, 
+                    "EventName": "EthIf128BTo255BPktsHighAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 98, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 128 Bytes To255 Bytes Pkts High Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 98, 
+                    "EventName": "EthIf128BTo255BPktsHighAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 128 Bytes To255 Bytes Pkts High Warn", 
+                    "EventEnable": true, 
+                    "EventId": 99, 
+                    "EventName": "EthIf128BTo255BPktsHighWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 100, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 128 Bytes To255 Bytes Pkts High Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 100, 
+                    "EventName": "EthIf128BTo255BPktsHighWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 128 Bytes To255 Bytes Pkts Low Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 101, 
+                    "EventName": "EthIf128BTo255BPktsLowAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 102, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 128 Bytes To255 Bytes Pkts Low Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 102, 
+                    "EventName": "EthIf128BTo255BPktsLowAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 128 Bytes To255 Bytes Pkts Low Warn", 
+                    "EventEnable": true, 
+                    "EventId": 103, 
+                    "EventName": "EthIf128BTo255BPktsLowWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 104, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 128 Bytes To255 Bytes Pkts Low Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 104, 
+                    "EventName": "EthIf128BTo255BPktsLowWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 256 Bytes To511 Bytes Pkts High Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 105, 
+                    "EventName": "EthIf256BTo511BPktsHighAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 106, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 256 Bytes To511 Bytes Pkts High Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 106, 
+                    "EventName": "EthIf256BTo511BPktsHighAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 256 Bytes To511 Bytes Pkts High Warn", 
+                    "EventEnable": true, 
+                    "EventId": 107, 
+                    "EventName": "EthIf256BTo511BPktsHighWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 108, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 256 Bytes To511 Bytes Pkts High Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 108, 
+                    "EventName": "EthIf256BTo511BPktsHighWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 256 Bytes To511 Bytes Pkts Low Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 109, 
+                    "EventName": "EthIf256BTo511BPktsLowAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 110, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 256 Bytes To511 Bytes Pkts Low Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 110, 
+                    "EventName": "EthIf256BTo511BPktsLowAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 256 Bytes To511 Bytes Pkts Low Warn", 
+                    "EventEnable": true, 
+                    "EventId": 111, 
+                    "EventName": "EthIf256BTo511BPktsLowWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 112, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 256 Bytes To511 Bytes Pkts Low Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 112, 
+                    "EventName": "EthIf256BTo511BPktsLowWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 512 Bytes To1023 Bytes Pkts High Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 113, 
+                    "EventName": "EthIf512BTo1023BPktsHighAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 114, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 512 Bytes To1023 Bytes Pkts High Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 114, 
+                    "EventName": "EthIf512BTo1023BPktsHighAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 512 Bytes To1023 Bytes Pkts High Warn", 
+                    "EventEnable": true, 
+                    "EventId": 115, 
+                    "EventName": "EthIf512BTo1023BPktsHighWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 116, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 512 Bytes To1023 Bytes Pkts High Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 116, 
+                    "EventName": "EthIf512BTo1023BPktsHighWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 512 Bytes To1023 Bytes Pkts Low Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 117, 
+                    "EventName": "EthIf512BTo1023BPktsLowAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 118, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 512 Bytes To1023 Bytes Pkts Low Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 118, 
+                    "EventName": "EthIf512BTo1023BPktsLowAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 512 Bytes To1023 Bytes Pkts Low Warn", 
+                    "EventEnable": true, 
+                    "EventId": 119, 
+                    "EventName": "EthIf512BTo1023BPktsLowWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 120, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 512 Bytes To1023 Bytes Pkts Low Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 120, 
+                    "EventName": "EthIf512BTo1023BPktsLowWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 1024 Bytes To1518 Bytes Pkts High Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 121, 
+                    "EventName": "EthIf1024BTo1518BPktsHighAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 122, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 1024 Bytes To1518 Bytes Pkts High Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 122, 
+                    "EventName": "EthIf1024BTo1518BPktsHighAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 1024 Bytes To1518 Bytes Pkts High Warn", 
+                    "EventEnable": true, 
+                    "EventId": 123, 
+                    "EventName": "EthIf1024BTo1518BPktsHighWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 124, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 1024 Bytes To1518 Bytes Pkts High Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 124, 
+                    "EventName": "EthIf1024BTo1518BPktsHighWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 1024 Bytes To1518 Bytes Pkts Low Alarm", 
+                    "EventEnable": true, 
+                    "EventId": 125, 
+                    "EventName": "EthIf1024BTo1518BPktsLowAlarm", 
+                    "Fault": {
+                        "AlarmSeverity": "Critical", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 126, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 1024 Bytes To1518 Bytes Pkts Low Alarm Clear", 
+                    "EventEnable": true, 
+                    "EventId": 126, 
+                    "EventName": "EthIf1024BTo1518BPktsLowAlarmClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 1024 Bytes To1518 Bytes Pkts Low Warn", 
+                    "EventEnable": true, 
+                    "EventId": 127, 
+                    "EventName": "EthIf1024BTo1518BPktsLowWarn", 
+                    "Fault": {
+                        "AlarmSeverity": "Major", 
+                        "ClearingDaemonId": 1, 
+                        "ClearingEventId": 128, 
+                        "RaiseFault": true
+                    }, 
+                    "IsFault": true, 
+                    "SrcObjName": "EthernetPM"
+                },
+                {
+                    "Description": "Ethernet interface 1024 Bytes To1518 Bytes Pkts Low Warn Clear", 
+                    "EventEnable": true, 
+                    "EventId": 128, 
+                    "EventName": "EthIf1024BTo1518BPktsLowWarnClear", 
+                    "IsFault": false, 
+                    "SrcObjName": "EthernetPM"
+                }
 			]
 		},
 		{
