@@ -294,6 +294,7 @@ type BufferGlobalStatState struct {
 type Acl struct {
 	baseObj
 	AclName      string   `SNAPROUTE: "KEY", ACCESS:"w",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL"`
+	AclType      string   `DESCRIPTION: "Type can be IP/MAC/SVI"`
 	IntfList     []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
 	RuleNameList []string `DESCRIPTION: "List of rules to be applied to this ACL. This should match with AclRule RuleName"`
 	Direction    string   `SNAPROUTE: "IN/OUT direction in which ACL to be applied"`
@@ -301,17 +302,22 @@ type Acl struct {
 
 type AclRule struct {
 	baseObj
-	RuleName   string `SNAPROUTE: "KEY", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name"`
-	SourceMac  string `DESCRIPTION: "Source MAC address."`
-	DestMac    string `DESCRIPTION: "Destination MAC address"`
-	SourceIp   string `DESCRIPTION: "Source IP address"`
-	DestIp     string `DESCRIPTION: "Destination IP address"`
-	SourceMask string `DESCRIPTION: "Network mask for source IP"`
-	DestMask   string `DESCRIPTION: "Network mark for dest IP"`
-	Action     string `DESCRIPTION: "Type of action (Allow/Deny)", DEFAULT:"Allow", STRLEN:"16"`
-	Proto      string `DESCRIPTION: "Protocol type"`
-	SrcPort    int32  `DESCRIPTION: "Source Port"`
-	DstPort    int32  `DESCRIPTION: "Dest Port"`
+	RuleName    string `SNAPROUTE: "KEY", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name"`
+	SourceMac   string `DESCRIPTION: "Source MAC address."`
+	DestMac     string `DESCRIPTION: "Destination MAC address"`
+	SourceIp    string `DESCRIPTION: "Source IP address"`
+	DestIp      string `DESCRIPTION: "Destination IP address"`
+	SourceMask  string `DESCRIPTION: "Network mask for source IP"`
+	DestMask    string `DESCRIPTION: "Network mark for dest IP"`
+	Action      string `DESCRIPTION: "Type of action (Allow/Deny)", DEFAULT:"Allow", STRLEN:"16"`
+	Proto       string `DESCRIPTION: "Protocol type"`
+	SrcPort     int32  `DESCRIPTION: "Source Port", DEAULT:0`
+	DstPort     int32  `DESCRIPTION: "Dest Port", DEFAULT:0`
+	L4SrcPort   int32  `DESCRIPTION: "TCP/UDP source port", DEFAULT:0`
+	L4DstPort   int32  `DESCRIPTION: "TCP/UDP destionation port", DEAULT:0`
+	L4PortMatch string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), LT(larger than), GT(greater than), RANGE(port range)", DEFAULT:"NA"`
+	L4MinPort   int32  `DESCRIPTION: "Min port when l4 port is specified as range", DEFAULT:0`
+	L4MaxPort   int32  `DESCRIPTION: "Max port when l4 port is specified as range", DEFAULT:0`
 }
 
 type AclState struct {
