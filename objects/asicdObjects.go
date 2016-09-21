@@ -215,7 +215,7 @@ type NdpEntryHwState struct {
 type LogicalIntf struct {
 	baseObj
 	Name string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: "Name of logical interface"`
-	Type string `DESCRIPTION: "Type of logical interface (e.x. loopback)", DEFAULT:"Loopback", STRLEN:"16"`
+	Type string `DESCRIPTION: "Type of logical interface (e.x. loopback)", SELECTION: Loopback, DEFAULT:"Loopback", STRLEN:"16"`
 }
 
 type LogicalIntfState struct {

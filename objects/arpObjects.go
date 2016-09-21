@@ -30,7 +30,7 @@ type ArpGlobal struct {
 	baseObj
 	// placeholder to create a key
 	Vrf     string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "System Vrf", DEFAULT:"default"`
-	Timeout int32  `DESCRIPTION: "Global Arp entry timeout value. Default value: 600 seconds, Minimum Possible Value: 300 seconds, Unit: second", DEFAULT: "600"`
+	Timeout int32  `DESCRIPTION: "Global Arp entry timeout value. Default value: 600 seconds, Minimum Possible Value: 300 seconds, Unit: second", MIN:300, MAX:1500, DEFAULT: "600"`
 }
 
 type ArpEntryState struct {
