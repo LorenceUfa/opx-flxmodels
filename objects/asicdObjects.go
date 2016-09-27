@@ -330,17 +330,11 @@ type AclState struct {
 
 type AclRuleState struct {
 	baseObj
-	RuleName   string `SNAPROUTE: "KEY", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION: "Acl rule name"`
-	SourceMac  string `DESCRIPTION: "Source MAC address."`
-	DestMac    string `DESCRIPTION: "Destination MAC address"`
-	SourceIp   string `DESCRIPTION: "Source IP address"`
-	DestIp     string `DESCRIPTION: "Destination IP address"`
-	SourceMask string `DESCRIPTION: "Network mask for source IP"`
-	DestMask   string `DESCRIPTION: "Network mark for dest IP"`
-	Action     string `DESCRIPTION: "Type of action (Allow/Deny)", DEFAULT:"Allow", STRLEN:"16"`
-	Proto      string `DESCRIPTION: "Protocol type"`
-	SrcPort    int32  `DESCRIPTION: "Ingress Port"`
-	DstPort    int32  `DESCRIPTION: "Egress Port"`
+	RuleName   string   `SNAPROUTE: "KEY", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION: "Acl rule name"`
+	AclType    string   `DESCRIPTION: "Type can be IP/MAC/SVI"`
+	IntfList   []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
+	HwPresence string   `DESCRIPTION: "Check if the rule is installed in hardware. Applied/Not Applied/Failed"`
+	HitCount   uint64   `DESCRIPTION: "No of  packets hit the rule if applied."`
 }
 
 // NEED TO ADD SUPPORT TO MAKE THIS INTERNAL ONLY

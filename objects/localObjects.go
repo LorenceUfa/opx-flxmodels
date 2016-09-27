@@ -79,5 +79,6 @@ type XponderGlobalState struct {
 
 type ApiInfoState struct {
 	baseObj
-	Url string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "1", DESCRIPTION: "URL"`
+	Url  string   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "1", DESCRIPTION: "URL"`
+	Info []string `DESCRIPTION: "APIs available under this URL or details of the specific API"`
 }
