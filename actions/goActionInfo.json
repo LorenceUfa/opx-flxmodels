@@ -17,6 +17,10 @@
 "bfdActions.go" : {"owner": "bfdd",
                    "location" : "l3/bfd/rpc/",
                    "svcName" : "nil"},
+"opticActions.go" : {"owner": "opticd",
+               "location" : "opticd/rpc",
+               "svcName" : "opticdInt",
+               "finalSvcName" : "opticdServices"},
 "localActions.go" : {"owner": "local", 
                      "location" : "nil",
                      "svcName" : "nil"}
