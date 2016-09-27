@@ -25,21 +25,20 @@ package objects
 
 type DWDMModuleState struct {
 	baseObj
-	ModuleId           uint8   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "DWDM Module identifier"`
-	ModuleState        string  `DESCRIPTION: "Current MSA state of dwdm module"`
-	ModuleVoltage      float64 `DESCRIPTION: "Module power supply voltage in Volts"`
-	ModuleTemp         float64 `DESCRIPTION: "Module temperature in deg Celsius"`
-	Populated          bool    `DESCRIPTION: "Is module populated"`
-	VendorName         string  `DESCRIPTION: "Vendor name of dwdm module"`
-	VendorPartNum      string  `DESCRIPTION: "Vendor assigned part number of dwdm module"`
-	VendorSerialNum    string  `DESCRIPTION: "Vendor assigned serial number of dwdm module "`
-	VendorDateCode     string  `DESCRIPTION: "Device manufacture data code of dwdm module"`
-	ModuleHWVersion    string  `DESCRIPTION: "HW version of dwdm module"`
-	ModuleFWAVersion   string  `DESCRIPTION: "Firmware A version of dwdm module"`
-	ModuleFWBVersion   string  `DESCRIPTION: "Firmware B version of dwdm module"`
-	ModuleFWAStatus    string  `DESCRIPTION: "Firmware A image status of dwdm module"`
-	ModuleFWBStatus    string  `DESCRIPTION: "Firmware B image status of dwdm module"`
-	ModuleRunningImage string  `DESCRIPTION: "Module running firmware image"`
+	ModuleId               uint8   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "DWDM Module identifier"`
+	ModuleState            string  `DESCRIPTION: "Current MSA state of dwdm module"`
+	ModuleVoltage          float64 `DESCRIPTION: "Module power supply voltage in Volts"`
+	ModuleTemp             float64 `DESCRIPTION: "Module temperature in deg Celsius"`
+	Populated              bool    `DESCRIPTION: "Is module populated"`
+	VendorName             string  `DESCRIPTION: "Vendor name of dwdm module"`
+	VendorPartNum          string  `DESCRIPTION: "Vendor assigned part number of dwdm module"`
+	VendorSerialNum        string  `DESCRIPTION: "Vendor assigned serial number of dwdm module "`
+	VendorDateCode         string  `DESCRIPTION: "Device manufacture data code of dwdm module"`
+	ModuleHWVersion        string  `DESCRIPTION: "HW version of dwdm module"`
+	ModuleActiveFWVersion  string  `DESCRIPTION: "Firmware version of active partition of dwdm module"`
+	ModuleStandByFWVersion string  `DESCRIPTION: "Firmware version of standby partition of dwdm module"`
+	ModuleActiveFWStatus   string  `DESCRIPTION: "Firmware image status of active partition of dwdm module"`
+	ModuleStandByFWStatus  string  `DESCRIPTION: "Firmware image status of standby partition of dwdm module"`
 }
 
 type DWDMModule struct {
