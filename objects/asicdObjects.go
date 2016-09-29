@@ -311,8 +311,8 @@ type AclRule struct {
 	DestMask    string `DESCRIPTION: "Network mark for dest IP"`
 	Action      string `DESCRIPTION: "Type of action (Allow/Deny)", DEFAULT:"Allow", STRLEN:"16"`
 	Proto       string `DESCRIPTION: "Protocol type"`
-	SrcPort     int32  `DESCRIPTION: "Source Port", DEAULT:0`
-	DstPort     int32  `DESCRIPTION: "Dest Port", DEFAULT:0`
+	SrcPort     string `DESCRIPTION: "Source Port", DEAULT:0`
+	DstPort     string `DESCRIPTION: "Dest Port", DEFAULT:0`
 	L4SrcPort   int32  `DESCRIPTION: "TCP/UDP source port", DEFAULT:0`
 	L4DstPort   int32  `DESCRIPTION: "TCP/UDP destionation port", DEAULT:0`
 	L4PortMatch string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), LT(larger than), GT(greater than), RANGE(port range)", DEFAULT:"NA"`

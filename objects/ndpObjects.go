@@ -61,7 +61,7 @@ type NeighborEntry struct {
 	State           string `DESCRIPTION: "Reachablity Information about the neighbor"`
 }
 
-type NDPIntfState struct {
+type IPV6AdjState struct {
 	baseObj
 	IntfRef         string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Port where neighbor ip's are learned"`
 	IfIndex         int32  `DESCRIPTION: "System generated unique id for local port"`
