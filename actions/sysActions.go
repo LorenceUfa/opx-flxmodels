@@ -29,3 +29,8 @@ type Daemon struct {
 	Enable   bool   `DESCRIPTION: "Enable the flexswitch daemon"`
 	WatchDog bool   `DESCRIPTION: "Enable watchdog for daemon"`
 }
+
+type GlobalLogging struct {
+	baseAction
+	Level string `DESCRIPTION: "Logging level", SELECTION: "crit/err/warn/alert/emerg/notice/info/debug/trace/off", DEFAULT: "info"`
+}

@@ -25,12 +25,6 @@ package objects
 
 import ()
 
-type SystemLogging struct {
-	baseObj
-	Vrf     string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DEFAULT: "default", DESCRIPTION: "Vrf name"`
-	Logging string `DESCRIPTION: "Global logging", SELECTION: "on/off", DEFAULT: "on"`
-}
-
 type ComponentLogging struct {
 	baseObj
 	Module string `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: "Module name to set logging level"`
