@@ -118,20 +118,23 @@ type IPv4IntfState struct {
 
 type Port struct {
 	baseObj
-	IntfRef      string `SNAPROUTE: "KEY", ACCESS:"rw", AUTODISCOVER:"true", DESCRIPTION: "Front panel port name or system assigned interface id"`
-	IfIndex      int32  `DESCRIPTION: "System assigned interface id for this port. Read only attribute"`
-	Description  string `DESCRIPTION: "User provided string description", DEFAULT:"FP Port", STRLEN:"64"`
-	PhyIntfType  string `DESCRIPTION: "Type of internal phy interface", STRLEN:"16" SELECTION: GMII/SGMII/QSMII/SFI/XFI/XAUI/XLAUI/RXAUI/CR/CR2/CR4/KR/KR2/KR4/SR/SR2/SR4/SR10/LR/LR4`
-	AdminState   string `DESCRIPTION: "Administrative state of this port", STRLEN:"4" SELECTION: UP/DOWN, DEFAULT: DOWN`
-	MacAddr      string `DESCRIPTION: "Mac address associated with this port", STRLEN:"17"`
-	Speed        int32  `DESCRIPTION: "Port speed in Mbps", MIN: 10, MAX: "100000"`
-	Duplex       string `DESCRIPTION: "Duplex setting for this port", STRLEN:"16" SELECTION: Half Duplex/Full Duplex, DEFAULT: Full Duplex`
-	Autoneg      string `DESCRIPTION: "Autonegotiation setting for this port", STRLEN:"4" SELECTION: ON/OFF, DEFAULT: OFF`
-	MediaType    string `DESCRIPTION: "Type of media inserted into this port", STRLEN:"16"`
-	Mtu          int32  `DESCRIPTION: "Maximum transmission unit size for this port"`
-	BreakOutMode string `DESCRIPTION: "Break out mode for the port. Only applicable on ports that support breakout. Valid modes - 1x40, 4x10", STRLEN:"6" SELECTION: 1x40(1)/4x10(2)`
-	LoopbackMode string `DESCRIPTION: "Desired loopback setting for this port", SELECTION: NONE/MAC/PHY, DEFAULT: NONE`
-	EnableFEC    bool   `DESCRIPTION: "Enable/Disable 802.3bj FEC on this interface", DEFAULT: false`
+	IntfRef        string `SNAPROUTE: "KEY", ACCESS:"rw", AUTODISCOVER:"true", DESCRIPTION: "Front panel port name or system assigned interface id"`
+	IfIndex        int32  `DESCRIPTION: "System assigned interface id for this port. Read only attribute"`
+	Description    string `DESCRIPTION: "User provided string description", DEFAULT:"FP Port", STRLEN:"64"`
+	PhyIntfType    string `DESCRIPTION: "Type of internal phy interface", STRLEN:"16" SELECTION: GMII/SGMII/QSMII/SFI/XFI/XAUI/XLAUI/RXAUI/CR/CR2/CR4/KR/KR2/KR4/SR/SR2/SR4/SR10/LR/LR4`
+	AdminState     string `DESCRIPTION: "Administrative state of this port", STRLEN:"4" SELECTION: UP/DOWN, DEFAULT: DOWN`
+	MacAddr        string `DESCRIPTION: "Mac address associated with this port", STRLEN:"17"`
+	Speed          int32  `DESCRIPTION: "Port speed in Mbps", MIN: 10, MAX: "100000"`
+	Duplex         string `DESCRIPTION: "Duplex setting for this port", STRLEN:"16" SELECTION: Half Duplex/Full Duplex, DEFAULT: Full Duplex`
+	Autoneg        string `DESCRIPTION: "Autonegotiation setting for this port", STRLEN:"4" SELECTION: ON/OFF, DEFAULT: OFF`
+	MediaType      string `DESCRIPTION: "Type of media inserted into this port", STRLEN:"16"`
+	Mtu            int32  `DESCRIPTION: "Maximum transmission unit size for this port"`
+	BreakOutMode   string `DESCRIPTION: "Break out mode for the port. Only applicable on ports that support breakout. Valid modes - 1x40, 4x10", STRLEN:"6" SELECTION: 1x40(1)/4x10(2)`
+	LoopbackMode   string `DESCRIPTION: "Desired loopback setting for this port", SELECTION: NONE/MAC/PHY/RMT, DEFAULT: NONE`
+	EnableFEC      bool   `DESCRIPTION: "Enable/Disable 802.3bj FEC on this interface", DEFAULT: false`
+	PRBSTxEnable   bool   `DESCRIPTION: "Enable/Disable generation of PRBS on this port", DEFAULT: false`
+	PRBSRxEnable   bool   `DESCRIPTION: "Enable/Disable PRBS checker on this port", DEFAULT: false`
+	PRBSPolynomial string `DESCRIPTION: "PRBS polynomial to use for generation/checking", DEFAULT:2^7, SELECTION:2^7/2^23/2^31`
 }
 
 type PortState struct {
@@ -171,6 +174,7 @@ type PortState struct {
 	ErrDisableReason            string `DESCRIPTION: "Reason explaining why port has been disabled by protocol code"`
 	PresentInHW                 string `DESCRIPTION: "Indication of whether this port object maps to a physical port. Set to 'No' for ports that are not broken out."`
 	ConfigMode                  string `DESCRIPTION: "The current mode of configuration on this port (L2/L3/Internal)"`
+	PRBSRxErrCnt                int64  `DESCRIPTION: "Receive error count reported by PRBS checker"`
 }
 
 type MacTableEntryState struct {
@@ -311,8 +315,8 @@ type AclRule struct {
 	DestMask    string `DESCRIPTION: "Network mark for dest IP"`
 	Action      string `DESCRIPTION: "Type of action (Allow/Deny)", DEFAULT:"Allow", STRLEN:"16"`
 	Proto       string `DESCRIPTION: "Protocol type"`
-	SrcPort     int32  `DESCRIPTION: "Source Port", DEAULT:0`
-	DstPort     int32  `DESCRIPTION: "Dest Port", DEFAULT:0`
+	SrcPort     string `DESCRIPTION: "Source Port", DEAULT:0`
+	DstPort     string `DESCRIPTION: "Dest Port", DEFAULT:0`
 	L4SrcPort   int32  `DESCRIPTION: "TCP/UDP source port", DEFAULT:0`
 	L4DstPort   int32  `DESCRIPTION: "TCP/UDP destionation port", DEAULT:0`
 	L4PortMatch string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), LT(larger than), GT(greater than), RANGE(port range)", DEFAULT:"NA"`
