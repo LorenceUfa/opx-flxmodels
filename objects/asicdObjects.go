@@ -39,7 +39,7 @@ type PMData struct {
 
 type AsicGlobalPM struct {
 	baseObj
-	ModuleId           uint8   `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY: "1", AUTODISCOVER:"true", DESCRIPTION:"Module identifier"`
+	ModuleId           uint8   `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY: "1", AUTODISCOVER:"true", DESCRIPTION:"Module identifier, DEFAULT: 0"`
 	Resource           string  `SNAPROUTE: "KEY", DESCRIPTION: "Resource identifier", SELECTION: Temperature`
 	PMClassAEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-A PM", DEFAULT:true`
 	PMClassBEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-B PM", DEFAULT:true`

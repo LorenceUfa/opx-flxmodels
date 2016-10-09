@@ -276,6 +276,14 @@ type QsfpState struct {
 	DataCode           string  `DESCRIPTION: Data Code"`
 	Temperature        float64 `DESCRIPTION: "Current temperature"`
 	Voltage            float64 `DESCRIPTION: "Current Voltage"`
+	CurrBER            float64 `DESCRIPTION: Current BER"`
+	AccBER             float64 `DESCRIPTION: Accumulated BER"`
+	MinBER             float64 `DESCRIPTION: Minimum BER"`
+	MaxBER             float64 `DESCRIPTION: Maximum BER"`
+	UDF0               float64 `DESCRIPTION: User defined field 0"`
+	UDF1               float64 `DESCRIPTION: User defined field 1"`
+	UDF2               float64 `DESCRIPTION: User defined field 2"`
+	UDF3               float64 `DESCRIPTION: User defined field 3"`
 }
 
 type QsfpPMData struct {

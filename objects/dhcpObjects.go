@@ -29,7 +29,7 @@ package objects
 type DhcpGlobalConfig struct {
 	baseObj
 	// placeholder to create a key
-	DhcpConfigKey    string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: "DHCP global config"`
+	DhcpConfigKey    string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: "DHCP global config", DEFAULT:"default"`
 	Enable           bool   `DESCRIPTION: "DHCP Server enable/disable control DEFAULT: false"`
 	DefaultLeaseTime uint32 `DESCRIPTION: "Default Lease Time in seconds DEFAULT: 600"`
 	MaxLeaseTime     uint32 `DESCRIPTION: "Max Lease Time in seconds DEFAULT: 7200"`
