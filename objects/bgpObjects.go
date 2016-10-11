@@ -49,7 +49,8 @@ type BGPGlobalState struct {
 	EBGPAllowMultipleAS bool   `DESCRIPTION: "Enable/diable ECMP paths from multiple ASes"`
 	IBGPMaxPaths        uint32 `DESCRIPTION: "Max ECMP paths from Internal BGP neighbors"`
 	TotalPaths          uint32 `DESCRIPTION: "Total number of paths received from neighbors"`
-	TotalPrefixes       uint32 `DESCRIPTION: "Total number of destinations received from neighbors"`
+	Totalv4Prefixes     uint32 `DESCRIPTION: "Total number of IPv4 destinations received from neighbors"`
+	Totalv6Prefixes     uint32 `DESCRIPTION: "Total number of IPv6 destinations received from neighbors"`
 }
 
 const (
