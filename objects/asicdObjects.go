@@ -86,20 +86,23 @@ type Vlan struct {
 	VlanId        int32    `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY: "*", MIN:"1", MAX: "4094", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
 	IntfList      []string `DESCRIPTION: "List of interface names or ifindex values to  be added as tagged members of the vlan"`
 	UntagIntfList []string `DESCRIPTION: "List of interface names or ifindex values to  be added as untagged members of the vlan"`
+	AdminState    string   `DESCRIPTION: "Administrative state of this vlan interface", SELECTION: UP/DOWN, DEFAULT:UP`
 }
 
 type VlanState struct {
 	baseObj
-	VlanId    int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
-	VlanName  string `DESCRIPTION: "System assigned vlan name"`
-	OperState string `DESCRIPTION: "Operational state of vlan interface"`
-	IfIndex   int32  `DESCRIPTION: "System assigned interface id for this vlan interface"`
+	VlanId                 int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
+	VlanName               string `DESCRIPTION: "System assigned vlan name"`
+	OperState              string `DESCRIPTION: "Operational state of vlan interface"`
+	IfIndex                int32  `DESCRIPTION: "System assigned interface id for this vlan interface"`
+	SysInternalDescription string `DESCRIPTION: "This is a system generated string that explains the operstate value"`
 }
 
 type IPv4Intf struct {
 	baseObj
-	IntfRef string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: "Interface name or ifindex of port/lag or vlan on which this IPv4 object is configured"`
-	IpAddr  string `DESCRIPTION: "Interface IP/Net mask in CIDR format to provision on switch interface", STRLEN:"18"`
+	IntfRef    string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: "Interface name or ifindex of port/lag or vlan on which this IPv4 object is configured"`
+	IpAddr     string `DESCRIPTION: "Interface IP/Net mask in CIDR format to provision on switch interface", STRLEN:"18"`
+	AdminState string `DESCRIPTION: "Administrative state of this IP interface", SELECTION: UP/DOWN, DEFAULT:UP`
 }
 
 type IPv4IntfState struct {
@@ -250,9 +253,10 @@ type SubIPv4Intf struct {
 
 type IPv6Intf struct {
 	baseObj
-	IntfRef string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: "Interface name or ifindex of port/lag or vlan on which this IPv4 object is configured"`
-	IpAddr  string `DESCRIPTION: "Interface Global Scope IP Address/Prefix-Length to provision on switch interface", STRLEN:"43", DEFAULT:""`
-	LinkIp  bool   `DESCRIPTION: "Interface Link Scope IP Address auto-configured", DEFAULT:true`
+	IntfRef    string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: "Interface name or ifindex of port/lag or vlan on which this IPv4 object is configured"`
+	IpAddr     string `DESCRIPTION: "Interface Global Scope IP Address/Prefix-Length to provision on switch interface", STRLEN:"43", DEFAULT:""`
+	LinkIp     bool   `DESCRIPTION: "Interface Link Scope IP Address auto-configured", DEFAULT:true`
+	AdminState string `DESCRIPTION: "Administrative state of this IP interface", SELECTION: UP/DOWN, DEFAULT:UP`
 }
 
 type IPv6IntfState struct {
