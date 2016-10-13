@@ -49,7 +49,8 @@ type BGPGlobalState struct {
 	EBGPAllowMultipleAS bool   `DESCRIPTION: "Enable/diable ECMP paths from multiple ASes"`
 	IBGPMaxPaths        uint32 `DESCRIPTION: "Max ECMP paths from Internal BGP neighbors"`
 	TotalPaths          uint32 `DESCRIPTION: "Total number of paths received from neighbors"`
-	TotalPrefixes       uint32 `DESCRIPTION: "Total number of destinations received from neighbors"`
+	Totalv4Prefixes     uint32 `DESCRIPTION: "Total number of IPv4 destinations received from neighbors"`
+	Totalv6Prefixes     uint32 `DESCRIPTION: "Total number of IPv6 destinations received from neighbors"`
 }
 
 const (
@@ -134,7 +135,7 @@ type BGPv4NeighborState struct {
 	AdjRIBOutFilter         string      `DESCRIPTION: "Policy that is applied for Adj-RIB-Out prefix filtering"`
 	Messages                BGPMessages `DESCRIPTION: "Rx/Tx counter for BGP update and notification packets"`
 	Queues                  BGPQueues   `DESCRIPTION: "Input/Output size of BGP packet queues"`
-	SessionStateUpdatedTime string      `DESCRIPTION: "Time when this neighbor's session state was last updated."`
+	SessionStateDuration    string      `DESCRIPTION: "Time duration for which this neighbor is in the current session state."`
 }
 
 type BGPv6Neighbor struct {
@@ -197,7 +198,7 @@ type BGPv6NeighborState struct {
 	AdjRIBOutFilter         string      `DESCRIPTION: "Policy that is applied for Adj-RIB-Out prefix filtering"`
 	Messages                BGPMessages `DESCRIPTION: "Rx/Tx counter for BGP update and notification packets"`
 	Queues                  BGPQueues   `DESCRIPTION: "Input/Output size of BGP packet queues"`
-	SessionStateUpdatedTime string      `DESCRIPTION: "Time when this neighbor's session state was updated."`
+	SessionStateDuration    string      `DESCRIPTION: "Time duration for which this neighbor is in the current session state."`
 }
 
 type BGPv4PeerGroup struct {

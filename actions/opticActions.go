@@ -21,59 +21,16 @@
 // |__|     |_______||_______/__/ \__\ |_______/        \__/  \__/     |__|     |__|      \______||__|  |__|
 //
 
-package events
+package actions
 
-import (
-	"github.com/garyburd/redigo/redis"
-)
-
-type OwnerId uint8
-type EventId uint32
-
-type KeyMap map[string]EventObjKeyIntf
-
-var EventKeyMap map[string]KeyMap = map[string]KeyMap{
-	"ASICD":     AsicdEventKeyMap,
-	"ARPD":      ArpdEventKeyMap,
-	"OPTICD":    OpticdEventKeyMap,
-	"BGPD":      BGPdEventKeyMap,
-	"LLDP":      LLDPEventKeyMap,
-	"PLATFORMD": PlatformdEventKeyMap,
-	"LACPD":     LacpdEventKeyMap,
+type DWDMModuleFWDownload struct {
+	baseAction
+	ModuleId uint8  `DESCRIPTION: "DWDM Module identifier"`
+	FileName string `DESCRIPTION: "Firmware file name or absolute file location, In case of file name is given Flexswitch expect file to be in /tmp/"`
 }
 
-type Event struct {
-	OwnerId        int32
-	EventId        int32
-	OwnerName      string
-	EventName      string
-	TimeStamp      string
-	SrcObjName     string
-	SrcObjKey      interface{}
-	Description    string
-	AdditionalData interface{}
-}
-
-type EventStats struct {
-	EventId       EventId
-	EventName     string
-	NumEvents     uint32
-	LastEventTime string
-}
-
-type EventObj interface {
-	UnmarshalObject([]byte) (EventObj, error)
-	GetKey() string
-	StoreObjectInDb(redis.Conn) error
-	GetObjectFromDb(string, redis.Conn) (EventObj, error)
-	GetAllObjFromDb(redis.Conn) ([]EventObj, error)
-}
-
-var EventObjectMap = map[string]EventObj{
-	"events":     Event{},
-	"eventstats": EventStats{},
-}
-
-type EventObjKeyIntf interface {
-	GetObjDBKey([]byte) (string, string, error)
+type DWDMModuleSetBootPartition struct {
+	baseAction
+	ModuleId  uint8  `DESCRIPTION: "DWDM Module identifier"`
+	Partition string `DESCRIPTION: "Active/StandBy"`
 }

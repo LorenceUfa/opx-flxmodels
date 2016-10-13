@@ -28,7 +28,7 @@ type NDPGlobal struct {
 	// placeholder to create a key
 	Vrf                         string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "System Vrf", DEFAULT:"default"`
 	RetransmitInterval          int32  ` DESCRIPTION: "The time between retransmissions of Neighbor Solicitation messages to a neighbor when resolving the address or when probing the reachability of a neighbor in ms", DEFAULT:1`
-	ReachableTime               int32  `DESCRIPTION: "The time a neighbor is considered reachable after receiving a reachability confirmation in ms", DEFAULT:30000`
+	ReachableTime               int32  `DESCRIPTION: "The time a neighbor is considered reachable after receiving a reachability confirmation in minutes", DEFAULT:10`
 	RouterAdvertisementInterval int32  `DESCRIPTION: "Delay between each router advertisements in seconds", DEFAULT:5`
 }
 
@@ -61,7 +61,7 @@ type NeighborEntry struct {
 	State           string `DESCRIPTION: "Reachablity Information about the neighbor"`
 }
 
-type NDPIntfState struct {
+type IPV6AdjState struct {
 	baseObj
 	IntfRef         string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Port where neighbor ip's are learned"`
 	IfIndex         int32  `DESCRIPTION: "System generated unique id for local port"`
