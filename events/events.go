@@ -39,6 +39,7 @@ var EventKeyMap map[string]KeyMap = map[string]KeyMap{
 	"BGPD":      BGPdEventKeyMap,
 	"LLDP":      LLDPEventKeyMap,
 	"PLATFORMD": PlatformdEventKeyMap,
+	"LACPD":     LacpdEventKeyMap,
 }
 
 type Event struct {

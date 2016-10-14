@@ -28,7 +28,7 @@ type LLDPGlobal struct {
 	Vrf             string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: "LLDP Global Config For Default VRF", DEFAULT:"default", AUTOCREATE:"true"`
 	Enable          bool   `DESCRIPTION: "Enable/Disable LLDP Globally", DEFAULT:false`
 	TranmitInterval int32  `DESCRIPTION: "LLDP Re-Transmit Interval in seconds", DEFAULT:30`
-	TxRxMode        string `DESCRIPTION: "Transmit/Receive mode configruration for the LLDP agent", SELECTION:TxOnly/RxOnly/TxRx, DEFAULT:TxRx`
+	TxRxMode        string `DESCRIPTION: "Transmit/Receive mode configruration for the LLDP agent", SELECTION:"TxOnly/RxOnly/TxRx", DEFAULT:"TxRx"`
 	SnoopAndDrop    bool   `DESCRIPTION: "Operational mode to determine whether LLDP traffic is bi-directionally forwarded. This configuration is only available on select platforms", DEFAULT:false`
 }
 
@@ -46,7 +46,7 @@ type LLDPIntf struct {
 	baseObj
 	IntfRef  string `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", DESCRIPTION: "IfIndex where lldp needs is enabled/disabled", DEFAULT: "None", AUTODISCOVER:"true"`
 	Enable   bool   `DESCRIPTION: "Enable/Disable lldp config Per Port", DEFAULT:true`
-	TxRxMode string `DESCRIPTION: "Transmit/Receive mode configruration for the LLDP agent specific to an interface", SELECTION:TxOnly/RxOnly/TxRx, DEFAULT:TxRx`
+	TxRxMode string `DESCRIPTION: "Transmit/Receive mode configruration for the LLDP agent specific to an interface", SELECTION:"TxOnly/RxOnly/TxRx", DEFAULT:"TxRx"`
 }
 
 type LLDPIntfState struct {

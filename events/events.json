@@ -2743,6 +2743,130 @@
                                         }   
                                 }
 			]
+		},
+		{
+			
+			"DaemonId" : 17,
+			"DaemonName" : "LACPD",
+			"DaemonEventEnable" : true,
+			"EventList" : [
+				{
+					"EventId" : 1,
+					"EventName" : "LacpPortOperStateUp",
+					"Description" : "Lacp Port Operational State UP Event",
+					"SrcObjName" : "LaPortChannelIntfRefListState",
+					"EventEnable" : true,
+					"IsFault" : false
+				},
+				{
+					"EventId" : 2,
+					"EventName" : "PortOperStateDown",
+					"Description" : "Port Operational State DOWN Event",
+					"SrcObjName" : "LaPortChannelIntfRefListState",
+					"EventEnable" : true,
+					"IsFault" : true,
+					"Fault" : {
+						"RaiseFault" : true,
+						"ClearingEventId" : 1,
+						"ClearingDaemonId" : 1,
+						"AlarmSeverity" : "Critical"
+					}
+				},
+				{
+					"EventId" : 3,
+					"EventName": "LacpdEventPortPartnerInfoSync",
+					"Description" : "Lacp Actor/Partner Info In-Sync Event",
+					"SrcObjName" : "LaPortChannelIntfRefListState",
+					"EventEnable" : true,
+					"IsFault" : false
+				},
+				{
+					"EventId" : 4,
+					"EventName": "LacpdEventPortPartnerInfoMismatch",
+					"Description" : "Lacp Actor/Partner Info Mismatch Event",
+					"SrcObjName" : "LaPortChannelIntfRefListState",
+					"EventEnable" : true,
+					"IsFault" : true,
+					"Fault" : {
+						"RaiseFault" : true,
+						"ClearingEventId" : 3,
+						"ClearingDaemonId" : 1,
+						"AlarmSeverity" : "Major"
+					}
+				},
+				{
+					"EventId" : 5,
+					"EventName": "LacpdEventGroupOperStateUp",
+					"Description" : "Lacp Group Oper state UP Event",
+					"SrcObjName" : "LaPortChannel",
+					"EventEnable" : true,
+					"IsFault" : false
+				},
+				{
+					"EventId" : 6,
+					"EventName": "LacpdEventGroupOperStateDown",
+					"Description" : "Lacp Group Oper state DOWN Event",
+					"SrcObjName" : "LaPortChannel",
+					"EventEnable" : true,
+					"IsFault" : true,
+					"Fault" : {
+						"RaiseFault" : true,
+						"ClearingEventId" : 5,
+						"ClearingDaemonId" : 1,
+						"AlarmSeverity" : "Critical"
+					}
+				},
+				{
+					"EventId" : 7,
+					"EventName": "LacpdEventDrcpNeighborInfoSync",
+					"Description" : "Drcp Neighbor Info In-Sync Event",
+					"SrcObjName" : "DistributedRelay",
+					"EventEnable" : true,
+					"IsFault" : false
+				},
+				{
+					"EventId" : 8,
+					"EventName": "LacpdEventPortPartnerInfoMismatch",
+					"Description" : "Drcp Neighbor Info Mismatch Event",
+					"SrcObjName" : "DistributedRelay",
+					"EventEnable" : true,
+					"IsFault" : true,
+					"Fault" : {
+						"RaiseFault" : true,
+						"ClearingEventId" : 7,
+						"ClearingDaemonId" : 1,
+						"AlarmSeverity" : "Major"
+					}
+				},
+				{
+					"EventId" : 9,
+					"EventName": "LacpdEventDrcpIppLinkUp",
+					"Description" : "Drcp Ipp Link Oper State UP Event",
+					"SrcObjName" : "IppLinkState",
+					"EventEnable" : true,
+					"IsFault" : true,
+					"Fault" : {
+						"RaiseFault" : true,
+						"ClearingEventId" : 10,
+						"ClearingDaemonId" : 1,
+						"AlarmSeverity" : "Critical"
+					}
+				},
+				{
+					"EventId" : 10,
+					"EventName" : "LacpdEventDrcpIppLinkDown",
+					"Description" : "Drcp Ipp Link Oper State DOWN Event",
+					"SrcObjName" : "IppLinkState",
+					"EventEnable" : true,
+					"IsFault" : true,
+					"Fault" : {
+						"RaiseFault" : true,
+						"ClearingEventId" : 11,
+						"ClearingDaemonId" : 15,
+						"AlarmSeverity" : "Major"
+					}
+				}
+			]
 		}
 	]
 }

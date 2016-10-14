@@ -40,7 +40,7 @@ type PMData struct {
 type AsicGlobalPM struct {
 	baseObj
 	ModuleId           uint8   `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY: "1", AUTODISCOVER:"true", DESCRIPTION:"Module identifier, DEFAULT: 0"`
-	Resource           string  `SNAPROUTE: "KEY", DESCRIPTION: "Resource identifier", SELECTION: Temperature`
+	Resource           string  `SNAPROUTE: "KEY", DESCRIPTION: "Resource identifier", SELECTION: "Temperature"`
 	PMClassAEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-A PM", DEFAULT:true`
 	PMClassBEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-B PM", DEFAULT:true`
 	PMClassCEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-C PM", DEFAULT:true`
@@ -62,7 +62,7 @@ type AsicGlobalPMState struct {
 type EthernetPM struct {
 	baseObj
 	IntfRef            string  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY: "*", AUTODISCOVER:"true", DESCRIPTION: "Interface name of port"`
-	Resource           string  `SNAPROUTE: "KEY", DESCRIPTION: "Resource identifier", SELECTION:StatUnderSizePkts/StatOverSizePkts/StatFragments/StatCRCAlignErrors/StatJabber/StatEtherPkts/StatMCPkts/StatBCPkts/Stat64OctOrLess/Stat65OctTo126Oct/Stat128OctTo255Oct/Stat128OctTo255Oct/Stat256OctTo511Oct/Stat512OctTo1023Oct/Statc1024OctTo1518Oct`
+	Resource           string  `SNAPROUTE: "KEY", DESCRIPTION: "Resource identifier", SELECTION:"StatUnderSizePkts/StatOverSizePkts/StatFragments/StatCRCAlignErrors/StatJabber/StatEtherPkts/StatMCPkts/StatBCPkts/Stat64OctOrLess/Stat65OctTo126Oct/Stat128OctTo255Oct/Stat128OctTo255Oct/Stat256OctTo511Oct/Stat512OctTo1023Oct/Statc1024OctTo1518Oct"`
 	PMClassAEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-A PM", DEFAULT:true`
 	PMClassBEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-B PM", DEFAULT:true`
 	PMClassCEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-C PM", DEFAULT:true`
@@ -81,12 +81,27 @@ type EthernetPMState struct {
 	ClassCPMData []PMData `DESCRIPTION: "PM Data corresponding to PM Class C"`
 }
 
+type AsicSummaryState struct {
+	baseObj
+	ModuleId      uint8 `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "1", DESCRIPTION:"Module identifier"`
+	NumPortsUp    int32 `DESCRIPTION: Summary stating number of ports that have operstate UP`
+	NumPortsDown  int32 `DESCRIPTION: Summary stating number of ports that have operstate DOWN`
+	NumVlans      int32 `DESCRIPTION: Summary stating number of vlans configured in the asic`
+	NumV4Intfs    int32 `DESCRIPTION: Summary stating number of IPv4 interfaces configured in the asic`
+	NumV6Intfs    int32 `DESCRIPTION: Summary stating number of IPv6 interfaces configured in the asic`
+	NumV4Adjs     int32 `DESCRIPTION: Summary stating number of IPv4 adjacencies configured in the asic`
+	NumV6Adjs     int32 `DESCRIPTION: Summary stating number of IPv6 adjacencies configured in the asic`
+	NumV4Routes   int32 `DESCRIPTION: Summary stating number of IPv4 routes configured in the asic`
+	NumV6Routes   int32 `DESCRIPTION: Summary stating number of IPv6 routes configured in the asic`
+	NumECMPRoutes int32 `DESCRIPTION: Summary stating number of ECMP routes configured in the asic`
+}
+
 type Vlan struct {
 	baseObj
 	VlanId        int32    `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY: "*", MIN:"1", MAX: "4094", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
 	IntfList      []string `DESCRIPTION: "List of interface names or ifindex values to  be added as tagged members of the vlan"`
 	UntagIntfList []string `DESCRIPTION: "List of interface names or ifindex values to  be added as untagged members of the vlan"`
-	AdminState    string   `DESCRIPTION: "Administrative state of this vlan interface", SELECTION: UP/DOWN, DEFAULT:UP`
+	AdminState    string   `DESCRIPTION: "Administrative state of this vlan interface", SELECTION:"UP/DOWN", DEFAULT:"UP"`
 }
 
 type VlanState struct {
@@ -102,7 +117,7 @@ type IPv4Intf struct {
 	baseObj
 	IntfRef    string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: "Interface name or ifindex of port/lag or vlan on which this IPv4 object is configured"`
 	IpAddr     string `DESCRIPTION: "Interface IP/Net mask in CIDR format to provision on switch interface", STRLEN:"18"`
-	AdminState string `DESCRIPTION: "Administrative state of this IP interface", SELECTION: UP/DOWN, DEFAULT:UP`
+	AdminState string `DESCRIPTION: "Administrative state of this IP interface", SELECTION:"UP/DOWN", DEFAULT:"UP"`
 }
 
 type IPv4IntfState struct {
@@ -124,20 +139,20 @@ type Port struct {
 	IntfRef        string `SNAPROUTE: "KEY", ACCESS:"rw", AUTODISCOVER:"true", DESCRIPTION: "Front panel port name or system assigned interface id"`
 	IfIndex        int32  `DESCRIPTION: "System assigned interface id for this port. Read only attribute"`
 	Description    string `DESCRIPTION: "User provided string description", DEFAULT:"FP Port", STRLEN:"64"`
-	PhyIntfType    string `DESCRIPTION: "Type of internal phy interface", STRLEN:"16" SELECTION: GMII/SGMII/QSMII/SFI/XFI/XAUI/XLAUI/RXAUI/CR/CR2/CR4/KR/KR2/KR4/SR/SR2/SR4/SR10/LR/LR4`
-	AdminState     string `DESCRIPTION: "Administrative state of this port", STRLEN:"4" SELECTION: UP/DOWN, DEFAULT: DOWN`
+	PhyIntfType    string `DESCRIPTION: "Type of internal phy interface", STRLEN:"16" SELECTION:"GMII/SGMII/QSMII/SFI/XFI/XAUI/XLAUI/RXAUI/CR/CR2/CR4/KR/KR2/KR4/SR/SR2/SR4/SR10/LR/LR4"`
+	AdminState     string `DESCRIPTION: "Administrative state of this port", STRLEN:"4" SELECTION:"UP/DOWN", DEFAULT:"DOWN"`
 	MacAddr        string `DESCRIPTION: "Mac address associated with this port", STRLEN:"17"`
 	Speed          int32  `DESCRIPTION: "Port speed in Mbps", MIN: 10, MAX: "100000"`
-	Duplex         string `DESCRIPTION: "Duplex setting for this port", STRLEN:"16" SELECTION: Half Duplex/Full Duplex, DEFAULT: Full Duplex`
-	Autoneg        string `DESCRIPTION: "Autonegotiation setting for this port", STRLEN:"4" SELECTION: ON/OFF, DEFAULT: OFF`
+	Duplex         string `DESCRIPTION: "Duplex setting for this port", STRLEN:"16" SELECTION:"Half Duplex/Full Duplex", DEFAULT:"Full Duplex"`
+	Autoneg        string `DESCRIPTION: "Autonegotiation setting for this port", STRLEN:"4" SELECTION:"ON/OFF", DEFAULT:"OFF"`
 	MediaType      string `DESCRIPTION: "Type of media inserted into this port", STRLEN:"16"`
 	Mtu            int32  `DESCRIPTION: "Maximum transmission unit size for this port"`
-	BreakOutMode   string `DESCRIPTION: "Break out mode for the port. Only applicable on ports that support breakout. Valid modes - 1x40, 4x10", STRLEN:"6" SELECTION: 1x40(1)/4x10(2)`
-	LoopbackMode   string `DESCRIPTION: "Desired loopback setting for this port", SELECTION: NONE/MAC/PHY/RMT, DEFAULT: NONE`
+	BreakOutMode   string `DESCRIPTION: "Break out mode for the port. Only applicable on ports that support breakout. Valid modes - 1x40, 4x10", STRLEN:"6" SELECTION:"1x40(1)/4x10(2)"`
+	LoopbackMode   string `DESCRIPTION: "Desired loopback setting for this port", SELECTION:"NONE/MAC/PHY/RMT", DEFAULT:"NONE"`
 	EnableFEC      bool   `DESCRIPTION: "Enable/Disable 802.3bj FEC on this interface", DEFAULT: false`
 	PRBSTxEnable   bool   `DESCRIPTION: "Enable/Disable generation of PRBS on this port", DEFAULT: false`
 	PRBSRxEnable   bool   `DESCRIPTION: "Enable/Disable PRBS checker on this port", DEFAULT: false`
-	PRBSPolynomial string `DESCRIPTION: "PRBS polynomial to use for generation/checking", DEFAULT:2^7, SELECTION:2^7/2^23/2^31`
+	PRBSPolynomial string `DESCRIPTION: "PRBS polynomial to use for generation/checking", DEFAULT:2^7, SELECTION:"2^7/2^23/2^31"`
 }
 
 type PortState struct {
@@ -222,7 +237,7 @@ type NdpEntryHwState struct {
 type LogicalIntf struct {
 	baseObj
 	Name string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: "Name of logical interface"`
-	Type string `DESCRIPTION: "Type of logical interface (e.x. loopback)", SELECTION: Loopback, DEFAULT:"Loopback", STRLEN:"16"`
+	Type string `DESCRIPTION: "Type of logical interface (e.x. loopback)", SELECTION:"Loopback", DEFAULT:"Loopback", STRLEN:"16"`
 }
 
 type LogicalIntfState struct {
@@ -256,7 +271,7 @@ type IPv6Intf struct {
 	IntfRef    string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: "Interface name or ifindex of port/lag or vlan on which this IPv4 object is configured"`
 	IpAddr     string `DESCRIPTION: "Interface Global Scope IP Address/Prefix-Length to provision on switch interface", STRLEN:"43", DEFAULT:""`
 	LinkIp     bool   `DESCRIPTION: "Interface Link Scope IP Address auto-configured", DEFAULT:true`
-	AdminState string `DESCRIPTION: "Administrative state of this IP interface", SELECTION: UP/DOWN, DEFAULT:UP`
+	AdminState string `DESCRIPTION: "Administrative state of this IP interface", SELECTION:"UP/DOWN", DEFAULT:"UP"`
 }
 
 type IPv6IntfState struct {
