@@ -149,6 +149,18 @@ module vxlan {
                 "Vlan associated with the Access targets.  Used in conjunction with a given VTEP
                  inner-vlan-handling-mode";
            }
+		  leaf-list IntRefList {
+			type string;
+			config true;
+			description
+				"Host port interface reference, will be added as a member to the vxlan bridge vlan";
+  		  }
+		  leaf-list UntagIntRefList {
+			type string;
+			config true;
+			description
+				"Host port interface reference for untagged, will be added as a member to the vxlan bridge vlan";
+		  }
         }
         description
           "VxLAN instance.";
