@@ -136,7 +136,7 @@ type IPv4IntfState struct {
 
 type Port struct {
 	baseObj
-	IntfRef        string `SNAPROUTE: "KEY", ACCESS:"rw", AUTODISCOVER:"true", DESCRIPTION: "Front panel port name or system assigned interface id"`
+	IntfRef        string `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER:"true", DESCRIPTION: "Front panel port name or system assigned interface id"`
 	IfIndex        int32  `DESCRIPTION: "System assigned interface id for this port. Read only attribute"`
 	Description    string `DESCRIPTION: "User provided string description", DEFAULT:"FP Port", STRLEN:"64"`
 	PhyIntfType    string `DESCRIPTION: "Type of internal phy interface", STRLEN:"16" SELECTION:"GMII/SGMII/QSMII/SFI/XFI/XAUI/XLAUI/RXAUI/CR/CR2/CR4/KR/KR2/KR4/SR/SR2/SR4/SR10/LR/LR4"`
@@ -157,7 +157,7 @@ type Port struct {
 
 type PortState struct {
 	baseObj
-	IntfRef                     string `SNAPROUTE: "KEY", ACCESS:"r", DESCRIPTION: "Front panel port name or system assigned interface id"`
+	IntfRef                     string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Front panel port name or system assigned interface id"`
 	IfIndex                     int32  `DESCRIPTION: "System assigned interface id for this port"`
 	Name                        string `DESCRIPTION: "System assigned vlan name"`
 	OperState                   string `DESCRIPTION: "Operational state of front panel port"`

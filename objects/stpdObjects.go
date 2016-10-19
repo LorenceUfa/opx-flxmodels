@@ -3,9 +3,8 @@ package objects
 type StpGlobal struct {
 	baseObj
 	Vrf        string `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"1", AUTOCREATE: "true", DEFAULT: "default", DESCRIPTION: global system object defining the global state of STPD.`
-	AdminState string `DESCRIPTION: Administrative state of STPD, UP will allow for stp/rstp/pvst+ configuration to be applied, DOWN will disallow and de-provision from daemon, except for default STP instance. STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: UP`
+	AdminState string `DESCRIPTION: Administrative state of STPD, UP will allow for stp/rstp/pvst+ configuration to be applied, DOWN will disallow and de-provision from daemon, except for default STP instance. STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: DOWN`
 }
-
 type StpPort struct {
 	baseObj
 	Vlan              int32  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER:"true", DESCRIPTION: The value of instance of the vlan object,  for the bridge corresponding to this port., MIN: "0" ,  MAX: "4094"`
