@@ -26,9 +26,10 @@ package objects
 /*
  * This DS will be used while Created/Deleting Vrrp Intf Config
  */
-type VrrpIntf struct {
+type VrrpV4Intf struct {
 	baseObj
-	IfIndex               int32  `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: ""Interface index for which VRRP Config needs to be done"`
+	//	IfIndex               int32  `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: ""Interface index for which VRRP Config needs to be done"`
+	IntfRef               int32  `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: ""Interface (name) for which VRRP Version 2 aka VRRP with ipv4 Config needs to be done"`
 	VRID                  int32  `SNAPROUTE: "KEY", DESCRIPTION: "Virtual Router's Unique Identifier"`
 	Priority              int32  `DESCRIPTION: "Sending VRRP router's priority for the virtual router", DEFAULT:"100", MIN:"1", MAX:"255"`
 	VirtualIPv4Addr       string `DESCRIPTION: "Virtual Router Identifier", STRLEN:"17"`
@@ -37,13 +38,40 @@ type VrrpIntf struct {
 	AcceptMode            bool   `DESCRIPTION: "Controls whether a virtual router in Master state will accept packets addressed to the address owner's IPvX address as its own if it is not the IPvX address owner.", DEFAULT:"false"`
 }
 
-type VrrpIntfState struct {
+type VrrpV6Intf struct {
 	baseObj
-	IfIndex                 int32  `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Interface index for which VRRP state is requested"`
+	//	IfIndex               int32  `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: ""Interface index for which VRRP Config needs to be done"`
+	VRID                  int32  `SNAPROUTE: "KEY", DESCRIPTION: "Virtual Router's Unique Identifier"`
+	Priority              int32  `DESCRIPTION: "Sending VRRP router's priority for the virtual router", DEFAULT:"100", MIN:"1", MAX:"255"`
+	VirtualIPv6Addr       string `DESCRIPTION: "Virtual Router Identifier", STRLEN:"43"`
+	AdvertisementInterval int32  `DESCRIPTION: "Time interval between ADVERTISEMENTS", DEFAULT:"1", MIN:"1", MAX:"4095"`
+	PreemptMode           bool   `DESCRIPTION: "Controls whether a (starting or restarting) higher-priority Backup router preempts a lower-priority Master router", DEFAULT: "true"`
+	AcceptMode            bool   `DESCRIPTION: "Controls whether a virtual router in Master state will accept packets addressed to the address owner's IPvX address as its own if it is not the IPvX address owner.", DEFAULT:"false"`
+}
+
+type VrrpV4IntfState struct {
+	baseObj
+	//IfIndex                 int32  `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Interface index for which VRRP state is requested"`
+	IntfRef                 int32  `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: ""Interface (name) for which VRRP Version 3 aka VRRP with ipv6 Config needs to be done"`
 	VRID                    int32  `SNAPROUTE: "KEY", DESCRIPTION: "Virtual Router's Unique Identifier"`
 	IntfIpAddr              string `DESCRIPTION: "Ip Address of Interface where VRRP is configured"`
 	Priority                int32  `DESCRIPTION: "Virtual router's Priority"`
 	VirtualIPv4Addr         string `DESCRIPTION: "Ip Address of Virtual Router"`
+	AdvertisementInterval   int32  `DESCRIPTION: "Time interval between Advertisements"`
+	PreemptMode             bool   `DESCRIPTION: "States Whether Preempt is Supported or not"`
+	VirtualRouterMACAddress string `DESCRIPTION: "VRRP router's Mac Address"`
+	SkewTime                int32  `DESCRIPTION: "Time to skew Master Down Interval"`
+	MasterDownTimer         int32  `DESCRIPTION: "Time interval for Backup to declare Master down"`
+	VrrpState               string `DESCRIPTION: "Current vrrp state i.e. backup or master"`
+}
+
+type VrrpV6IntfState struct {
+	baseObj
+	IfIndex                 int32  `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Interface index for which VRRP state is requested"`
+	VRID                    int32  `SNAPROUTE: "KEY", DESCRIPTION: "Virtual Router's Unique Identifier"`
+	IntfIpAddr              string `DESCRIPTION: "Ipv6 Address of Interface where VRRP is configured"`
+	Priority                int32  `DESCRIPTION: "Virtual router's Priority"`
+	VirtualIPv6Addr         string `DESCRIPTION: "Ipv6 Address of Virtual Router"`
 	AdvertisementInterval   int32  `DESCRIPTION: "Time interval between Advertisements"`
 	PreemptMode             bool   `DESCRIPTION: "States Whether Preempt is Supported or not"`
 	VirtualRouterMACAddress string `DESCRIPTION: "VRRP router's Mac Address"`
