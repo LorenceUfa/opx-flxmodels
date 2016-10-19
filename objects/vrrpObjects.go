@@ -29,7 +29,7 @@ package objects
 type VrrpV4Intf struct {
 	baseObj
 	//	IfIndex               int32  `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: ""Interface index for which VRRP Config needs to be done"`
-	IntfRef               int32  `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: ""Interface (name) for which VRRP Version 2 aka VRRP with ipv4 Config needs to be done"`
+	IntfRef               string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: ""Interface (name) for which VRRP Version 2 aka VRRP with ipv4 Config needs to be done"`
 	VRID                  int32  `SNAPROUTE: "KEY", DESCRIPTION: "Virtual Router's Unique Identifier"`
 	Priority              int32  `DESCRIPTION: "Sending VRRP router's priority for the virtual router", DEFAULT:"100", MIN:"1", MAX:"255"`
 	VirtualIPv4Addr       string `DESCRIPTION: "Virtual Router Identifier", STRLEN:"17"`
@@ -41,6 +41,7 @@ type VrrpV4Intf struct {
 type VrrpV6Intf struct {
 	baseObj
 	//	IfIndex               int32  `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: ""Interface index for which VRRP Config needs to be done"`
+	IntfRef               string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: ""Interface (name) for which VRRP Version 3 aka VRRP with ipv6 Config needs to be done"`
 	VRID                  int32  `SNAPROUTE: "KEY", DESCRIPTION: "Virtual Router's Unique Identifier"`
 	Priority              int32  `DESCRIPTION: "Sending VRRP router's priority for the virtual router", DEFAULT:"100", MIN:"1", MAX:"255"`
 	VirtualIPv6Addr       string `DESCRIPTION: "Virtual Router Identifier", STRLEN:"43"`
@@ -52,7 +53,7 @@ type VrrpV6Intf struct {
 type VrrpV4IntfState struct {
 	baseObj
 	//IfIndex                 int32  `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Interface index for which VRRP state is requested"`
-	IntfRef                 int32  `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: ""Interface (name) for which VRRP Version 3 aka VRRP with ipv6 Config needs to be done"`
+	IntfRef                 string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: ""Interface (name) for which VRRP Version 2 aka VRRP with ipv4 state information needs to be retreived"`
 	VRID                    int32  `SNAPROUTE: "KEY", DESCRIPTION: "Virtual Router's Unique Identifier"`
 	IntfIpAddr              string `DESCRIPTION: "Ip Address of Interface where VRRP is configured"`
 	Priority                int32  `DESCRIPTION: "Virtual router's Priority"`
@@ -67,7 +68,8 @@ type VrrpV4IntfState struct {
 
 type VrrpV6IntfState struct {
 	baseObj
-	IfIndex                 int32  `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Interface index for which VRRP state is requested"`
+	//IfIndex                 int32  `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Interface index for which VRRP state is requested"`
+	IntfRef                 string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: ""Interface (name) for which VRRP Version 3 aka VRRP with ipv4 state information needs to be retreived"`
 	VRID                    int32  `SNAPROUTE: "KEY", DESCRIPTION: "Virtual Router's Unique Identifier"`
 	IntfIpAddr              string `DESCRIPTION: "Ipv6 Address of Interface where VRRP is configured"`
 	Priority                int32  `DESCRIPTION: "Virtual router's Priority"`
@@ -80,6 +82,7 @@ type VrrpV6IntfState struct {
 	VrrpState               string `DESCRIPTION: "Current vrrp state i.e. backup or master"`
 }
 
+/*
 type VrrpVridState struct {
 	baseObj
 	IfIndex          int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION:"Interface index for which VRRP state is requested"`
@@ -93,3 +96,4 @@ type VrrpVridState struct {
 	PreviousState    string `DESCRIPTION:"Previous State of Local VRRP"`
 	TransitionReason string `DESCRIPTION:"Reason why we moved from previous state -> current state"`
 }
+*/
