@@ -23,6 +23,12 @@
 
 package objects
 
+type VrrpGlobal struct {
+	baseObj
+	Vrf    string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "System Vrf", DEFAULT:"default"`
+	Enable bool   `DESCRIPTION: "Enable/Disable VRRP Globally", DEFAULT:false`
+}
+
 /*
  * This DS will be used while Created/Deleting Vrrp Intf Config
  */
