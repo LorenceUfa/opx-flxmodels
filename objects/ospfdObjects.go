@@ -2,12 +2,11 @@ package objects
 
 type OspfAreaEntry struct {
 	ConfigObj
-	AreaId                 string `SNAPROUTE: "KEY",  ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: A 32-bit integer uniquely identifying an area. Area ID 0.0.0.0 is used for the OSPF backbone.`
-	AuthType               int32  `DESCRIPTION: The authentication type specified for an area., SELECTION: none(0)/simplePassword(1)/md5(2)`
-	ImportAsExtern         int32  `DESCRIPTION: Indicates if an area is a stub area, NSSA, or standard area.  Type-5 AS-external LSAs and type-11 Opaque LSAs are not imported into stub areas or NSSAs.  NSSAs import AS-external data as type-7 LSAs, SELECTION: importExternal(1)/importNoExternal(2)/importNssa(3)`
-	AreaSummary            int32  `DESCRIPTION: The variable ospfAreaSummary controls the import of summary LSAs into stub and NSSA areas. It has no effect on other areas.  If it is noAreaSummary, the router will not originate summary LSAs into the stub or NSSA area. It will rely entirely on its default route.  If it is sendAreaSummary, the router will both summarize and propagate summary LSAs., SELECTION: sendAreaSummary(2)/noAreaSummary(1)`
-	StubDefaultCost        int32  `DESCRIPTION: "For ABR this cost indicates default cost for summary LSA.", DEFAULT:"10" `
-	AreaNssaTranslatorRole int32  `DESCRIPTION: Indicates an NSSA border router's ability to perform NSSA translation of type-7 LSAs into type-5 LSAs., SELECTION: always(1)/candidate(2)`
+	AreaId          string `SNAPROUTE: "KEY",  ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: A 32-bit integer uniquely identifying an area. Area ID 0.0.0.0 is used for the OSPF backbone.`
+	AuthType        int32  `DESCRIPTION: The authentication type specified for an area., SELECTION: none(0)/simplePassword(1)/md5(2)`
+	ImportAsExtern  int32  `DESCRIPTION: Indicates if an area is a stub area, NSSA, or standard area.  Type-5 AS-external LSAs and type-11 Opaque LSAs are not imported into stub areas or NSSAs.  NSSAs import AS-external data as type-7 LSAs, SELECTION: importExternal(1)/importNoExternal(2)/importNssa(3)`
+	AreaSummary     int32  `DESCRIPTION: The variable ospfAreaSummary controls the import of summary LSAs into stub and NSSA areas. It has no effect on other areas.  If it is noAreaSummary, the router will not originate summary LSAs into the stub or NSSA area. It will rely entirely on its default route.  If it is sendAreaSummary, the router will both summarize and propagate summary LSAs., SELECTION: sendAreaSummary(2)/noAreaSummary(1)`
+	StubDefaultCost int32  `DESCRIPTION: "For ABR this cost indicates default cost for summary LSA.", DEFAULT:"10" `
 }
 
 type OspfAreaEntryState struct {
@@ -44,8 +43,6 @@ type OspfIfEntry struct {
 	IfHelloInterval   int32  `DESCRIPTION: The length of time, in seconds, between the Hello packets that the router sends on the interface.  This value must be the same for all routers attached to a common network., MIN: 1, MAX: 65535, DEFAULT:"10"`
 	IfRtrDeadInterval int32  `DESCRIPTION: The number of seconds that a router's Hello packets have not been seen before its neighbors declare the router down. This should be some multiple of the Hello interval.  This value must be the same for all routers attached to a common network., MIN: 0, MAX: 2147483647, DEFAULT:"40"`
 	IfPollInterval    int32  `DESCRIPTION: The larger time interval, in seconds, between the Hello packets sent to an inactive non-broadcast multi-access neighbor., MIN: 0, MAX: 2147483647`
-	IfAuthKey         string `DESCRIPTION:  *** This element is added for future use. *** The cleartext password used as an OSPF authentication key when simplePassword security is enabled.  This object does not access any OSPF cryptogaphic (e.g., MD5) authentication key under any circumstance.  If the key length is shorter than 8 octets, the agent will left adjust and zero fill to 8 octets.  Unauthenticated interfaces need no authentication key, and simple password authentication cannot use a key of more than 8 octets.  Note that the use of simplePassword authentication is NOT recommended when there is concern regarding attack upon the OSPF system.  SimplePassword authentication is only sufficient to protect against accidental misconfigurations because it re-uses cleartext passwords [RFC1704].  When read, ospfIfAuthKey always returns an octet string of length zero.`
-	IfAuthType        int32  `DESCRIPTION: The authentication type specified for an interface.  Note that this object can be used to engage in significant attacks against an OSPF router., SELECTION: none(0)/simplePassword(1)/md5(2)`
 }
 
 type OspfIfEntryState struct {
@@ -69,18 +66,6 @@ type OspfIfMetricEntry struct {
 	IfMetricValue         int32  `DESCRIPTION: The metric of using this Type of Service on this interface.  The default value of the TOS 0 metric is 10^8 / ifSpeed., MIN: 0, MAX: 65535`
 }
 
-type OspfVirtIfEntry struct {
-	ConfigObj
-	VirtIfNeighbor        string `SNAPROUTE: "KEY",  ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: The Router ID of the virtual neighbor.`
-	VirtIfAreaId          string `SNAPROUTE: "KEY",  DESCRIPTION: The transit area that the virtual link traverses.  By definition, this is not 0.0.0.0.`
-	VirtIfTransitDelay    int32  `DESCRIPTION: The estimated number of seconds it takes to transmit a Link State update packet over this interface.  Note that the minimal value SHOULD be 1 second., MIN: 0, MAX:3600`
-	VirtIfRetransInterval int32  `DESCRIPTION: The number of seconds between link state avertisement retransmissions, for adjacencies belonging to this interface.  This value is also used when retransmitting database description and Link State request packets.  This value should be well over the expected round-trip time.  Note that the minimal value SHOULD be 1 second., MIN: 0, MAX:3600`
-	VirtIfHelloInterval   int32  `DESCRIPTION: The length of time, in seconds, between the Hello packets that the router sends on the interface.  This value must be the same for the virtual neighbor., MIN: 1, MAX: 65535`
-	VirtIfRtrDeadInterval int32  `DESCRIPTION: The number of seconds that a router's Hello packets have not been seen before its neighbors declare the router down.  This should be some multiple of the Hello interval.  This value must be the same for the virtual neighbor., MIN: 0, MAX: 2147483647`
-	VirtIfAuthKey         string `DESCRIPTION: The cleartext password used as an OSPF authentication key when simplePassword security is enabled.  This object does not access any OSPF cryptogaphic (e.g., MD5) authentication key under any circumstance.  If the key length is shorter than 8 octets, the agent will left adjust and zero fill to 8 octets.  Unauthenticated interfaces need no authentication key, and simple password authentication cannot use a key of more than 8 octets.  Note that the use of simplePassword authentication is NOT recommended when there is concern regarding attack upon the OSPF system.  SimplePassword authentication is only sufficient to protect against accidental misconfigurations because it re-uses cleartext passwords.  [RFC1704]  When read, ospfIfAuthKey always returns an octet string of length zero.`
-	VirtIfAuthType        int32  `DESCRIPTION: The authentication type specified for a virtual interface.  Note that this object can be used to engage in significant attacks against an OSPF router., SELECTION: none(0)/simplePassword(1)/md5(2)`
-}
-
 type OspfNbrEntryState struct {
 	ConfigObj
 	NbrIpAddr           string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*",  DESCRIPTION: The IP address this neighbor is using in its IP source address.  Note that, on addressless links, this will not be 0.0.0.0 but the  address of another of the neighbor's interfaces.`
@@ -90,17 +75,6 @@ type OspfNbrEntryState struct {
 	NbrState            string `DESCRIPTION: The state of the relationship with this neighbor., SELECTION: exchangeStart(5)/loading(7)/attempt(2)/exchange(6)/down(1)/init(3)/full(8)/twoWay(4)`
 	NbrEvents           uint32 `DESCRIPTION: The number of times this neighbor relationship has changed state or an error has occurred.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ospfDiscontinuityTime.`
 	NbrHelloSuppressed  bool   `DESCRIPTION:  *** This element is added for future use. *** Indicates whether Hellos are being suppressed to the neighbor.`
-}
-
-type OspfVirtNbrEntryState struct {
-	ConfigObj
-	VirtNbrRtrId           string `SNAPROUTE: "KEY",  ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: A 32-bit integer uniquely identifying the neighboring router in the Autonomous System.`
-	VirtNbrArea            string `SNAPROUTE: "KEY",  DESCRIPTION: The Transit Area Identifier.`
-	VirtNbrIpAddr          string `DESCRIPTION: The IP address this virtual neighbor is using.`
-	VirtNbrOptions         int32  `DESCRIPTION: A bit mask corresponding to the neighbor's options field.  Bit 1, if set, indicates that the system will operate on Type of Service metrics other than TOS 0.  If zero, the neighbor will ignore all metrics except the TOS 0 metric.  Bit 2, if set, indicates that the system is network multicast capable, i.e., that it implements OSPF multicast routing.`
-	VirtNbrState           int32  `DESCRIPTION: The state of the virtual neighbor relationship., SELECTION: exchangeStart(5)/loading(7)/attempt(2)/exchange(6)/down(1)/init(3)/full(8)/twoWay(4)`
-	VirtNbrEvents          uint32 `DESCRIPTION: The number of times this virtual link has changed its state or an error has occurred.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ospfDiscontinuityTime.`
-	VirtNbrHelloSuppressed bool   `DESCRIPTION: Indicates whether Hellos are being suppressed to the neighbor.`
 }
 
 type OspfLsaKey struct {
