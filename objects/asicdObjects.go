@@ -115,7 +115,7 @@ type VlanState struct {
 
 type IPv4Intf struct {
 	baseObj
-	IntfRef    string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: "Interface name or ifindex of port/lag or vlan on which this IPv4 object is configured"`
+	IntfRef    string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: "Interface name or ifindex of port/lag or vlan on which this IPv4 object is configured", RELTN:"DEP:[Vlan, Port]`
 	IpAddr     string `DESCRIPTION: "Interface IP/Net mask in CIDR format to provision on switch interface", STRLEN:"18"`
 	AdminState string `DESCRIPTION: "Administrative state of this IP interface", SELECTION:"UP/DOWN", DEFAULT:"UP"`
 }
@@ -136,7 +136,7 @@ type IPv4IntfState struct {
 
 type Port struct {
 	baseObj
-	IntfRef        string `SNAPROUTE: "KEY", ACCESS:"rw", AUTODISCOVER:"true", DESCRIPTION: "Front panel port name or system assigned interface id"`
+	IntfRef        string `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER:"true", DESCRIPTION: "Front panel port name or system assigned interface id"`
 	IfIndex        int32  `DESCRIPTION: "System assigned interface id for this port. Read only attribute"`
 	Description    string `DESCRIPTION: "User provided string description", DEFAULT:"FP Port", STRLEN:"64"`
 	PhyIntfType    string `DESCRIPTION: "Type of internal phy interface", STRLEN:"16" SELECTION:"GMII/SGMII/QSMII/SFI/XFI/XAUI/XLAUI/RXAUI/CR/CR2/CR4/KR/KR2/KR4/SR/SR2/SR4/SR10/LR/LR4"`
@@ -157,7 +157,7 @@ type Port struct {
 
 type PortState struct {
 	baseObj
-	IntfRef                     string `SNAPROUTE: "KEY", ACCESS:"r", DESCRIPTION: "Front panel port name or system assigned interface id"`
+	IntfRef                     string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Front panel port name or system assigned interface id"`
 	IfIndex                     int32  `DESCRIPTION: "System assigned interface id for this port"`
 	Name                        string `DESCRIPTION: "System assigned vlan name"`
 	OperState                   string `DESCRIPTION: "Operational state of front panel port"`
@@ -268,7 +268,7 @@ type SubIPv4Intf struct {
 
 type IPv6Intf struct {
 	baseObj
-	IntfRef    string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: "Interface name or ifindex of port/lag or vlan on which this IPv4 object is configured"`
+	IntfRef    string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: "Interface name or ifindex of port/lag or vlan on which this IPv4 object is configured", RELTN:"DEP:[Vlan, Port]`
 	IpAddr     string `DESCRIPTION: "Interface Global Scope IP Address/Prefix-Length to provision on switch interface", STRLEN:"43", DEFAULT:""`
 	LinkIp     bool   `DESCRIPTION: "Interface Link Scope IP Address auto-configured", DEFAULT:true`
 	AdminState string `DESCRIPTION: "Administrative state of this IP interface", SELECTION:"UP/DOWN", DEFAULT:"UP"`

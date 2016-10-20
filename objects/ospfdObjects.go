@@ -33,7 +33,7 @@ type OspfLsdbEntryState struct {
 
 type OspfIfEntry struct {
 	ConfigObj
-	IfIpAddress       string `SNAPROUTE: "KEY",  ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: The IP address of this OSPF interface.`
+	IfIpAddress       string `SNAPROUTE: "KEY",  ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: The IP address of this OSPF interface., RELTN:"DEP:[Vlan, Port]`
 	AddressLessIf     int32  `SNAPROUTE: "KEY",  DESCRIPTION: For the purpose of easing the instancing of addressed and addressless interfaces; this variable takes the value 0 on interfaces with IP addresses and the corresponding value of ifIndex for interfaces having no IP address., MIN: 0, MAX: 2147483647`
 	IfAdminStat       int32  `DESCRIPTION: Indiacates if OSPF is enabled on this interface`
 	IfAreaId          string `DESCRIPTION: A 32-bit integer uniquely identifying the area to which the interface connects.  Area ID 0.0.0.0 is used for the OSPF backbone.`
