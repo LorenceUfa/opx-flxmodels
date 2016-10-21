@@ -27,7 +27,7 @@ import ()
 
 type DHCPRelayGlobal struct {
 	baseObj
-	Vrf           string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: "VRF id for DHCPv4 Relay Agent global config", DEFAULT:"default"`
+	Vrf           string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for DHCPv4 Relay Agent global config", DEFAULT:"default"`
 	Enable        bool   `DESCRIPTION: "Global level config for enabling/disabling the Relay Agent", DEFAULT:"false"`
 	HopCountLimit int32  `DESCRIPTION: "Hop Count Limit", DEFAULT:"32"`
 }
@@ -77,7 +77,7 @@ type DHCPRelayIntfServerState struct {
 
 type DHCPv6RelayGlobal struct {
 	baseObj
-	Vrf           string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: "VRF id for DHCPv6 Relay Agent global config", DEFAULT:"default"`
+	Vrf           string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for DHCPv6 Relay Agent global config", DEFAULT:"default"`
 	Enable        bool   `DESCRIPTION: "Global level config for enabling/disabling the Relay Agent", DEFAULT:"false"`
 	HopCountLimit int32  `DESCRIPTION: "Hop Count Limit", DEFAULT:"32"`
 }
