@@ -5,7 +5,7 @@ type VxlanInstance struct {
 	Vni            uint32   `SNAPROUTE: "KEY",  ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: VXLAN Network Id, MIN: "1" ,  MAX: "16777215"`
 	UntaggedVlanId uint16   `DESCRIPTION: Vlan associated with the untagged traffic.  Used in conjunction with a given VTEP inner-vlan-handling-mode, MIN: "1" ,  MAX: "4094"`
 	VlanId         []uint16 `DESCRIPTION: Vlan associated with the Access targets.  Used in conjunction with a given VTEP inner-vlan-handling-mode, MIN: "1" ,  MAX: "4094"`
-	AdminState     string   `DESCRIPTION: Administrative state of VXLAN layer, UP will allow for traffic to be processed in the VNI, DOWN will drop traffic within this layer, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: DOWN`
+	AdminState     string   `DESCRIPTION: Administrative state of VXLAN layer, UP will allow for traffic to be processed in the VNI, DOWN will drop traffic within this layer, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: UP`
 }
 
 type VxlanInstanceState struct {
@@ -20,8 +20,8 @@ type VxlanVtepInstance struct {
 	Intf                  string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: VTEP instance identifier name. should be defined as either vtep<id#> or <id#> if the later then 'vtep' will be prepended to the <id#> example: vtep100 or 100`
 	IntfRef               string `DESCRIPTION: Source interface where the source ip will be derived from.  If an interface is not supplied the src-ip will be used. This attribute takes presedence over src-ip attribute.`
 	DstUDP                uint16 `DESCRIPTION: vxlan udp port.  Deafult is the iana default udp port, DEFAULT: 4789`
-	TTL                   uint16 `DESCRIPTION: TTL of the Vxlan tunnel, DEFAULT: 255`
-	TOS                   uint16 `DESCRIPTION: Type of Service, DEFAULT: 0`
+	TTL                   uint16 `DESCRIPTION: TTL of the Vxlan tunnel, MIN:0, MAX:255, DEFAULT: 64`
+	TOS                   uint16 `DESCRIPTION: Type of Service, MIN:0, MAX:255, DEFAULT: 0`
 	InnerVlanHandlingMode int32  `DESCRIPTION: The inner vlan tag handling mode., SELECTION: DISCARD_INNER_VLAN(0)/NO_DISCARD_INNER_VLAN(1), DEFAULT: 0`
 	Vni                   uint32 `DESCRIPTION: VXLAN Network ID, MIN: "1" ,  MAX: "16777215"`
 	DstIp                 string `DESCRIPTION: Destination IP address for the static VxLAN tunnel"`
@@ -37,8 +37,8 @@ type VxlanVtepInstanceState struct {
 	IntfRef               string `DESCRIPTION: Source interface where the source ip will be derived from.  If an interface is not supplied the src-ip will be used. This attribute takes presedence over src-ip attribute.`
 	IfIndex               int32  `DESCRIPTION: Vtep IfIndex`
 	DstUDP                uint16 `DESCRIPTION: vxlan udp port.  Deafult is the iana default udp port, DEFAULT: 4789`
-	TTL                   uint16 `DESCRIPTION: TTL of the Vxlan tunnel, DEFAULT: 255`
-	TOS                   uint16 `DESCRIPTION: Type of Service, DEFAULT: 0`
+	TTL                   uint16 `DESCRIPTION: TTL of the Vxlan tunnel, MIN:0, MAX:255, DEFAULT: 64`
+	TOS                   uint16 `DESCRIPTION: Type of Service, MIN:0, MAX:255, DEFAULT: 0`
 	InnerVlanHandlingMode int32  `DESCRIPTION: The inner vlan tag handling mode., SELECTION: DISCARD_INNER_VLAN(0)/NO_DISCARD_INNER_VLAN(1), DEFAULT: 0`
 	Vni                   uint32 `DESCRIPTION: VXLAN Network ID, MIN: "1" ,  MAX: "16777215"`
 	DstIp                 string `DESCRIPTION: Destination IP address for the static VxLAN tunnel"`
@@ -58,7 +58,7 @@ type VxlanVtepInstanceState struct {
 type VxlanGlobal struct {
 	baseObj
 	Vrf        string `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"1", AUTOCREATE: "true", DEFAULT: "default", DESCRIPTION: global system object defining the global state of VXLAND.`
-	AdminState string `DESCRIPTION: Administrative state of VXLAND, UP will allow for vxlan configuration to be applied, DOWN will disallow and de-provision from daemon, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: DOWN`
+	AdminState string `DESCRIPTION: Administrative state of VXLAND, UP will allow for vxlan configuration to be applied, DOWN will disallow and de-provision from daemon, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: UP`
 }
 
 type VxlanGlobalState struct {
