@@ -107,7 +107,8 @@ type OspfIPv4RouteState struct {
 
 type OspfGlobal struct {
 	ConfigObj
-	RouterId           string `SNAPROUTE: "KEY",  ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: A 32-bit integer uniquely identifying the router in the Autonomous System. By convention, to ensure uniqueness, this should default to the value of one of the router's IP interface addresses.  This object is persistent and when written the entity SHOULD save the change to non-volatile storage.`
+	Vrf                string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for OSPF global config", DEFAULT:"default"`
+	RouterId           string `DESCRIPTION: A 32-bit integer uniquely identifying the router in the Autonomous System. By convention, to ensure uniqueness, this should default to the value of one of the router's IP interface addresses.  This object is persistent and when written the entity SHOULD save the change to non-volatile storage., DEFAULT:"0.0.0.0"`
 	AdminStat          int32  `DESCRIPTION: Indicates if OSPF is enabled globally`
 	ASBdrRtrStatus     bool   `DESCRIPTION: A flag to note whether this router is configured as an Autonomous System Border Router.  This object is persistent and when written the entity SHOULD save the change to non-volatile storage.`
 	TOSSupport         bool   `DESCRIPTION: *** This element is added for future use. *** The router's support for type-of-service routing. This object is persistent and when written the entity SHOULD save the change to non-volatile storage., DEFAULT: false`
