@@ -33,6 +33,7 @@ type BGPGlobal struct {
 	Vrf                 string             `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for BGP global config", DEFAULT:"default"`
 	ASNum               string             `DESCRIPTION: "Local AS for BGP global config. Both AsPlain and AsDot formats are supported.", DEFAULT: ""`
 	RouterId            string             `DESCRIPTION: "Router id for BGP global config", DEFAULT: "0.0.0.0"`
+	Disabled            bool               `DESCRIPTION: "Enable/Disable BGP globally", DEFAULT: "false"`
 	UseMultiplePaths    bool               `DESCRIPTION: "Enable/disable ECMP for BGP", DEFAULT: "false"`
 	EBGPMaxPaths        uint32             `DESCRIPTION: "Max ECMP paths from External BGP neighbors", DEFAULT: "0"`
 	EBGPAllowMultipleAS bool               `DESCRIPTION: "Enable/diable ECMP paths from multiple ASes", DEFAULT: "false"`
@@ -42,8 +43,10 @@ type BGPGlobal struct {
 
 type BGPGlobalState struct {
 	baseObj
+	Vrf                 string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for BGP global config"`
 	AS                  string `DESCRIPTION: "Local AS for BGP global config"`
-	RouterId            string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "Router id for BGP global config"`
+	RouterId            string `DESCRIPTION: "Router id for BGP global config"`
+	Disabled            bool   `DESCRIPTION: "Enable/Disable BGP globally"`
 	UseMultiplePaths    bool   `DESCRIPTION: "Enable/disable ECMP for BGP"`
 	EBGPMaxPaths        uint32 `DESCRIPTION: "Max ECMP paths from External BGP neighbors"`
 	EBGPAllowMultipleAS bool   `DESCRIPTION: "Enable/diable ECMP paths from multiple ASes"`
@@ -83,6 +86,7 @@ type BGPv4Neighbor struct {
 	PeerAS                  string `DESCRIPTION: "Peer AS of the BGP neighbor", DEFAULT: ""`
 	LocalAS                 string `DESCRIPTION: "Local AS of the BGP neighbor", DEFAULT: ""`
 	UpdateSource            string `DESCRIPTION: "Source IP to connect to the BGP neighbor", DEFAULT: ""`
+	NextHopSelf             bool   `DESCRIPTION: "Use neighbor source IP as the next hop for IBGP neighbors", DEFAULT: "false"`
 	AuthPassword            string `DESCRIPTION: "Password to connect to the BGP neighbor", DEFAULT: ""`
 	RouteReflectorClusterId uint32 `DESCRIPTION: "Cluster Id of the internal BGP neighbor route reflector client", DEFAULT: "0"`
 	RouteReflectorClient    bool   `DESCRIPTION: "Set/Clear BGP neighbor as a route reflector client", DEFAULT: "false"`
@@ -115,6 +119,7 @@ type BGPv4NeighborState struct {
 	PeerAS                  string      `DESCRIPTION: "Peer AS of the BGP neighbor"`
 	LocalAS                 string      `DESCRIPTION: "Local AS of the BGP neighbor"`
 	UpdateSource            string      `DESCRIPTION: "Source IP to connect to the BGP neighbor"`
+	NextHopSelf             bool        `DESCRIPTION: "Use neighbor source IP as the next hop for IBGP neighbors"`
 	AuthPassword            string      `DESCRIPTION: "Password to connect to the BGP neighbor"`
 	RouteReflectorClusterId uint32      `DESCRIPTION: "Cluster Id of the internal BGP neighbor route reflector client"`
 	RouteReflectorClient    bool        `DESCRIPTION: "Set/Clear BGP neighbor as a route reflector client"`
@@ -148,6 +153,7 @@ type BGPv6Neighbor struct {
 	PeerAS                  string `DESCRIPTION: "Peer AS of the BGP neighbor", DEFAULT: ""`
 	LocalAS                 string `DESCRIPTION: "Local AS of the BGP neighbor", DEFAULT: ""`
 	UpdateSource            string `DESCRIPTION: "Source IP to connect to the BGP neighbor", DEFAULT: ""`
+	NextHopSelf             bool   `DESCRIPTION: "Use neighbor source IP as the next hop for IBGP neighbors", DEFAULT: "false"`
 	RouteReflectorClusterId uint32 `DESCRIPTION: "Cluster Id of the internal BGP neighbor route reflector client", DEFAULT: "0"`
 	RouteReflectorClient    bool   `DESCRIPTION: "Set/Clear BGP neighbor as a route reflector client", DEFAULT: "false"`
 	MultiHopEnable          bool   `DESCRIPTION: "Enable/Disable multi hop for BGP neighbor", DEFAULT: "false"`
@@ -179,6 +185,7 @@ type BGPv6NeighborState struct {
 	PeerAS                  string      `DESCRIPTION: "Peer AS of the BGP neighbor"`
 	LocalAS                 string      `DESCRIPTION: "Local AS of the BGP neighbor"`
 	UpdateSource            string      `DESCRIPTION: "Source IP to connect to the BGP neighbor"`
+	NextHopSelf             bool        `DESCRIPTION: "Use neighbor source IP as the next hop for IBGP neighbors"`
 	RouteReflectorClusterId uint32      `DESCRIPTION: "Cluster Id of the internal BGP neighbor route reflector client"`
 	RouteReflectorClient    bool        `DESCRIPTION: "Set/Clear BGP neighbor as a route reflector client"`
 	MultiHopEnable          bool        `DESCRIPTION: "Enable/Disable multi hop for BGP neighbor"`
@@ -206,6 +213,7 @@ type BGPv4PeerGroup struct {
 	PeerAS                  string `DESCRIPTION: "Peer AS of the BGP neighbor", DEFAULT: ""`
 	LocalAS                 string `DESCRIPTION: "Local AS of the BGP neighbor", DEFAULT: ""`
 	UpdateSource            string `DESCRIPTION: "Source IP to connect to the BGP neighbor", DEFAULT: ""`
+	NextHopSelf             bool   `DESCRIPTION: "Use neighbor source IP as the next hop for IBGP neighbors", DEFAULT: "false"`
 	AuthPassword            string `DESCRIPTION: "Password to connect to the BGP neighbor", DEFAULT: ""`
 	Description             string `DESCRIPTION: "Description of the BGP neighbor", DEFAULT: ""`
 	Name                    string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Name of the BGP peer group"`
@@ -231,6 +239,7 @@ type BGPv6PeerGroup struct {
 	PeerAS                  string `DESCRIPTION: "Peer AS of the BGP neighbor", DEFAULT: ""`
 	LocalAS                 string `DESCRIPTION: "Local AS of the BGP neighbor", DEFAULT: ""`
 	UpdateSource            string `DESCRIPTION: "Source IP to connect to the BGP neighbor", DEFAULT: ""`
+	NextHopSelf             bool   `DESCRIPTION: "Use neighbor source IP as the next hop for IBGP neighbors", DEFAULT: "false"`
 	Description             string `DESCRIPTION: "Description of the BGP neighbor", DEFAULT: ""`
 	Name                    string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Name of the BGP peer group"`
 	RouteReflectorClusterId uint32 `DESCRIPTION: "Cluster Id of the internal BGP neighbor route reflector client", DEFAULT: "0"`
