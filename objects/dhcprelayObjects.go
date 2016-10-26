@@ -27,21 +27,21 @@ import ()
 
 type DHCPRelayGlobal struct {
 	baseObj
-	Vrf           string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for DHCPv4 Relay Agent global config", DEFAULT:"default"`
+	Vrf           string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for DHCPv4 Relay Agent global config", DEFAULT:"default"`
 	Enable        bool   `DESCRIPTION: "Global level config for enabling/disabling the Relay Agent", DEFAULT:"false"`
 	HopCountLimit int32  `DESCRIPTION: "Hop Count Limit", DEFAULT:"32"`
 }
 
 type DHCPRelayIntf struct {
 	baseObj
-	IntfRef  string   `SNAPROUTE: "KEY",  ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION:"DHCP Client facing interface reference for which Relay Agent needs to be configured"`
+	IntfRef  string   `SNAPROUTE: "KEY", CATEGORY:"L3",  ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION:"DHCP Client facing interface reference for which Relay Agent needs to be configured"`
 	Enable   bool     `DESCRIPTION: "Interface level config for enabling/disabling the relay agent"`
 	ServerIp []string `DESCRIPTION: "DHCP Server(s) where relay agent can relay client dhcp requests"`
 }
 
 type DHCPRelayClientState struct {
 	baseObj
-	MacAddr         string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Host Hardware/Mac Address"`
+	MacAddr         string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Host Hardware/Mac Address"`
 	ServerIp        string `DESCRIPTION: "Configured DHCP Server"`
 	OfferedIp       string `DESCRIPTION: "Ip Address offered by DHCP Server"`
 	GatewayIp       string `DESCRIPTION: "Ip Address which client needs to use"`
@@ -59,7 +59,7 @@ type DHCPRelayClientState struct {
 
 type DHCPRelayIntfState struct {
 	baseObj
-	IntfRef           string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface for which state is required to be collected"`
+	IntfRef           string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface for which state is required to be collected"`
 	TotalDrops        int32  `DESCRIPTION: "Total number of DHCP Packets dropped by relay agent"`
 	TotalDhcpClientRx int32  `DESCRIPTION: "Total number of client requests that came to relay agent"`
 	TotalDhcpClientTx int32  `DESCRIPTION: "Total number of client responses send out by relay agent"`
@@ -69,22 +69,22 @@ type DHCPRelayIntfState struct {
 
 type DHCPRelayIntfServerState struct {
 	baseObj
-	IntfRef   string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "Interface Index for which state is required to be collected"`
-	ServerIp  string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "Server IP on the interface for which state is required to be collected"`
+	IntfRef   string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "Interface Index for which state is required to be collected"`
+	ServerIp  string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "Server IP on the interface for which state is required to be collected"`
 	Request   int32  `DESCRIPTION: "Total number of requests to Server"`
 	Responses int32  `DESCRIPTION: "Total number of responses from Server"`
 }
 
 type DHCPv6RelayGlobal struct {
 	baseObj
-	Vrf           string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for DHCPv6 Relay Agent global config", DEFAULT:"default"`
+	Vrf           string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for DHCPv6 Relay Agent global config", DEFAULT:"default"`
 	Enable        bool   `DESCRIPTION: "Global level config for enabling/disabling the Relay Agent", DEFAULT:"false"`
 	HopCountLimit int32  `DESCRIPTION: "Hop Count Limit", DEFAULT:"32"`
 }
 
 type DHCPv6RelayIntf struct {
 	baseObj
-	IntfRef       string   `SNAPROUTE: "KEY",  ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION:"DHCP Client facing interface reference for which Relay Agent needs to be configured""`
+	IntfRef       string   `SNAPROUTE: "KEY", CATEGORY:"L3",  ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION:"DHCP Client facing interface reference for which Relay Agent needs to be configured""`
 	Enable        bool     `DESCRIPTION: "Interface level config for enabling/disabling the relay agent"`
 	ServerIp      []string `DESCRIPTION: "DHCP Server(s) where relay agent can relay client dhcp requests"`
 	UpstreamIntfs []string `DESCRIPTION: "DHCP Server facing interfaces where Relay Forward messages are multicasted"`
@@ -92,7 +92,7 @@ type DHCPv6RelayIntf struct {
 
 type DHCPv6RelayClientState struct {
 	baseObj
-	MacAddr           string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Host Hardware/Mac Address"`
+	MacAddr           string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Host Hardware/Mac Address"`
 	ServerIp          string `DESCRIPTION: "Configured DHCP Server"`
 	OfferedIp         string `DESCRIPTION: "Ip Address offered by DHCP Server"`
 	GatewayIp         string `DESCRIPTION: "Ip Address which client needs to use"`
@@ -117,7 +117,7 @@ type DHCPv6RelayClientState struct {
 
 type DHCPv6RelayIntfState struct {
 	baseObj
-	IntfRef           string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface for which state is required to be collected"`
+	IntfRef           string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface for which state is required to be collected"`
 	TotalDrops        int32  `DESCRIPTION: "Total number of DHCP Packets dropped by relay agent"`
 	TotalDhcpClientRx int32  `DESCRIPTION: "Total number of client requests that came to relay agent"`
 	TotalDhcpClientTx int32  `DESCRIPTION: "Total number of client responses send out by relay agent"`
@@ -127,8 +127,8 @@ type DHCPv6RelayIntfState struct {
 
 type DHCPv6RelayIntfServerState struct {
 	baseObj
-	IntfRef   string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "Interface Index for which state is required to be collected"`
-	ServerIp  string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "Server IP on the interface for which state is required to be collected"`
+	IntfRef   string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "Interface Index for which state is required to be collected"`
+	ServerIp  string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "Server IP on the interface for which state is required to be collected"`
 	Request   int32  `DESCRIPTION: "Total number of requests to Server"`
 	Responses int32  `DESCRIPTION: "Total number of responses from Server"`
 }
