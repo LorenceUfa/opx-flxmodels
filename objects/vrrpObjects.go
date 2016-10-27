@@ -57,7 +57,7 @@ type VrrpV6Intf struct {
 
 type VrrpV4IntfState struct {
 	baseObj
-	IntfRef                 string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 2 aka VRRP with ipv4 state information needs to be retreived"`
+	IntfRef                 string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 2 aka VRRP with ipv4 state information needs to be retreived"`
 	VRID                    int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier"`
 	IntfIpAddr              string `DESCRIPTION: "Ip Address of Interface where VRRP is configured"`
 	Priority                int32  `DESCRIPTION: "Virtual router's Priority"`
@@ -72,7 +72,7 @@ type VrrpV4IntfState struct {
 
 type VrrpV6IntfState struct {
 	baseObj
-	IntfRef                 string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 3 aka VRRP with ipv4 state information needs to be retreived"`
+	IntfRef                 string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 3 aka VRRP with ipv4 state information needs to be retreived"`
 	VRID                    int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier"`
 	IntfIpAddr              string `DESCRIPTION: "Ipv6 Address of Interface where VRRP is configured"`
 	Priority                int32  `DESCRIPTION: "Virtual router's Priority"`
