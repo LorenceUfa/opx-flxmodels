@@ -27,7 +27,7 @@ type VxlanVtepInstance struct {
 	DstIp                 string `DESCRIPTION: Destination IP address for the static VxLAN tunnel"`
 	SrcIp                 string `DESCRIPTION: Source IP address for the VxLAN tunnel, if this is supplied it is assumed that the intf-ref is this vtep.  This  attribute will be ignored if intf-ref is set", DEFAULT: "0.0.0.0"`
 	VlanId                uint16 `DESCRIPTION: Vlan Id to encapsulate with the vtep tunnel ethernet header`
-	Mtu                   uint32 `DESCRIPTION: Set the MTU to be applied to all VTEP within this VxLAN, DEFAULT: 1550`
+	Mtu                   uint32 `DESCRIPTION: Set the MTU to be applied to all VTEP within this VxLAN, DEFAULT: 1450`
 	AdminState            string `DESCRIPTION: Administrative state of VXLAN MAC/IP layer, UP will allow for traffic to be processed in the VNI, DOWN will drop traffic within this layer, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: DOWN`
 }
 
