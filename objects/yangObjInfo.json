@@ -1,5 +1,2 @@
 {
-"vxlan" : { "owner": "vxland",
-            "location": "l3/tunnel/vxlan/rpc/",
-            "svcName" : "nil"}
 }

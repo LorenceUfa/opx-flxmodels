@@ -34,9 +34,8 @@ type VrrpGlobal struct {
  */
 type VrrpV4Intf struct {
 	baseObj
-	//	IfIndex               int32  `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: ""Interface index for which VRRP Config needs to be done"`
-	IntfRef               string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: ""Interface (name) for which VRRP Version 2 aka VRRP with ipv4 Config needs to be done"`
-	VRID                  int32  `SNAPROUTE: "KEY", DESCRIPTION: "Virtual Router's Unique Identifier"`
+	IntfRef               string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 2 aka VRRP with ipv4 Config needs to be done"`
+	VRID                  int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier"`
 	Priority              int32  `DESCRIPTION: "Sending VRRP router's priority for the virtual router", DEFAULT:100, MIN:1, MAX:255`
 	VirtualIPv4Addr       string `DESCRIPTION: "Virtual Router Identifier", STRLEN:"17"`
 	AdvertisementInterval int32  `DESCRIPTION: "Time interval between ADVERTISEMENTS", DEFAULT:1, MIN:1, MAX:4095`
@@ -58,9 +57,8 @@ type VrrpV6Intf struct {
 
 type VrrpV4IntfState struct {
 	baseObj
-	//IfIndex                 int32  `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Interface index for which VRRP state is requested"`
-	IntfRef                 string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: ""Interface (name) for which VRRP Version 2 aka VRRP with ipv4 state information needs to be retreived"`
-	VRID                    int32  `SNAPROUTE: "KEY", DESCRIPTION: "Virtual Router's Unique Identifier"`
+	IntfRef                 string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 2 aka VRRP with ipv4 state information needs to be retreived"`
+	VRID                    int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier"`
 	IntfIpAddr              string `DESCRIPTION: "Ip Address of Interface where VRRP is configured"`
 	Priority                int32  `DESCRIPTION: "Virtual router's Priority"`
 	VirtualIPv4Addr         string `DESCRIPTION: "Ip Address of Virtual Router"`
@@ -74,9 +72,8 @@ type VrrpV4IntfState struct {
 
 type VrrpV6IntfState struct {
 	baseObj
-	//IfIndex                 int32  `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Interface index for which VRRP state is requested"`
-	IntfRef                 string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: ""Interface (name) for which VRRP Version 3 aka VRRP with ipv4 state information needs to be retreived"`
-	VRID                    int32  `SNAPROUTE: "KEY", DESCRIPTION: "Virtual Router's Unique Identifier"`
+	IntfRef                 string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 3 aka VRRP with ipv4 state information needs to be retreived"`
+	VRID                    int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier"`
 	IntfIpAddr              string `DESCRIPTION: "Ipv6 Address of Interface where VRRP is configured"`
 	Priority                int32  `DESCRIPTION: "Virtual router's Priority"`
 	VirtualIPv6Addr         string `DESCRIPTION: "Ipv6 Address of Virtual Router"`
@@ -91,8 +88,8 @@ type VrrpV6IntfState struct {
 /*
 type VrrpVridState struct {
 	baseObj
-	IfIndex          int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION:"Interface index for which VRRP state is requested"`
-	VRID             int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION:"Virtual Router's Unique Identifier""`
+	IfIndex          int32  `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION:"Interface index for which VRRP state is requested"`
+	VRID             int32  `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION:"Virtual Router's Unique Identifier""`
 	AdverRx          int32  `DESCRIPTION:"Total number of advertisement packets received"`
 	AdverTx          int32  `DESCRIPTION:"Total number of advertisement packets send"`
 	LastAdverRx      string `DESCRIPTION:"Time when last advertisement packet was received"`

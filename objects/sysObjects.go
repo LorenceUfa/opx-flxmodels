@@ -27,13 +27,13 @@ import ()
 
 type ComponentLogging struct {
 	baseObj
-	Module string `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: "Module name to set logging level"`
+	Module string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: "Module name to set logging level"`
 	Level  string `DESCRIPTION: "Logging level", SELECTION: "crit/err/warn/alert/emerg/notice/info/debug/trace/off", DEFAULT: "info"`
 }
 
 type IpTableAcl struct {
 	baseObj
-	Name         string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Ip Table ACL rule name"`
+	Name         string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Ip Table ACL rule name"`
 	PhysicalPort string `DESCRIPTION: "IfIndex where the acl rule is to be applied", DEFAULT: "all"`
 	Action       string `DESCRIPTION: "ACCEPT or DROP"`
 	IpAddr       string `DESCRIPTION: "ip address of subnet or host, e.g: 192.168.1.0/24, 192.168.1.1"`
@@ -44,7 +44,7 @@ type IpTableAcl struct {
 /*
 type IpTableAclState struct {
 	baseObj
-	Name         string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Ip Table ACL rule name"`
+	Name         string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Ip Table ACL rule name"`
 	PhysicalPort string `DESCRIPTION: "IfIndex where the acl rule is to be applied", DEFAULT: "all"`
 	Action       string `DESCRIPTION: "ACCEPT or DROP"`
 	IpAddr       string `DESCRIPTION: "ip address of subnet or host, e.g: 192.168.1.0/24, 192.168.1.1"`
@@ -55,7 +55,7 @@ type IpTableAclState struct {
 
 type DaemonState struct {
 	baseObj
-	Name          string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Daemon name", USESTATEDB:"true"`
+	Name          string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Daemon name", USESTATEDB:"true"`
 	Enable        bool   `DESCRIPTION: "If the daemon configured to be enabled"`
 	State         string `DESCRIPTION: "State of the daemon, running or restarting"`
 	Reason        string `DESCRIPTION: "Reason for current state of the daemon"`
@@ -68,7 +68,7 @@ type DaemonState struct {
 
 type SystemParam struct {
 	baseObj
-	Vrf         string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", AUTOCREATE: "true", DESCRIPTION: "System Vrf", DEFAULT:"default"`
+	Vrf         string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w", MULTIPLICITY:"*", AUTOCREATE: "true", DESCRIPTION: "System Vrf", DEFAULT:"default"`
 	MgmtIp      string `DESCRIPTION: "Management Ip of System"`
 	Hostname    string `DESCRIPTION: "System Host Name"`
 	SwitchMac   string `DESCRIPTION: "Switch Mac Address`
@@ -78,7 +78,7 @@ type SystemParam struct {
 
 type SystemParamState struct {
 	baseObj
-	Vrf         string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "System Vrf""`
+	Vrf         string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "System Vrf""`
 	MgmtIp      string `DESCRIPTION: "Management Ip of System"`
 	Hostname    string `DESCRIPTION: "System Host Name"`
 	SwitchMac   string `DESCRIPTION: "Switch Mac Address`
