@@ -25,7 +25,7 @@ package objects
 
 type DWDMModuleState struct {
 	baseObj
-	ModuleId               uint8   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "DWDM Module identifier"`
+	ModuleId               uint8   `SNAPROUTE: "KEY", CATEGORY:"Optical", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "DWDM Module identifier"`
 	ModuleState            string  `DESCRIPTION: "Current MSA state of dwdm module"`
 	ModuleVoltage          float64 `DESCRIPTION: "Module power supply voltage in Volts"`
 	ModuleTemp             float64 `DESCRIPTION: "Module temperature in deg Celsius"`
@@ -43,7 +43,7 @@ type DWDMModuleState struct {
 
 type DWDMModule struct {
 	baseObj
-	ModuleId            uint8  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY: "*", AUTODISCOVER: "true", DESCRIPTION: "DWDM Module identifier"`
+	ModuleId            uint8  `SNAPROUTE: "KEY", CATEGORY:"Optical", ACCESS:"rw", MULTIPLICITY: "*", AUTODISCOVER: "true", DESCRIPTION: "DWDM Module identifier"`
 	AdminState          string `DESCRIPTION: "Reset state of this dwdm module (false (Reset deasserted), true (Reset asserted))", SELECTION: "UP"/"DOWN", DEFAULT:"DOWN"`
 	IndependentLaneMode bool   `DESCRIPTION: "Network lane configuration for the DWDM Module. true-Independent lanes, false-Coupled lanes, DEFAULT:true"`
 	PMInterval          uint8  `DESCRIPTION: "Performance monitoring interval, i.e. time interval between successive PM ticks in seconds", DEFAULT:1`
@@ -52,8 +52,8 @@ type DWDMModule struct {
 
 type DWDMModuleNwIntf struct {
 	baseObj
-	ModuleId                  uint8   `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY: "*", AUTODISCOVER: "true", DESCRIPTION: "DWDM Module identifier"`
-	NwIntfId                  uint8   `SNAPROUTE: "KEY", DESCRIPTION: "DWDM Module network interface identifier"`
+	ModuleId                  uint8   `SNAPROUTE: "KEY", CATEGORY:"Optical", ACCESS:"rw", MULTIPLICITY: "*", AUTODISCOVER: "true", DESCRIPTION: "DWDM Module identifier"`
+	NwIntfId                  uint8   `SNAPROUTE: "KEY", CATEGORY:"Optical", DESCRIPTION: "DWDM Module network interface identifier"`
 	ModulationFmt             string  `DESCRIPTION: "Modulation format to use for this network interface", SELECTION: "QPSK"/"8QAM/"16QAM", DEFAULT:"16QAM"`
 	TxPower                   float64 `DESCRIPTION: "Transmit output power for this network interface in dBm, MIN:0, MAX:4294967295", DEFAULT:0, UNIT:dBm`
 	ChannelNumber             uint8   `DESCRIPTION: "TX Channel number to use for this network interface", MIN:1, MAX:100, DEFAULT:48`
@@ -75,8 +75,8 @@ type DWDMModuleNwIntf struct {
 
 type DWDMModuleNwIntfState struct {
 	baseObj
-	ModuleId                        uint8   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "DWDM Module identifier"`
-	NwIntfId                        uint8   `SNAPROUTE: "KEY", DESCRIPTION: "DWDM Module network interface identifier"`
+	ModuleId                        uint8   `SNAPROUTE: "KEY", CATEGORY:"Optical", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "DWDM Module identifier"`
+	NwIntfId                        uint8   `SNAPROUTE: "KEY", CATEGORY:"Optical", DESCRIPTION: "DWDM Module network interface identifier"`
 	TxChanGridSpacing               string  `DESCRIPTION: "The channel grid spacing used for this network interface in GHz, UNIT: GHz"`
 	CurrentBER                      float64 `DESCRIPTION: "Current value of BER on the DWDM module network interface"`
 	MinBEROverPMInterval            float64 `DESCRIPTION: "Minimum value of BER over the last PM interval for the DWDM module network interface"`
@@ -95,8 +95,8 @@ type DWDMModuleNwIntfState struct {
 
 type DWDMModuleClntIntf struct {
 	baseObj
-	ModuleId                     uint8  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY: "*", AUTODISCOVER: "true", DESCRIPTION: "DWDM Module identifier"`
-	ClntIntfId                   uint8  `SNAPROUTE: "KEY", DESCRIPTION: "DWDM Module client interface identifier"`
+	ModuleId                     uint8  `SNAPROUTE: "KEY", CATEGORY:"Optical", ACCESS:"rw", MULTIPLICITY: "*", AUTODISCOVER: "true", DESCRIPTION: "DWDM Module identifier"`
+	ClntIntfId                   uint8  `SNAPROUTE: "KEY", CATEGORY:"Optical", DESCRIPTION: "DWDM Module client interface identifier"`
 	TXFECDecDisable              bool   `DESCRIPTION: "802.3bj FEC decoder enable/disable state for traffic from Host to DWDM Module", DEFAULT: false`
 	RXFECDecDisable              bool   `DESCRIPTION: "802.3bj FEC decoder enable/disable state for traffic from DWDM module to Host", DEFAULT: false`
 	HostTxEqLfCtle               uint8  `DESCRIPTION: "Host interface TX deserializer equalization. LELPZRC LF-CTLE LFPZ gain code.", MIN:0, MAX:8, DEFAULT:0`
@@ -119,8 +119,8 @@ type DWDMModuleClntIntf struct {
 
 type DWDMModuleClntIntfState struct {
 	baseObj
-	ModuleId          uint8   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "DWDM Module identifier"`
-	ClntIntfId        uint8   `SNAPROUTE: "KEY", DESCRIPTION: "DWDM Module client interface identifier"`
+	ModuleId          uint8   `SNAPROUTE: "KEY", CATEGORY:"Optical", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "DWDM Module identifier"`
+	ClntIntfId        uint8   `SNAPROUTE: "KEY", CATEGORY:"Optical", DESCRIPTION: "DWDM Module client interface identifier"`
 	PRBSTxErrCntLane0 float64 `DESCRIPTION: "Client interface host lane 0 PRBS TX Error count"`
 	PRBSTxErrCntLane1 float64 `DESCRIPTION: "Client interface host lane 1 PRBS TX Error count"`
 	PRBSTxErrCntLane2 float64 `DESCRIPTION: "Client interface host lane 2 PRBS TX Error count"`
@@ -134,10 +134,10 @@ type DWDMModulePMData struct {
 
 type DWDMModuleNwIntfPMState struct {
 	baseObj
-	ModuleId uint8  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "DWDM Module identifier"`
-	NwIntfId uint8  `SNAPROUTE: "KEY", DESCRIPTION: "DWDM Module network interface identifier"`
-	Resource string `SNAPROUTE: "KEY", DESCRIPTION: "Opticd resource name for which PM Data is required"`
-	Type     string `SNAPROUTE: "KEY", DESCRIPTION: "Min/Max/Avg"`
-	Class    string `SNAPROUTE: "KEY", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
+	ModuleId uint8  `SNAPROUTE: "KEY", CATEGORY:"Performance", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "DWDM Module identifier"`
+	NwIntfId uint8  `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "DWDM Module network interface identifier"`
+	Resource string `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "Opticd resource name for which PM Data is required"`
+	Type     string `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "Min/Max/Avg"`
+	Class    string `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
 	Data     []DWDMModulePMData
 }

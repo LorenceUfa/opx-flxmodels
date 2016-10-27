@@ -30,7 +30,7 @@ import ()
  */
 type IsisGlobal struct {
 	baseObj
-	Vrf    string `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"1", AUTOCREATE: "true", DEFAULT: "default", DESCRIPTION: "VRF id where ISIS is globally enabled or disabled"`
+	Vrf    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w",  MULTIPLICITY:"1", AUTOCREATE: "true", DEFAULT: "default", DESCRIPTION: "VRF id where ISIS is globally enabled or disabled"`
 	Enable bool   `DESCRIPTION: "Global ISIS state in this VRF", DEFAULT: "true"`
 }
 
@@ -39,6 +39,6 @@ type IsisGlobal struct {
  */
 type IsisGlobalState struct {
 	baseObj
-	Vrf    string `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"1", DESCRIPTION: "VRF id for which global ISIS state is requested"`
+	Vrf    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r",  MULTIPLICITY:"1", DESCRIPTION: "VRF id for which global ISIS state is requested"`
 	Enable bool   `DESCRIPTION: "Global ISIS state in this VRF"`
 }

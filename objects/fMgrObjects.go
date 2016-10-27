@@ -29,17 +29,17 @@ package objects
 type FMgrGlobal struct {
 	baseObj
 	// placeholder to create a key
-	Vrf    string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: "System Vrf", DEFAULT:"default"`
+	Vrf    string `SNAPROUTE: "KEY", CATEGORY:"Faults and Alarms", ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: "System Vrf", DEFAULT:"default"`
 	Enable bool   `DESCRIPTION: "Enable Fault Manager"`
 }
 
 type FaultState struct {
 	baseObj
-	OwnerId          int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fault owner daemon Id picked up from events.json"`
-	EventId          int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fault event id picked up from events.json"`
-	OwnerName        string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fault owner daemon name picked up from events.json"`
-	EventName        string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fault event name picked up from events.json"`
-	SrcObjName       string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fault event name picked up from events.json"`
+	OwnerId          int32  `SNAPROUTE: "KEY", CATEGORY:"Faults and Alarms", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fault owner daemon Id picked up from events.json"`
+	EventId          int32  `SNAPROUTE: "KEY", CATEGORY:"Faults and Alarms", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fault event id picked up from events.json"`
+	OwnerName        string `SNAPROUTE: "KEY", CATEGORY:"Faults and Alarms", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fault owner daemon name picked up from events.json"`
+	EventName        string `SNAPROUTE: "KEY", CATEGORY:"Faults and Alarms", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fault event name picked up from events.json"`
+	SrcObjName       string `SNAPROUTE: "KEY", CATEGORY:"Faults and Alarms", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fault event name picked up from events.json"`
 	Description      string `DESCRIPTION: "Description explaining the fault"`
 	OccuranceTime    string `DESCRIPTION: "Timestamp at which fault occured"`
 	SrcObjKey        string `DESCRIPTION: "Fault Object Key"`
@@ -50,11 +50,11 @@ type FaultState struct {
 
 type AlarmState struct {
 	baseObj
-	OwnerId          int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Alarm owner daemon Id picked up from events.json"`
-	EventId          int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Alarm event id picked up from events.json"`
-	OwnerName        string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Alarm owner daemon name picked up from events.json"`
-	EventName        string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Alarm event name picked up from events.json"`
-	SrcObjName       string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Alarm event name picked up from events.json"`
+	OwnerId          int32  `SNAPROUTE: "KEY", CATEGORY:"Faults and Alarms", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Alarm owner daemon Id picked up from events.json"`
+	EventId          int32  `SNAPROUTE: "KEY", CATEGORY:"Faults and Alarms", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Alarm event id picked up from events.json"`
+	OwnerName        string `SNAPROUTE: "KEY", CATEGORY:"Faults and Alarms", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Alarm owner daemon name picked up from events.json"`
+	EventName        string `SNAPROUTE: "KEY", CATEGORY:"Faults and Alarms", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Alarm event name picked up from events.json"`
+	SrcObjName       string `SNAPROUTE: "KEY", CATEGORY:"Faults and Alarms", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Alarm event name picked up from events.json"`
 	Severity         string `DESCRIPTION: "Alarm Severity"`
 	Description      string `DESCRIPTION: "Description explaining the fault"`
 	OccuranceTime    string `DESCRIPTION: "Timestamp at which fault occured"`

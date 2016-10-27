@@ -30,7 +30,7 @@ type SourcePolicyList struct {
 
 type BGPGlobal struct {
 	baseObj
-	Vrf                 string             `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for BGP global config", DEFAULT:"default"`
+	Vrf                 string             `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for BGP global config", DEFAULT:"default"`
 	ASNum               string             `DESCRIPTION: "Local AS for BGP global config. Both AsPlain and AsDot formats are supported.", DEFAULT: ""`
 	RouterId            string             `DESCRIPTION: "Router id for BGP global config", DEFAULT: "0.0.0.0"`
 	Disabled            bool               `DESCRIPTION: "Enable/Disable BGP globally", DEFAULT: "false"`
@@ -43,7 +43,7 @@ type BGPGlobal struct {
 
 type BGPGlobalState struct {
 	baseObj
-	Vrf                 string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for BGP global config"`
+	Vrf                 string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for BGP global config"`
 	AS                  string `DESCRIPTION: "Local AS for BGP global config"`
 	RouterId            string `DESCRIPTION: "Router id for BGP global config"`
 	Disabled            bool   `DESCRIPTION: "Enable/Disable BGP globally"`
@@ -78,8 +78,8 @@ type BGPQueues struct {
 
 type BGPv4Neighbor struct {
 	baseObj
-	NeighborAddress         string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Address of the BGP neighbor"`
-	IntfRef                 string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface of the BGP neighbor"`
+	NeighborAddress         string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Address of the BGP neighbor"`
+	IntfRef                 string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface of the BGP neighbor"`
 	Description             string `DESCRIPTION: "Description of the BGP neighbor", DEFAULT: ""`
 	Disabled                bool   `DESCRIPTION: "Enable/Disable the BGP neighbor", DEFAULT: "false"`
 	PeerGroup               string `DESCRIPTION: "Peer group of the BGP neighbor", DEFAULT: ""`
@@ -109,8 +109,8 @@ type BGPv4Neighbor struct {
 
 type BGPv4NeighborState struct {
 	baseObj
-	NeighborAddress         string      `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Address of the BGP neighbor"`
-	IntfRef                 string      `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface of the BGP neighbor"`
+	NeighborAddress         string      `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Address of the BGP neighbor"`
+	IntfRef                 string      `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface of the BGP neighbor"`
 	Description             string      `DESCRIPTION: "Description of the BGP neighbor"`
 	Disabled                bool        `DESCRIPTION: "Enable/Disable the BGP neighbor"`
 	PeerGroup               string      `DESCRIPTION: "Peer group of the BGP neighbor"`
@@ -145,8 +145,8 @@ type BGPv4NeighborState struct {
 
 type BGPv6Neighbor struct {
 	baseObj
-	NeighborAddress         string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Address of the BGP neighbor"`
-	IntfRef                 string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface of the BGP neighbor"`
+	NeighborAddress         string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Address of the BGP neighbor"`
+	IntfRef                 string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface of the BGP neighbor"`
 	Description             string `DESCRIPTION: "Description of the BGP neighbor", DEFAULT: ""`
 	Disabled                bool   `DESCRIPTION: "Enable/Disable the BGP neighbor", DEFAULT: "false"`
 	PeerGroup               string `DESCRIPTION: "Peer group of the BGP neighbor", DEFAULT: ""`
@@ -175,8 +175,8 @@ type BGPv6Neighbor struct {
 
 type BGPv6NeighborState struct {
 	baseObj
-	NeighborAddress         string      `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Address of the BGP neighbor"`
-	IntfRef                 string      `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface of the BGP neighbor"`
+	NeighborAddress         string      `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Address of the BGP neighbor"`
+	IntfRef                 string      `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface of the BGP neighbor"`
 	Description             string      `DESCRIPTION: "Description of the BGP neighbor"`
 	Disabled                bool        `DESCRIPTION: "Enable/Disable the BGP neighbor", DEFAULT: "false"`
 	PeerGroup               string      `DESCRIPTION: "Peer group of the BGP neighbor"`
@@ -216,7 +216,7 @@ type BGPv4PeerGroup struct {
 	NextHopSelf             bool   `DESCRIPTION: "Use neighbor source IP as the next hop for IBGP neighbors", DEFAULT: "false"`
 	AuthPassword            string `DESCRIPTION: "Password to connect to the BGP neighbor", DEFAULT: ""`
 	Description             string `DESCRIPTION: "Description of the BGP neighbor", DEFAULT: ""`
-	Name                    string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Name of the BGP peer group"`
+	Name                    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Name of the BGP peer group"`
 	RouteReflectorClusterId uint32 `DESCRIPTION: "Cluster Id of the internal BGP neighbor route reflector client", DEFAULT: "0"`
 	RouteReflectorClient    bool   `DESCRIPTION: "Set/Clear BGP neighbor as a route reflector client", DEFAULT: "false"`
 	MultiHopEnable          bool   `DESCRIPTION: "Enable/Disable multi hop for BGP neighbor", DEFAULT: "false"`
@@ -241,7 +241,7 @@ type BGPv6PeerGroup struct {
 	UpdateSource            string `DESCRIPTION: "Source IP to connect to the BGP neighbor", DEFAULT: ""`
 	NextHopSelf             bool   `DESCRIPTION: "Use neighbor source IP as the next hop for IBGP neighbors", DEFAULT: "false"`
 	Description             string `DESCRIPTION: "Description of the BGP neighbor", DEFAULT: ""`
-	Name                    string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Name of the BGP peer group"`
+	Name                    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Name of the BGP peer group"`
 	RouteReflectorClusterId uint32 `DESCRIPTION: "Cluster Id of the internal BGP neighbor route reflector client", DEFAULT: "0"`
 	RouteReflectorClient    bool   `DESCRIPTION: "Set/Clear BGP neighbor as a route reflector client", DEFAULT: "false"`
 	MultiHopEnable          bool   `DESCRIPTION: "Enable/Disable multi hop for BGP neighbor", DEFAULT: "false"`
@@ -276,28 +276,28 @@ type PathInfo struct {
 
 type BGPv4RouteState struct {
 	baseObj
-	Network string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Network address of the IPv4 destination", USESTATEDB:"true"`
-	CIDRLen uint16 `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "CIDR length of the IPv4 destination", USESTATEDB:"true"`
+	Network string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Network address of the IPv4 destination", USESTATEDB:"true"`
+	CIDRLen uint16 `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "CIDR length of the IPv4 destination", USESTATEDB:"true"`
 	Paths   []PathInfo
 }
 
 type BGPv6RouteState struct {
 	baseObj
-	Network string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Network address of the IPv6 destination", USESTATEDB:"true"`
-	CIDRLen uint16 `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "CIDR length of the IPv6 destination", USESTATEDB:"true"`
+	Network string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Network address of the IPv6 destination", USESTATEDB:"true"`
+	CIDRLen uint16 `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "CIDR length of the IPv6 destination", USESTATEDB:"true"`
 	Paths   []PathInfo
 }
 
 type BGPv4Aggregate struct {
 	baseObj
-	IpPrefix        string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "IP Prefix in CIDR format to match"`
+	IpPrefix        string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "IP Prefix in CIDR format to match"`
 	GenerateASSet   bool   `DESCRIPTION: "Generate AS set when aggregating routes", DEFAULT: "false"`
 	SendSummaryOnly bool   `DESCRIPTION: "Send summary route only when aggregating routes", DEFAULT: "false"`
 }
 
 type BGPv6Aggregate struct {
 	baseObj
-	IpPrefix        string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "IPv6 Prefix in CIDR format to match"`
+	IpPrefix        string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "IPv6 Prefix in CIDR format to match"`
 	GenerateASSet   bool   `DESCRIPTION: "Generate AS set when aggregating routes", DEFAULT: "false"`
 	SendSummaryOnly bool   `DESCRIPTION: "Send summary route only when aggregating routes", DEFAULT: "false"`
 }

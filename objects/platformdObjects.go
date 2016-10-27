@@ -29,7 +29,7 @@ package objects
 
 type PlatformState struct {
 	baseObj
-	ObjName      string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "ObjName", DEFAULT: "Platform"`
+	ObjName      string `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "ObjName", DEFAULT: "Platform"`
 	ProductName  string `DESCRIPTION: "Product Number"`
 	SerialNum    string `DESCRIPTION: "Serial Number"`
 	Manufacturer string `DESCRIPTION: "Manufacturer"`
@@ -41,13 +41,13 @@ type PlatformState struct {
 
 type Sfp struct {
 	baseObj
-	SfpId      int32  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "SFP id", DEFAULT:0`
+	SfpId      int32  `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "SFP id", DEFAULT:0`
 	AdminState string `DESCRIPTION: "Admin PORT UP/DOWN(TX OFF)"`
 }
 
 type SfpState struct {
 	baseObj
-	SfpId      int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "SFP id", DEFAULT:0`
+	SfpId      int32  `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "SFP id", DEFAULT:0`
 	SfpSpeed   string `DESCRIPTION: "SFP speed in MBPS"`
 	SfpLOS     string `DESCRIPTION: "SFP status RX LOS"`
 	SfpPresent string `DESCRIPTION: "SFP status PRESENT/MISSING"`
@@ -58,7 +58,7 @@ type SfpState struct {
 
 type ThermalState struct {
 	baseObj
-	ThermalId                 int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Thermal sensor id", DEFAULT:0`
+	ThermalId                 int32  `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Thermal sensor id", DEFAULT:0`
 	Location                  string `DESCRIPTION: "Thermal sensor location CPU/PSU/Motherboard"`
 	Temperature               string `DESCRIPTION: "Temperature current"`
 	LowerWatermarkTemperature string `DESCRIPTION: "Temperature warning"`
@@ -68,13 +68,13 @@ type ThermalState struct {
 
 type Psu struct {
 	baseObj
-	PsuId      int32  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "PSU id", DEFAULT:0`
+	PsuId      int32  `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "PSU id", DEFAULT:0`
 	AdminState string `DESCRIPTION: "Admin UP/DOWN PSU"`
 }
 
 type PsuState struct {
 	baseObj
-	PsuId      int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "PSU id", DEFAULT:0`
+	PsuId      int32  `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "PSU id", DEFAULT:0`
 	AdminState string `DESCRIPTION: "Admin UP/DOWN PSU"`
 	ModelNum   string `DESCRIPTION: "Model Number"`
 	SerialNum  string `DESCRIPTION: "Serial Number"`
@@ -91,14 +91,14 @@ type PsuState struct {
 
 type Led struct {
 	baseObj
-	LedId       int32  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "LED id", DEFAULT:0`
+	LedId       int32  `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "LED id", DEFAULT:0`
 	LedAdmin    string `DESCRIPTION: "LED ON/OFF"`
 	LedSetColor string `DESCRIPTION: "LED set color"`
 }
 
 type LedState struct {
 	baseObj
-	LedId       int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "LED id", DEFAULT:0`
+	LedId       int32  `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "LED id", DEFAULT:0`
 	LedIdentify string `DESCRIPTION: "LED represents FAN/PSU/RESET etc"`
 	LedState    string `DESCRIPTION: "LED State ON/OFF"`
 	LedColor    string `DESCRIPTION: "LED Color"`
@@ -106,14 +106,14 @@ type LedState struct {
 
 type Fan struct {
 	baseObj
-	FanId      int32  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "Fan unit id", DEFAULT:0`
+	FanId      int32  `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "Fan unit id", DEFAULT:0`
 	AdminState string `DESCRIPTION: "Fan admin ON/OFF"`
 	AdminSpeed int32  `DESCRIPTION: "Fan set speed in rpm"`
 }
 
 type FanState struct {
 	baseObj
-	FanId         int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fan unit id", DEFAULT:0`
+	FanId         int32  `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fan unit id", DEFAULT:0`
 	OperMode      string `DESCRIPTION: "Operational state of Fan", SELECTION: ON/OFF`
 	OperSpeed     int32  `DESCRIPTION: "Fan operational speed in rpm"`
 	OperDirection string `DESCRIPTION: "Air flow caused because of fan rotation", SELECTION: B2F/F2B"`
@@ -125,7 +125,7 @@ type FanState struct {
 
 type FanSensor struct {
 	baseObj
-	Name                   string `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "Fan Sensor Name"`
+	Name                   string `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "Fan Sensor Name"`
 	AdminState             string `DESCRIPTION: "Enable/Disable", DEFAULT: Enable, SELECTION: Enable/Disable`
 	HigherAlarmThreshold   int32  `DESCRIPTION: "Higher Alarm Threshold for TCA"`
 	HigherWarningThreshold int32  `DESCRIPTION: "Higher Warning Threshold for TCA"`
@@ -138,7 +138,7 @@ type FanSensor struct {
 
 type FanSensorState struct {
 	baseObj
-	Name         string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fan Sensor Name"`
+	Name         string `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fan Sensor Name"`
 	CurrentSpeed int32  `DESCRIPTION: "Fan Current Speed"`
 }
 
@@ -149,14 +149,14 @@ type FanSensorPMData struct {
 
 type FanSensorPMDataState struct {
 	baseObj
-	Name  string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fan Sensor Name"`
-	Class string `SNAPROUTE: "KEY", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
+	Name  string `SNAPROUTE: "KEY", CATEGORY:"Performance", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Fan Sensor Name"`
+	Class string `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
 	Data  []FanSensorPMData
 }
 
 type TemperatureSensor struct {
 	baseObj
-	Name                   string  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "Temperature Sensor Name"`
+	Name                   string  `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "Temperature Sensor Name"`
 	AdminState             string  `DESCRIPTION: "Enable/Disable", DEFAULT: Enable, SELECTION: Enable/Disable`
 	HigherAlarmThreshold   float64 `DESCRIPTION: "Higher Alarm Threshold for TCA"`
 	HigherWarningThreshold float64 `DESCRIPTION: "Higher Warning Threshold for TCA"`
@@ -169,7 +169,7 @@ type TemperatureSensor struct {
 
 type TemperatureSensorState struct {
 	baseObj
-	Name               string  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Temperature Sensor Name"`
+	Name               string  `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Temperature Sensor Name"`
 	CurrentTemperature float64 `DESCRIPTION: "Current Temperature Value"`
 }
 
@@ -180,14 +180,14 @@ type TemperatureSensorPMData struct {
 
 type TemperatureSensorPMDataState struct {
 	baseObj
-	Name  string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Temperature Sensor Name"`
-	Class string `SNAPROUTE: "KEY", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
+	Name  string `SNAPROUTE: "KEY", CATEGORY:"Performance", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Temperature Sensor Name"`
+	Class string `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
 	Data  []TemperatureSensorPMData
 }
 
 type VoltageSensor struct {
 	baseObj
-	Name                   string  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "Voltage Sensor Name"`
+	Name                   string  `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "Voltage Sensor Name"`
 	AdminState             string  `DESCRIPTION: "Enable/Disable", DEFAULT: Enable, SELECTION: Enable/Disable`
 	HigherAlarmThreshold   float64 `DESCRIPTION: "Higher Alarm Threshold for TCA"`
 	HigherWarningThreshold float64 `DESCRIPTION: "Higher Warning Threshold for TCA"`
@@ -200,7 +200,7 @@ type VoltageSensor struct {
 
 type VoltageSensorState struct {
 	baseObj
-	Name           string  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Voltage Sensor Name"`
+	Name           string  `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Voltage Sensor Name"`
 	CurrentVoltage float64 `DESCRIPTION: "Current Voltage Value"`
 }
 
@@ -211,14 +211,14 @@ type VoltageSensorPMData struct {
 
 type VoltageSensorPMDataState struct {
 	baseObj
-	Name  string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Voltage Sensor Name"`
-	Class string `SNAPROUTE: "KEY", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
+	Name  string `SNAPROUTE: "KEY", CATEGORY:"Performance", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Voltage Sensor Name"`
+	Class string `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
 	Data  []VoltageSensorPMData
 }
 
 type PowerConverterSensor struct {
 	baseObj
-	Name                   string  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "Power Converter Sensor Name"`
+	Name                   string  `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "Power Converter Sensor Name"`
 	AdminState             string  `DESCRIPTION: "Enable/Disable", DEFAULT: Enable, SELECTION: Enable/Disable`
 	HigherAlarmThreshold   float64 `DESCRIPTION: "Higher Alarm Threshold for TCA"`
 	HigherWarningThreshold float64 `DESCRIPTION: "Higher Warning Threshold for TCA"`
@@ -231,7 +231,7 @@ type PowerConverterSensor struct {
 
 type PowerConverterSensorState struct {
 	baseObj
-	Name         string  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Power Converter Sensor Name"`
+	Name         string  `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Power Converter Sensor Name"`
 	CurrentPower float64 `DESCRIPTION: "Current Output Power Value"`
 }
 
@@ -242,14 +242,14 @@ type PowerConverterSensorPMData struct {
 
 type PowerConverterSensorPMDataState struct {
 	baseObj
-	Name  string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Power Converter Sensor Name"`
-	Class string `SNAPROUTE: "KEY", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
+	Name  string `SNAPROUTE: "KEY", CATEGORY:"Performance", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Power Converter Sensor Name"`
+	Class string `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
 	Data  []PowerConverterSensorPMData
 }
 
 type Qsfp struct {
 	baseObj
-	QsfpId                   int32   `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "Qsfp Id"`
+	QsfpId                   int32   `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "Qsfp Id"`
 	AdminState               string  `DESCRIPTION: "Enable/Disable", DEFAULT: Disable, SELECTION: Enable/Disable`
 	HigherAlarmTemperature   float64 `DESCRIPTION: "Higher Alarm temperature threshold for TCA"`
 	HigherAlarmVoltage       float64 `DESCRIPTION: "Higher Alarm Voltage threshold for TCA"`
@@ -266,7 +266,7 @@ type Qsfp struct {
 
 type QsfpState struct {
 	baseObj
-	QsfpId             int32   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "QSFP Id"`
+	QsfpId             int32   `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "QSFP Id"`
 	Present            bool    `DESCRIPTION: "Present or Not Value: true if present and false if not present"`
 	VendorName         string  `DESCRIPTION: Vendor Name"`
 	VendorOUI          string  `DESCRIPTION: Vendor OUI"`
@@ -293,16 +293,16 @@ type QsfpPMData struct {
 
 type QsfpPMDataState struct {
 	baseObj
-	QsfpId   int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "QSFP Id"`
-	Resource string `SNAPROUTE: "KEY", DESCRIPTION: "QSFP PM Resource Name"`
-	Class    string `SNAPROUTE: "KEY", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
+	QsfpId   int32  `SNAPROUTE: "KEY", CATEGORY:"Performance", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "QSFP Id"`
+	Resource string `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "QSFP PM Resource Name"`
+	Class    string `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
 	Data     []QsfpPMData
 }
 
 type QsfpChannel struct {
 	baseObj
-	QsfpId               int32   `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "Qsfp Id"`
-	ChannelNum           int32   `SNAPROUTE: "KEY", DESCRIPTION: "Qsfp Channel Number"`
+	QsfpId               int32   `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: "Qsfp Id"`
+	ChannelNum           int32   `SNAPROUTE: "KEY", CATEGORY:"Platform", DESCRIPTION: "Qsfp Channel Number"`
 	AdminState           string  `DESCRIPTION: "Enable/Disable", DEFAULT: Disable, SELECTION: Enable/Disable`
 	HigherAlarmRXPower   float64 `DESCRIPTION: "Higher Alarm Rx power Threshold for TCA"`
 	HigherAlarmTXPower   float64 `DESCRIPTION: "Higher Alarm Rx power for TCA"`
@@ -323,8 +323,8 @@ type QsfpChannel struct {
 
 type QsfpChannelState struct {
 	baseObj
-	QsfpId     int32   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "QSFP Id"`
-	ChannelNum int32   `SNAPROUTE: "KEY", DESCRIPTION: "Qsfp Channel Number"`
+	QsfpId     int32   `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "QSFP Id"`
+	ChannelNum int32   `SNAPROUTE: "KEY", CATEGORY:"Platform", DESCRIPTION: "Qsfp Channel Number"`
 	Present    bool    `DESCRIPTION: "Present or Not Value: true if present and false if not present"`
 	RXPower    float64 `DESCRIPTION: "Rx power on channel 1"`
 	TXPower    float64 `DESCRIPTION: "Rx power on channel 1"`
@@ -338,16 +338,16 @@ type QsfpChannelPMData struct {
 
 type QsfpChannelPMDataState struct {
 	baseObj
-	QsfpId     int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "QSFP Id"`
-	ChannelNum int32  `SNAPROUTE: "KEY", DESCRIPTION: "Qsfp Channel Number"`
-	Resource   string `SNAPROUTE: "KEY", DESCRIPTION: "QSFP PM Resource Name"`
-	Class      string `SNAPROUTE: "KEY", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
+	QsfpId     int32  `SNAPROUTE: "KEY", CATEGORY:"Performance", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "QSFP Id"`
+	ChannelNum int32  `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "Qsfp Channel Number"`
+	Resource   string `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "QSFP PM Resource Name"`
+	Class      string `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "Class of PM Data", SELECTION: CLASS-A/CLASS-B/CLASS-B, DEFAULT: CLASS-A`
 	Data       []QsfpChannelPMData
 }
 
 type PlatformMgmtDeviceState struct {
 	baseObj
-	DeviceName  string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "Device Name", DEFAULT: "BMC"`
+	DeviceName  string `SNAPROUTE: "KEY", CATEGORY:"Platform", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "Device Name", DEFAULT: "BMC"`
 	Uptime      string `DESCRIPTION: "Uptime and load description"`
 	Description string `DESCRIPTION: "Platform Description"`
 	ResetReason string `DESCRIPTION: "Reset Reason"`
