@@ -111,13 +111,17 @@ type PolicyConditionState struct {
 	ConditionInfo  string
 	PolicyStmtList []string `DESCRIPTION: "List of policy statements using this condition"`
 }
-
+type PolicyAction struct {
+	ActionType string `DESCRIPTION:"Action verb",SELECTION:"SetMED"/`
+	Value      string
+}
 type PolicyStmt struct {
 	baseObj
-	Name            string   `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Policy Statement Name"`
-	MatchConditions string   `DESCRIPTION :"Specifies whether to match all/any of the conditions of this policy statement",SELECTION:"any"/"all",DEFAULT:"all"`
-	Conditions      []string `DESCRIPTION :"List of conditions added to this policy statement"`
-	Action          string   `DESCRIPTION :"Action for this policy statement", SELECTION:"permit"/"deny",DEFAULT: "deny"`
+	Name            string         `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Policy Statement Name"`
+	MatchConditions string         `DESCRIPTION :"Specifies whether to match all/any of the conditions of this policy statement",SELECTION:"any"/"all",DEFAULT:"all"`
+	Conditions      []string       `DESCRIPTION :"List of conditions added to this policy statement"`
+	Action          string         `DESCRIPTION :"Action for this policy statement", SELECTION:"permit"/"deny",DEFAULT: "deny"`
+	SubActions      []PolicyAction `DESCRIPTION : "A set of action/value pairs associatded with this statement."`
 }
 type PolicyStmtState struct {
 	baseObj
