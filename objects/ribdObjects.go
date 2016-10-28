@@ -35,8 +35,8 @@ type NextBestRouteInfo struct {
 }
 type IPv4Route struct {
 	baseObj
-	DestinationNw string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", ACCELERATED: "true", DESCRIPTION: "IP address of the route"`
-	NetworkMask   string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", ACCELERATED: "true", DESCRIPTION: "mask of the route"`
+	DestinationNw string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", ACCELERATED: "true", DESCRIPTION: "IP address of the route"`
+	NetworkMask   string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", ACCELERATED: "true", DESCRIPTION: "mask of the route"`
 	Protocol      string `DESCRIPTION :"Protocol type of the route", OPTIONAL, DEFAULT:"STATIC"`
 	Cost          uint32 `DESCRIPTION :"Cost of this route", OPTIONAL, DEFAULT:0`
 	NullRoute     bool   `DESCRIPTION : "Specify if this is a null route", OPTIONAL, DEFAULT:false`
@@ -45,8 +45,8 @@ type IPv4Route struct {
 
 type IPv6Route struct {
 	baseObj
-	DestinationNw string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", ACCELERATED: "true", DESCRIPTION: "IP address of the route"`
-	NetworkMask   string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", ACCELERATED: "true", DESCRIPTION: "mask of the route"`
+	DestinationNw string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", ACCELERATED: "true", DESCRIPTION: "IP address of the route"`
+	NetworkMask   string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", ACCELERATED: "true", DESCRIPTION: "mask of the route"`
 	Protocol      string `DESCRIPTION :"Protocol type of the route", OPTIONAL, DEFAULT:"STATIC"`
 	Cost          uint32 `DESCRIPTION :"Cost of this route", OPTIONAL, DEFAULT:0`
 	NullRoute     bool   `DESCRIPTION : "Specify if this is a null route", OPTIONAL, DEFAULT:false`
@@ -54,7 +54,7 @@ type IPv6Route struct {
 }
 type IPv6RouteState struct {
 	baseObj
-	DestinationNw      string        `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "IP address of the route", USESTATEDB:"true"`
+	DestinationNw      string        `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "IP address of the route", USESTATEDB:"true"`
 	Protocol           string        `DESCRIPTION :"Protocol type of the route"`
 	IsNetworkReachable bool          `DESCRIPTION :"Indicates whether this network is reachable"`
 	RouteCreatedTime   string        `DESCRIPTION :"Time when the route was added"`
@@ -66,7 +66,7 @@ type IPv6RouteState struct {
 
 type IPv4RouteState struct {
 	baseObj
-	DestinationNw      string        `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "IP address of the route", USESTATEDB:"true"`
+	DestinationNw      string        `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "IP address of the route", USESTATEDB:"true"`
 	Protocol           string        `DESCRIPTION :"Protocol type of the route"`
 	IsNetworkReachable bool          `DESCRIPTION :"Indicates whether this network is reachable"`
 	RouteCreatedTime   string        `DESCRIPTION :"Time when the route was added"`
@@ -77,7 +77,7 @@ type IPv4RouteState struct {
 }
 type RIBEventState struct {
 	baseObj
-	Index     uint32 `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Event ID"`
+	Index     uint32 `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Event ID"`
 	TimeStamp string `DESCRIPTION :"Time when the event occured"`
 	EventInfo string `DESCRIPTION :"Detailed description of the event"`
 }
@@ -87,18 +87,18 @@ type PolicyPrefix struct {
 }
 type PolicyPrefixSet struct {
 	baseObj
-	Name       string         `SNAPROUTE: "KEY", ACCESS:"w",MULTIPLICITY:"*",DESCRIPTION:"Policy Prefix set name.`
+	Name       string         `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w",MULTIPLICITY:"*",DESCRIPTION:"Policy Prefix set name.`
 	PrefixList []PolicyPrefix `DESCRIPTION:"List of policy prefixes part of this prefix set."`
 }
 type PolicyPrefixSetState struct {
 	baseObj
-	Name                string         `SNAPROUTE: "KEY", ACCESS:"r",MULTIPLICITY:"*",DESCRIPTION:"Policy Prefix set name.`
+	Name                string         `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r",MULTIPLICITY:"*",DESCRIPTION:"Policy Prefix set name.`
 	PrefixList          []PolicyPrefix `DESCRIPTION:"List of policy prefixes part of this prefix set."`
 	PolicyConditionList []string       `DESCRIPTION:"List of policy conditions using this prefix set"`
 }
 type PolicyCondition struct {
 	baseObj
-	Name            string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "PolicyConditionName"`
+	Name            string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "PolicyConditionName"`
 	ConditionType   string `DESCRIPTION: "Specifies the match criterion this condition defines", SELECTION: "MatchProtocol"/"MatchDstIpPrefix"/"MatchSrcIpPrefix"`
 	Protocol        string `DESCRIPTION: "Protocol to match on if the ConditionType is set to MatchProtocol",SELECTION:"CONNECTED"/"STATIC"/"OSPF"/"BGP"`
 	IpPrefix        string `DESCRIPTION: "Used in conjunction with MaskLengthRange to specify the IP Prefix to match on when the ConditionType is MatchDstIpPrefix/MatchSrcIpPrefix."`
@@ -107,7 +107,7 @@ type PolicyCondition struct {
 }
 type PolicyConditionState struct {
 	baseObj
-	Name           string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Condition name"`
+	Name           string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Condition name"`
 	ConditionInfo  string
 	PolicyStmtList []string `DESCRIPTION: "List of policy statements using this condition"`
 }
@@ -117,15 +117,15 @@ type PolicyAction struct {
 }
 type PolicyStmt struct {
 	baseObj
-	Name            string         `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Policy Statement Name"`
+	SubActions      []PolicyAction `DESCRIPTION : "A set of action/value pairs associatded with this statement."`
+	Name            string         `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Policy Statement Name"`
 	MatchConditions string         `DESCRIPTION :"Specifies whether to match all/any of the conditions of this policy statement",SELECTION:"any"/"all",DEFAULT:"all"`
 	Conditions      []string       `DESCRIPTION :"List of conditions added to this policy statement"`
 	Action          string         `DESCRIPTION :"Action for this policy statement", SELECTION:"permit"/"deny",DEFAULT: "deny"`
-	SubActions      []PolicyAction `DESCRIPTION : "A set of action/value pairs associatded with this statement."`
 }
 type PolicyStmtState struct {
 	baseObj
-	Name            string   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "PolicyStmtState"`
+	Name            string   `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "PolicyStmtState"`
 	MatchConditions string   `DESCRIPTION :"Specifies whether to match all/any of the conditions of this policy statement"`
 	Conditions      []string `DESCRIPTION :"List of conditions added to this policy statement"`
 	Action          string   `DESCRIPTION :"Action corresponding to this policy statement"`
@@ -137,7 +137,7 @@ type PolicyDefinitionStmtPriority struct {
 }
 type PolicyDefinition struct {
 	baseObj
-	Name          string                         `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Policy Name"`
+	Name          string                         `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Policy Name"`
 	Priority      int32                          `DESCRIPTION :"Priority of the policy w.r.t other policies configured", MIN: 0, MAX: 255`
 	MatchType     string                         `DESCRIPTION :"Specifies whether to match all/any of the statements within this policy",SELECTION:"all"/"any",DEFAULT:"all"`
 	PolicyType    string                         `DESCRIPTION : Specifies the intended protocol application for the policy", SELECTION: "BGP"/"OSPF"/"ALL", DEFAULT:"ALL"`
@@ -145,13 +145,13 @@ type PolicyDefinition struct {
 }
 type PolicyDefinitionState struct {
 	baseObj
-	Name         string   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "PolicyDefinitionState"`
+	Name         string   `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "PolicyDefinitionState"`
 	IpPrefixList []string `DESCRIPTION :"List of networks/IP Prefixes this policy has been applied on to."`
 }
 
 type RouteDistanceState struct {
 	baseObj
-	Protocol string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "RouteDistanceState protocol"`
+	Protocol string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "RouteDistanceState protocol"`
 	Distance int32  `DESCRIPTION: "The current value of the admin distance of this protocol"`
 }
 
@@ -162,7 +162,7 @@ type PerProtocolRouteCount struct {
 }
 type RouteStatState struct {
 	baseObj
-	Vrf                       string                  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "System Vrf", DEFAULT:"default"`
+	Vrf                       string                  `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "System Vrf", DEFAULT:"default"`
 	TotalRouteCount           int32                   `DESCRIPTION: Total number of routes on the system`
 	ECMPRouteCount            int32                   `DESCRIPTION: ECMP routes on the system`
 	V4RouteCount              int32                   `DESCRIPTION: Total number of IPv4 routes on the system`
@@ -176,13 +176,13 @@ type RouteInfoSummary struct {
 }
 type RouteStatsPerProtocolState struct {
 	baseObj
-	Protocol string             `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION :"Protocol type of the route"`
+	Protocol string             `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION :"Protocol type of the route"`
 	V4Routes []RouteInfoSummary `DESCRIPTION: "Brief summary info of ipv4 routes of this protocol type"`
 	V6Routes []RouteInfoSummary `DESCRIPTION: "Brief summary info of ipv6 routes of this protocol type"`
 }
 type RouteStatsPerInterfaceState struct {
 	baseObj
-	Intfref  string   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION :Interface of the next hop"`
+	Intfref  string   `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION :Interface of the next hop"`
 	V4Routes []string `DESCRIPTION: "Brief summary info of ipv4 routes which have nexthop on this interface"`
 	V6Routes []string `DESCRIPTION: "Brief summary info of ipv6 routes which have nexthop on this interface"`
 }

@@ -2,14 +2,13 @@ package objects
 
 type StpGlobal struct {
 	baseObj
-	Vrf        string `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"1", AUTOCREATE: "true", DEFAULT: "default", DESCRIPTION: global system object defining the global state of STPD.`
-	AdminState string `DESCRIPTION: Administrative state of STPD, UP will allow for stp/rstp/pvst+ configuration to be applied, DOWN will disallow and de-provision from daemon, except for default STP instance. STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: UP`
+	Vrf        string `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"w",  MULTIPLICITY:"1", AUTOCREATE: "true", DEFAULT: "default", DESCRIPTION: global system object defining the global state of STPD.`
+	AdminState string `DESCRIPTION: Administrative state of STPD, UP will allow for stp/rstp/pvst+ configuration to be applied, DOWN will disallow and de-provision from daemon, except for default STP instance. STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: DOWN`
 }
-
 type StpPort struct {
 	baseObj
-	Vlan              int32  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER:"true", DESCRIPTION: The value of instance of the vlan object,  for the bridge corresponding to this port., MIN: "0" ,  MAX: "4094"`
-	IntfRef           string `SNAPROUTE: "KEY", ACCESS:"rw", DESCRIPTION: The port number of the port for which this entry contains Spanning Tree Protocol management information. `
+	Vlan              int32  `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER:"true", DESCRIPTION: The value of instance of the vlan object,  for the bridge corresponding to this port., MIN: "0" ,  MAX: "4094"`
+	IntfRef           string `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"rw", DESCRIPTION: The port number of the port for which this entry contains Spanning Tree Protocol management information. `
 	Priority          int32  `DESCRIPTION: The value of the priority field that is contained in the first in network byte order octet of the 2 octet long Port ID.  The other octet of the Port ID is given by the value of StpPort. On bridges supporting IEEE 802.1t or IEEE 802.1w, permissible values are 0-240, in steps of 16., MIN: "0" ,  MAX: "255", DEFAULT: 128`
 	AdminState        string `DESCRIPTION: The enabled/disabled status of the port., SELECTION: UP/DOWN, DEFAULT: UP`
 	PathCost          int32  `DESCRIPTION: The contribution of this port to the path cost of paths towards the spanning tree root which include this port.  802.1D-1998 recommends that the default value of this parameter be in inverse proportion to the speed of the attached LAN.  New implementations should support PathCost32. If the port path costs exceeds the maximum value of this object then this object should report the maximum value; namely 65535.  Applications should try to read the PathCost32 object if this object reports the maximum value.  Value of 1 will force node to auto discover the value        based on the ports capabilities., MIN: "1" ,  MAX: "65535", DEFAULT: 1`
@@ -25,8 +24,8 @@ type StpPort struct {
 
 type StpPortState struct {
 	baseObj
-	Vlan                        int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: The value of instance of the vlan object,  for the bridge corresponding to this port., MIN: "0" ,  MAX: "4094"`
-	IntfRef                     string `SNAPROUTE: "KEY", ACCESS:"r", DESCRIPTION: The port number of the port for which this entry contains Spanning Tree Protocol management information. `
+	Vlan                        int32  `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: The value of instance of the vlan object,  for the bridge corresponding to this port., MIN: "0" ,  MAX: "4094"`
+	IntfRef                     string `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"r", DESCRIPTION: The port number of the port for which this entry contains Spanning Tree Protocol management information. `
 	Priority                    int32  `DESCRIPTION: The value of the priority field that is contained in the first in network byte order octet of the 2 octet long Port ID.  The other octet of the Port ID is given by the value of StpPort. On bridges supporting IEEE 802.1t or IEEE 802.1w permissible values are 0-240 in steps of 16., MIN: "0" ,  MAX: "255"`
 	Enable                      int32  `DESCRIPTION: The enabled/disabled status of the port., SELECTION: disabled(2)/enabled(1), DEFAULT: 1`
 	PathCost                    int32  `DESCRIPTION: The contribution of this port to the path cost of paths towards the spanning tree root which include this port.  802.1D-1998 recommends that the default value of this parameter be in inverse proportion to    the speed of the attached LAN.  New implementations should support PathCost32. If the port path costs exceeds the maximum value of this object then this object should report the maximum value namely 65535.  Applications should try to read the PathCost32 object if this object reports the maximum value., MIN: "1" ,  MAX: "65535"`
@@ -92,7 +91,7 @@ type StpPortState struct {
 
 type StpBridgeInstance struct {
 	baseObj
-	Vlan         uint16 `SNAPROUTE: "KEY",  ACCESS:"rw",  MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: Each bridge is associated with a domain.  Typically this domain is represented as the vlan; The default domain is 4095, MIN: "1" ,  MAX: "4095"`
+	Vlan         uint16 `SNAPROUTE: "KEY", CATEGORY:"L2",  ACCESS:"rw",  MULTIPLICITY:"*", AUTODISCOVER: "true", DESCRIPTION: Each bridge is associated with a domain.  Typically this domain is represented as the vlan; The default domain is 4095, MIN: "1" ,  MAX: "4095"`
 	Address      string `DESCRIPTION: The bridge identifier of the root of the spanning tree as determined by the Spanning Tree Protocol as executed by this node.  This value is used as the Root Identifier parameter in all Configuration Bridge PDUs originated by this node.,  DEFAULT: "00-00-00-00-00-00"`
 	Priority     int32  `DESCRIPTION: The value of the write-able portion of the Bridge ID i.e. the first two octets of the 8 octet long Bridge ID.  The other last 6 octets of the Bridge ID are given by the value of Address. On bridges supporting IEEE 802.1t or IEEE 802.1w permissible values are 0-61440 in steps of 4096.  Extended Priority is enabled when the lower 12 bits are set using the Bridges VLAN id, MIN: "0" ,  MAX: "65535", DEFAULT: 32768`
 	MaxAge       int32  `DESCRIPTION: The value that all bridges use for MaxAge when this bridge is acting as the root.  Note that 802.1D-1998 specifies that the range for this parameter is related to the value of HelloTime.  The granularity of this timer is specified by 802.1D-1998 to be 1 second.  An agent may return a badValue error if a set is attempted to a value that is not a whole number of seconds., MIN: "6" ,  MAX: "40", DEFAULT: 20`
@@ -104,7 +103,7 @@ type StpBridgeInstance struct {
 
 type StpBridgeInstanceState struct {
 	baseObj
-	Vlan                    uint16 `SNAPROUTE: "KEY",  ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: Each bridge is associated with a domain.  Typically this domain is represented as the vlan; The default domain is typically 1, MIN: "1" ,  MAX: "4095"`
+	Vlan                    uint16 `SNAPROUTE: "KEY", CATEGORY:"L2",  ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: Each bridge is associated with a domain.  Typically this domain is represented as the vlan; The default domain is typically 1, MIN: "1" ,  MAX: "4095"`
 	IfIndex                 int32  `DESCRIPTION: The value of the instance of the ifIndex object for the bridge, MIN: "1" ,  MAX: "2147483647"`
 	Address                 string `DESCRIPTION: The bridge identifier of the root of the spanning tree as determined by the Spanning Tree Protocol as executed by this node.  This value is used as the Root Identifier parameter in all Configuration Bridge PDUs originated by this node."`
 	Priority                int32  `DESCRIPTION: The value of the write-able portion of the Bridge ID i.e. the first two octets of the 8 octet long Bridge ID.  The other last 6 octets of the Bridge ID are given by the value of Address. On bridges supporting IEEE 802.1t or IEEE 802.1w permissible values are 0-61440 in steps of 4096., MIN: "0" ,  MAX: "65535"`
