@@ -29,7 +29,7 @@ package objects
 type NotifierEnable struct {
 	baseObj
 	// placeholder to create a key
-	Vrf         string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "Vrf name", DEFAULT:"default"`
+	Vrf         string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "Vrf name", DEFAULT:"default"`
 	EventEnable bool   `DESCRIPTION: "Enable Notifier", DEFAULT:true`
 	AlarmEnable bool   `DESCRIPTION: "Enable Notifier", DEFAULT:true`
 	FaultEnable bool   `DESCRIPTION: "Enable Notifier", DEFAULT:true`
