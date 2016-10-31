@@ -59,14 +59,14 @@ type DWDMModuleNwIntf struct {
 	ChannelNumber             uint8   `DESCRIPTION: "TX Channel number to use for this network interface", MIN:1, MAX:100, DEFAULT:48`
 	FECMode                   string  `DESCRIPTION: "DWDM Module network interface FEC mode", SELECTION: "15%SDFEC"/"15%OvrHeadSDFEC"/"25%OvrHeadSDFEC", DEFAULT:"15%SDFEC"`
 	DiffEncoding              bool    `DESCRIPTION: "Control to enable/disable DWDM Module network interface encoding type", DEFAULT: true`
-	TxPulseShapeFltrType      string  `DESCRIPTION: "TX pulse shaping filter type", SELECTION: "RootRaisedCos"/"RaisedCos"/"Gaussian", DEFAULT:RootRaisedCos"`
-	TxPulseShapeFltrRollOff   float64 `DESCRIPTION: "TX pulse shape filter roll off factor, MIN:0.004, MAX:1.0", DEFAULT:0.301`
+	TxPulseShapeFltrType      string  `DESCRIPTION: "TX pulse shaping filter type", SELECTION: "RootRaisedCos"/"RaisedCos", DEFAULT:RootRaisedCos"`
+	TxPulseShapeFltrRollOff   float64 `DESCRIPTION: "TX pulse shape filter roll off factor, MIN:0.004, MAX:0.8", DEFAULT:0.301`
 	AdminState                string  `DESCRIPTION: "Administrative state of this network interface", SELECTION: "UP"/"DOWN", DEFAULT: "UP"`
 	EnableTxPRBS              bool    `DESCRIPTION: "Enable TX PRBS generation on this network interface", DEFAULT: false`
-	TxPRBSPattern             string  `DESCRIPTION: "Pattern to use for TX PRBS generation", SELECTION:"2^7"/"2^15"/"2^23"/"2^31", DEFAULT:"2^31"`
+	TxPRBSPattern             string  `DESCRIPTION: "Pattern to use for TX PRBS generation", SELECTION:"2^7"/"2^15"/"2^31", DEFAULT:"2^31"`
 	TxPRBSInvertPattern       bool    `DESCRIPTION: "Generate inverted PRBS polynomial pattern", DEFAULT:true`
 	EnableRxPRBSChecker       bool    `DESCRIPTION: "Enable RX PRBS checker", DEFAULT: false`
-	RxPRBSPattern             string  `DESCRIPTION: "PRBS pattern to use for checker", SELECTION:"2^7"/"2^15"/"2^23"/"2^31", DEFAULT:"2^31"`
+	RxPRBSPattern             string  `DESCRIPTION: "PRBS pattern to use for checker", SELECTION:"2^7"/"2^15"/"2^31", DEFAULT:"2^31"`
 	RxPRBSInvertPattern       bool    `DESCRIPTION: "Check against inverted PRBS polynomial pattern", DEFAULT:true`
 	ClntIntfIdToTributary0Map uint8   `DESCRIPTION: "Client interface ID to map to network interface tributary 0", MIN:0, MAX:3`
 	ClntIntfIdToTributary1Map uint8   `DESCRIPTION: "Client interface ID to map to network interface tributary 1", MIN:0, MAX:3`
@@ -109,9 +109,9 @@ type DWDMModuleClntIntf struct {
 	HostRxSerializerTap2Delay    uint8  `DESCRIPTION: "Host RX Serializer tap 2 control, delay for equalization filter tap", DEFAULT:5, MIN:0, MAX:7`
 	AdminState                   string `DESCRIPTION: "Administrative state of this client interface", SELECTION: "UP"/"DOWN", DEFAULT: "UP"`
 	EnableTxPRBSChecker          bool   `DESCRIPTION: "Enable/Disable TX PRBS checker for all lanes of this client interface", DEFAULT:false`
-	TxPRBSPattern                string `DESCRIPTION: "PRBS pattern to use for checker", SELECTION:"2^7"/"2^15"/"2^23"/"2^31", DEFAULT:"2^31"`
+	TxPRBSPattern                string `DESCRIPTION: "PRBS pattern to use for checker", SELECTION:"2^7"/"2^15"/"2^31", DEFAULT:"2^31"`
 	EnableRxPRBS                 bool   `DESCRIPTION: "Enable/Disable RX PRBS generation for all lanes of this client interface", DEFAULT:false`
-	RxPRBSPattern                string `DESCRIPTION: "RX PRBS generator pattern", SELECTION:"2^7"/"2^15"/"2^23"/"2^31", DEFAULT:"2^31"`
+	RxPRBSPattern                string `DESCRIPTION: "RX PRBS generator pattern", SELECTION:"2^7"/"2^15"/"2^31", DEFAULT:"2^31"`
 	EnableIntSerdesNWLoopback    bool   `DESCRIPTION: "Enable/Disable serdes internal loopback, N/W RX is looped back to N/W TX", DEFAULT: false`
 	EnableHostLoopback           bool   `DESCRIPTION: "Enable/Disable loopback on all host lanes of this client interface", DEFAULT: false`
 	NwLaneTributaryToClntIntfMap uint8  `DESCRIPTION: "Network lane/tributary id to map to client interface", MIN:0, MAX:3`
