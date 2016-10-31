@@ -27,7 +27,7 @@ type VxlanVtepInstance struct {
 	DstIp                 string `DESCRIPTION: Destination IP address for the static VxLAN tunnel"`
 	SrcIp                 string `DESCRIPTION: Source IP address for the VxLAN tunnel, if this is supplied it is assumed that the intf-ref is this vtep.  This  attribute will be ignored if intf-ref is set", DEFAULT: "0.0.0.0"`
 	VlanId                uint16 `DESCRIPTION: Vlan Id to encapsulate with the vtep tunnel ethernet header`
-	Mtu                   uint32 `DESCRIPTION: Set the MTU to be applied to all VTEP within this VxLAN, DEFAULT: 1550`
+	Mtu                   uint32 `DESCRIPTION: Set the MTU to be applied to all VTEP within this VxLAN, DEFAULT: 1450`
 	AdminState            string `DESCRIPTION: Administrative state of VXLAN MAC/IP layer, UP will allow for traffic to be processed in the VNI, DOWN will drop traffic within this layer, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: DOWN`
 }
 
@@ -43,13 +43,28 @@ type VxlanVtepInstanceState struct {
 	InnerVlanHandlingMode int32  `DESCRIPTION: The inner vlan tag handling mode., SELECTION: DISCARD_INNER_VLAN(0)/NO_DISCARD_INNER_VLAN(1), DEFAULT: 0`
 	DstIp                 string `DESCRIPTION: Destination IP address for the static VxLAN tunnel"`
 	SrcIp                 string `DESCRIPTION: Source IP address for the VxLAN tunnel, if this is supplied it is assumed that the intf-ref is this vtep.  This  attribute will be ignored if intf-ref is set", DEFAULT: "0.0.0.0"`
+	DstMac                string `DESCRIPTION: Destination MAC address for the VxLAN tunnel, next hop MAC"`
+	SrcMac                string `DESCRIPTION: Source MAC address for the VxLAN tunnel, taken from the IntfRef interface"`
 	VlanId                uint16 `DESCRIPTION: Vlan Id to encapsulate with the vtep tunnel ethernet header`
 	Mtu                   uint32 `DESCRIPTION: Set the MTU to be applied to all VTEP within this VxLAN, DEFAULT: 1550`
-	RxPkts                uint64 `DESCRIPTION: Rx Packets`
-	TxPkts                uint64 `DESCRIPTION: Tx Packets`
-	RxFwdPkts             uint64 `DESCRIPTION: Rx Forwaded Packets`
-	RxDropPkts            uint64 `DESCRIPTION: Rx Dropped Packets`
-	RxUnknownVni          uint64 `DESCRIPTION: Rx Unknown Vni in frame`
+	RxSwPkts              uint64 `DESCRIPTION: Rx Packets`
+	RxSwBytes             uint64 `DESCRIPTION: Rx Bytes of Customer Frames after VTEP decap`
+	RxSwDropPkts          uint64 `DESCRIPTION: Rx Dropped Packets`
+	RxSwDropBytes         uint64 `DESCRIPTION: Rx Dropped Bytes of Customer Frames after VTEP decap`
+	RxSwFwdPkts           uint64 `DESCRIPTION: Rx Forwaded Packets`
+	RxSwFwdBytes          uint64 `DESCRIPTION: Rx Forwaded Bytes of Customer Frames after VTEP decap`
+	TxSwPkts              uint64 `DESCRIPTION: Tx Packets`
+	TxSwBytes             uint64 `DESCRIPTION: Tx Bytes of Customer Frames before VTEP encap`
+	TxSwDropPkts          uint64 `DESCRIPTION: Tx Dropped Packets`
+	TxSwDropBytes         uint64 `DESCRIPTION: Tx Dropped Bytes of Customer Frames before VTEP encap`
+	TxSwFwdPkts           uint64 `DESCRIPTION: Tx Forwaded Packets`
+	TxSwFwdBytes          uint64 `DESCRIPTION: Tx Forwaded Bytes of Customer Frames before VTEP encap`
+	LastSwRxDropReason    string `DESCRIPTION: Rx Drop Reason`
+	LastSwTxDropReason    string `DESCRIPTION: Tx Drop Reason`
+	RxHwPkts              uint64 `DESCRIPTION: Rx Packets from HW`
+	RxHwBytes             uint64 `DESCRIPTION: Rx Bytes from HW`
+	TxHwPkts              uint64 `DESCRIPTION: Rx Packets from HW`
+	TxHwBytes             uint64 `DESCRIPTION: Rx Bytes from HW`
 	VtepFsmState          string `DESCRIPTION: Current state of the VTEP FSM UNINITIALIZED/DISABLED/INIT/DETACHED/INTERFACE/NEXT HOP INFO/RESOLVE NEXT HOP INFO/HW CONFIG/LISTENER`
 	VtepFsmPrevState      string `DESCRIPTION: Previous state of the VTEP FSM UNINITIALIZED/DISABLED/INIT/DETACHED/INTERFACE/NEXT HOP INFO/RESOLVE NEXT HOP INFO/HW CONFIG/LISTENER`
 	OperState             string `DESCRIPTION: Operational state of VXLAN MAC/IP layer, UP will allow for traffic to be processed in the VNI, DOWN will drop traffic within this layer, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: DOWN`
