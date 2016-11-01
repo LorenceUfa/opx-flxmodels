@@ -30,6 +30,7 @@ type OspfLsdbEntryState struct {
 	LsdbAdvertisement string `DESCRIPTION: The entire link state advertisement, including its header.  Note that for variable length LSAs, SNMP agents may not be able to return the largest string size.`
 }
 
+
 type OspfIfEntry struct {
 	ConfigObj
 	IfIpAddress       string `SNAPROUTE: "KEY", CATEGORY:"L3",  ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: The IP address of this OSPF interface., RELTN:"DEP:[Vlan, Port]`
