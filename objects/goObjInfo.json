@@ -60,5 +60,8 @@
                     "svcName" : "nil"},
 "stpdObjects.go" :  {"owner": "stpd",
                     "location" : "l2/stp/rpc",
+                    "svcName" : "nil"},
+"vxlandObjects.go" : {"owner": "vxland",
+                    "location" : "l3/tunnel/vxlan/rpc",
                     "svcName" : "nil"}
 }

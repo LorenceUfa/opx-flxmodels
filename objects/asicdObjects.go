@@ -25,7 +25,7 @@ package objects
 
 type AsicGlobalState struct {
 	baseObj
-	ModuleId   uint8   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "1", DESCRIPTION:"Module identifier"`
+	ModuleId   uint8   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r", MULTIPLICITY: "1", DESCRIPTION:"Module identifier"`
 	VendorId   string  `DESCRIPTION: "Vendor identification value"`
 	PartNumber string  `DESCRIPTION: "Part number of underlying switching asic"`
 	RevisionId string  `DESCRIPTION: "Revision ID of underlying switching asic"`
@@ -39,8 +39,8 @@ type PMData struct {
 
 type AsicGlobalPM struct {
 	baseObj
-	ModuleId           uint8   `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY: "1", AUTODISCOVER:"true", DESCRIPTION:"Module identifier, DEFAULT: 0"`
-	Resource           string  `SNAPROUTE: "KEY", DESCRIPTION: "Resource identifier", SELECTION: "Temperature"`
+	ModuleId           uint8   `SNAPROUTE: "KEY", CATEGORY:"Performance", ACCESS:"rw", MULTIPLICITY: "1", AUTODISCOVER:"true", DESCRIPTION:"Module identifier, DEFAULT: 0"`
+	Resource           string  `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "Resource identifier", SELECTION: "Temperature"`
 	PMClassAEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-A PM", DEFAULT:true`
 	PMClassBEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-B PM", DEFAULT:true`
 	PMClassCEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-C PM", DEFAULT:true`
@@ -52,8 +52,8 @@ type AsicGlobalPM struct {
 
 type AsicGlobalPMState struct {
 	baseObj
-	ModuleId     uint8    `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "1", DESCRIPTION:"Module identifier"`
-	Resource     string   `SNAPROUTE: "KEY", DESCRIPTION: "Resource identifier"`
+	ModuleId     uint8    `SNAPROUTE: "KEY", CATEGORY:"Performance", ACCESS:"r", MULTIPLICITY: "1", DESCRIPTION:"Module identifier"`
+	Resource     string   `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "Resource identifier"`
 	ClassAPMData []PMData `DESCRIPTION: "PM Data corresponding to PM Class A"`
 	ClassBPMData []PMData `DESCRIPTION: "PM Data corresponding to PM Class B"`
 	ClassCPMData []PMData `DESCRIPTION: "PM Data corresponding to PM Class C"`
@@ -61,8 +61,8 @@ type AsicGlobalPMState struct {
 
 type EthernetPM struct {
 	baseObj
-	IntfRef            string  `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY: "*", AUTODISCOVER:"true", DESCRIPTION: "Interface name of port"`
-	Resource           string  `SNAPROUTE: "KEY", DESCRIPTION: "Resource identifier", SELECTION:"StatUnderSizePkts/StatOverSizePkts/StatFragments/StatCRCAlignErrors/StatJabber/StatEtherPkts/StatMCPkts/StatBCPkts/Stat64OctOrLess/Stat65OctTo126Oct/Stat128OctTo255Oct/Stat128OctTo255Oct/Stat256OctTo511Oct/Stat512OctTo1023Oct/Statc1024OctTo1518Oct"`
+	IntfRef            string  `SNAPROUTE: "KEY", CATEGORY:"Performance", ACCESS:"rw", MULTIPLICITY: "*", AUTODISCOVER:"true", DESCRIPTION: "Interface name of port"`
+	Resource           string  `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "Resource identifier", SELECTION:"StatUnderSizePkts/StatOverSizePkts/StatFragments/StatCRCAlignErrors/StatJabber/StatEtherPkts/StatMCPkts/StatBCPkts/Stat64OctOrLess/Stat65OctTo126Oct/Stat128OctTo255Oct/Stat128OctTo255Oct/Stat256OctTo511Oct/Stat512OctTo1023Oct/Statc1024OctTo1518Oct"`
 	PMClassAEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-A PM", DEFAULT:true`
 	PMClassBEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-B PM", DEFAULT:true`
 	PMClassCEnable     bool    `DESCRIPTION: "Enable/Disable control for CLASS-C PM", DEFAULT:true`
@@ -74,8 +74,8 @@ type EthernetPM struct {
 
 type EthernetPMState struct {
 	baseObj
-	IntfRef      string   `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION:"Interface name of port"`
-	Resource     string   `SNAPROUTE: "KEY", DESCRIPTION: "Resource identifier"`
+	IntfRef      string   `SNAPROUTE: "KEY", CATEGORY:"Performance", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION:"Interface name of port"`
+	Resource     string   `SNAPROUTE: "KEY", CATEGORY:"Performance", DESCRIPTION: "Resource identifier"`
 	ClassAPMData []PMData `DESCRIPTION: "PM Data corresponding to PM Class A"`
 	ClassBPMData []PMData `DESCRIPTION: "PM Data corresponding to PM Class B"`
 	ClassCPMData []PMData `DESCRIPTION: "PM Data corresponding to PM Class C"`
@@ -83,7 +83,7 @@ type EthernetPMState struct {
 
 type AsicSummaryState struct {
 	baseObj
-	ModuleId      uint8 `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "1", DESCRIPTION:"Module identifier"`
+	ModuleId      uint8 `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r", MULTIPLICITY: "1", DESCRIPTION:"Module identifier"`
 	NumPortsUp    int32 `DESCRIPTION: Summary stating number of ports that have operstate UP`
 	NumPortsDown  int32 `DESCRIPTION: Summary stating number of ports that have operstate DOWN`
 	NumVlans      int32 `DESCRIPTION: Summary stating number of vlans configured in the asic`
@@ -98,7 +98,7 @@ type AsicSummaryState struct {
 
 type Vlan struct {
 	baseObj
-	VlanId        int32    `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY: "*", MIN:"1", MAX: "4094", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
+	VlanId        int32    `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"w", MULTIPLICITY: "*", MIN:"1", MAX: "4094", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
 	IntfList      []string `DESCRIPTION: "List of interface names or ifindex values to  be added as tagged members of the vlan"`
 	UntagIntfList []string `DESCRIPTION: "List of interface names or ifindex values to  be added as untagged members of the vlan"`
 	AdminState    string   `DESCRIPTION: "Administrative state of this vlan interface", SELECTION:"UP/DOWN", DEFAULT:"UP"`
@@ -106,7 +106,7 @@ type Vlan struct {
 
 type VlanState struct {
 	baseObj
-	VlanId                 int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
+	VlanId                 int32  `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
 	VlanName               string `DESCRIPTION: "System assigned vlan name"`
 	OperState              string `DESCRIPTION: "Operational state of vlan interface"`
 	IfIndex                int32  `DESCRIPTION: "System assigned interface id for this vlan interface"`
@@ -115,14 +115,14 @@ type VlanState struct {
 
 type IPv4Intf struct {
 	baseObj
-	IntfRef    string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: "Interface name or ifindex of port/lag or vlan on which this IPv4 object is configured", RELTN:"DEP:[Vlan, Port]`
+	IntfRef    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION: "Interface name or ifindex of port/lag or vlan on which this IPv4 object is configured", RELTN:"DEP:[Vlan, Port]`
 	IpAddr     string `DESCRIPTION: "Interface IP/Net mask in CIDR format to provision on switch interface", STRLEN:"18"`
 	AdminState string `DESCRIPTION: "Administrative state of this IP interface", SELECTION:"UP/DOWN", DEFAULT:"UP"`
 }
 
 type IPv4IntfState struct {
 	baseObj
-	IntfRef           string `SNAPROUTE: "KEY", ACCESS:"r", DESCRIPTION: "System assigned interface id of L2 interface (port/lag/vlan) to which this IPv4 object is linked"`
+	IntfRef           string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", DESCRIPTION: "System assigned interface id of L2 interface (port/lag/vlan) to which this IPv4 object is linked"`
 	IfIndex           int32  `DESCRIPTION: "System assigned interface id for this IPv4 interface"`
 	IpAddr            string `DESCRIPTION: "Interface IP/Net mask in CIDR format to provision on switch interface"`
 	OperState         string `DESCRIPTION: "Operational state of this IP interface"`
@@ -136,7 +136,7 @@ type IPv4IntfState struct {
 
 type Port struct {
 	baseObj
-	IntfRef        string `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER:"true", DESCRIPTION: "Front panel port name or system assigned interface id"`
+	IntfRef        string `SNAPROUTE: "KEY", CATEGORY:"Physical", ACCESS:"rw", MULTIPLICITY:"*", AUTODISCOVER:"true", DESCRIPTION: "Front panel port name or system assigned interface id"`
 	IfIndex        int32  `DESCRIPTION: "System assigned interface id for this port. Read only attribute"`
 	Description    string `DESCRIPTION: "User provided string description", DEFAULT:"FP Port", STRLEN:"64"`
 	PhyIntfType    string `DESCRIPTION: "Type of internal phy interface", STRLEN:"16" SELECTION:"GMII/SGMII/QSMII/SFI/XFI/XAUI/XLAUI/RXAUI/CR/CR2/CR4/KR/KR2/KR4/SR/SR2/SR4/SR10/LR/LR4"`
@@ -157,7 +157,7 @@ type Port struct {
 
 type PortState struct {
 	baseObj
-	IntfRef                     string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Front panel port name or system assigned interface id"`
+	IntfRef                     string `SNAPROUTE: "KEY", CATEGORY:"Physical", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Front panel port name or system assigned interface id"`
 	IfIndex                     int32  `DESCRIPTION: "System assigned interface id for this port"`
 	Name                        string `DESCRIPTION: "System assigned vlan name"`
 	OperState                   string `DESCRIPTION: "Operational state of front panel port"`
@@ -197,14 +197,14 @@ type PortState struct {
 
 type MacTableEntryState struct {
 	baseObj
-	MacAddr string `SNAPROUTE: "KEY", ACCESS:"r", DESCRIPTION: "MAC Address", USESTATEDB:"true"`
+	MacAddr string `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"r", DESCRIPTION: "MAC Address", USESTATEDB:"true"`
 	VlanId  int32  `DESCRIPTION: "Vlan id corresponding to which mac was learned", DEFAULT:0`
 	Port    int32  `DESCRIPTION: "Port number on which mac was learned", DEFAULT:0`
 }
 
 type IPv4RouteHwState struct {
 	baseObj
-	DestinationNw    string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "IP address of the route in CIDR format"`
+	DestinationNw    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "IP address of the route in CIDR format"`
 	NextHopIps       string `DESCRIPTION: "next hop ip list for the route"`
 	RouteCreatedTime string `DESCRIPTION :"Time when the route was added"`
 	RouteUpdatedTime string `DESCRIPTION :"Time when the route was last updated"`
@@ -212,7 +212,7 @@ type IPv4RouteHwState struct {
 
 type IPv6RouteHwState struct {
 	baseObj
-	DestinationNw    string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "IP address of the route in CIDR format"`
+	DestinationNw    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "IP address of the route in CIDR format"`
 	NextHopIps       string `DESCRIPTION: "next hop ip list for the route"`
 	RouteCreatedTime string `DESCRIPTION :"Time when the route was added"`
 	RouteUpdatedTime string `DESCRIPTION :"Time when the route was last updated"`
@@ -220,7 +220,7 @@ type IPv6RouteHwState struct {
 
 type ArpEntryHwState struct {
 	baseObj
-	IpAddr  string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", QPARAM: "optional" ,DESCRIPTION: "Neighbor's IP Address"`
+	IpAddr  string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", QPARAM: "optional" ,DESCRIPTION: "Neighbor's IP Address"`
 	MacAddr string `DESCRIPTION: "MAC address of the neighbor machine with corresponding IP Address", QPARAM: "optional" `
 	Vlan    string `DESCRIPTION: "Vlan ID of the Router Interface to which neighbor is attached to", QPARAM: "optional" `
 	Port    string `DESCRIPTION: "Router Interface to which neighbor is attached to", QPARAM: "optional" `
@@ -228,7 +228,7 @@ type ArpEntryHwState struct {
 
 type NdpEntryHwState struct {
 	baseObj
-	IpAddr  string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", QPARAM: "optional" ,DESCRIPTION: "Neighbor's IP Address"`
+	IpAddr  string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", QPARAM: "optional" ,DESCRIPTION: "Neighbor's IP Address"`
 	MacAddr string `DESCRIPTION: "MAC address of the neighbor machine with corresponding IP Address", QPARAM: "optional" `
 	Vlan    string `DESCRIPTION: "Vlan ID of the Router Interface to which neighbor is attached to", QPARAM: "optional" `
 	Port    string `DESCRIPTION: "Router Interface to which neighbor is attached to", QPARAM: "optional" `
@@ -236,13 +236,13 @@ type NdpEntryHwState struct {
 
 type LogicalIntf struct {
 	baseObj
-	Name string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: "Name of logical interface"`
+	Name string `SNAPROUTE: "KEY", CATEGORY:"Physical", ACCESS:"w", DESCRIPTION: "Name of logical interface"`
 	Type string `DESCRIPTION: "Type of logical interface (e.x. loopback)", SELECTION:"Loopback", DEFAULT:"Loopback", STRLEN:"16"`
 }
 
 type LogicalIntfState struct {
 	baseObj
-	Name              string `SNAPROUTE: "KEY", ACCESS:"r", DESCRIPTION: "Name of logical interface"`
+	Name              string `SNAPROUTE: "KEY", CATEGORY:"Physical", ACCESS:"r", DESCRIPTION: "Name of logical interface"`
 	IfIndex           int32  `DESCRIPTION: "System assigned interface id for this logical interface"`
 	SrcMac            string `DESCRIPTION: "Source Mac assigned to the interface"`
 	OperState         string `DESCRIPTION: "Operational state of logical interface"`
@@ -259,8 +259,8 @@ type LogicalIntfState struct {
 
 type SubIPv4Intf struct {
 	baseObj
-	IpAddr  string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION:"Ip Address for the interface"`
-	IntfRef string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION:"Intf name of system generated id (ifindex) of the ipv4Intf where sub interface is to be configured"`
+	IpAddr  string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Ip Address for the interface"`
+	IntfRef string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Intf name of system generated id (ifindex) of the ipv4Intf where sub interface is to be configured"`
 	Type    string `DESCRIPTION:"Type of interface, e.g. Secondary or Virtual", STRLEN:"16"`
 	MacAddr string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv4Intf mac address will be used", STRLEN:"17"`
 	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:false`
@@ -268,7 +268,7 @@ type SubIPv4Intf struct {
 
 type IPv6Intf struct {
 	baseObj
-	IntfRef    string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: "Interface name or ifindex of port/lag or vlan on which this IPv4 object is configured", RELTN:"DEP:[Vlan, Port]`
+	IntfRef    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION: "Interface name or ifindex of port/lag or vlan on which this IPv4 object is configured", RELTN:"DEP:[Vlan, Port]`
 	IpAddr     string `DESCRIPTION: "Interface Global Scope IP Address/Prefix-Length to provision on switch interface", STRLEN:"43", DEFAULT:""`
 	LinkIp     bool   `DESCRIPTION: "Interface Link Scope IP Address auto-configured", DEFAULT:true`
 	AdminState string `DESCRIPTION: "Administrative state of this IP interface", SELECTION:"UP/DOWN", DEFAULT:"UP"`
@@ -276,7 +276,7 @@ type IPv6Intf struct {
 
 type IPv6IntfState struct {
 	baseObj
-	IntfRef           string `SNAPROUTE: "KEY", ACCESS:"r", DESCRIPTION: "System assigned interface id of L2 interface (port/lag/vlan) to which this IPv4 object is linked"`
+	IntfRef           string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", DESCRIPTION: "System assigned interface id of L2 interface (port/lag/vlan) to which this IPv4 object is linked"`
 	IfIndex           int32  `DESCRIPTION: "System assigned interface id for this IPv4 interface"`
 	IpAddr            string `DESCRIPTION: "Interface IP Address/Prefix-Lenght to provisioned on switch interface", STRLEN:"43"`
 	OperState         string `DESCRIPTION: "Operational state of this IP interface"`
@@ -290,8 +290,8 @@ type IPv6IntfState struct {
 
 type SubIPv6Intf struct {
 	baseObj
-	IpAddr  string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION:"Ip Address for the interface", STRLEN:"43"`
-	IntfRef string `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION:"Intf name of system generated id (ifindex) of the ipv4Intf where sub interface is to be configured"`
+	IpAddr  string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Ip Address for the interface", STRLEN:"43"`
+	IntfRef string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Intf name of system generated id (ifindex) of the ipv4Intf where sub interface is to be configured"`
 	Type    string `DESCRIPTION:"Type of interface, e.g. Secondary or Virtual", STRLEN:"16"`
 	MacAddr string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv4Intf mac address will be used", STRLEN:"17"`
 	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:false`
@@ -299,7 +299,7 @@ type SubIPv6Intf struct {
 
 type BufferPortStatState struct {
 	baseObj
-	IntfRef        string `SNAPROUTE: "KEY", ACCESS:"r", DESCRIPTION: "Front panel port name interface id"`
+	IntfRef        string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r", DESCRIPTION: "Front panel port name interface id"`
 	IfIndex        int32  `DESCRIPTION: "System assigned interface id for this port. Read only attribute"`
 	EgressPort     uint64 `DESCRIPTION: "Egress port buffer stats "`
 	IngressPort    uint64 `DESCRIPTION: "Ingress port buffer stats "`
@@ -308,7 +308,7 @@ type BufferPortStatState struct {
 
 type BufferGlobalStatState struct {
 	baseObj
-	DeviceId          uint32 `SNAPROUTE: "KEY", ACCESS:"r", DESCRIPTION: "Device id"`
+	DeviceId          uint32 `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r", DESCRIPTION: "Device id"`
 	BufferStat        uint64 `DESCRIPTION: "Buffer stats for the device "`
 	EgressBufferStat  uint64 `DESCRIPTION: "Egress Buffer stats "`
 	IngressBufferStat uint64 `DESCRIPTION: "Ingress buffer stats "`
@@ -316,7 +316,7 @@ type BufferGlobalStatState struct {
 
 type Acl struct {
 	baseObj
-	AclName      string   `SNAPROUTE: "KEY", ACCESS:"w",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL"`
+	AclName      string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL"`
 	AclType      string   `DESCRIPTION: "Type can be IP/MAC"`
 	IntfList     []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
 	RuleNameList []string `DESCRIPTION: "List of rules to be applied to this ACL. This should match with AclRule RuleName"`
@@ -325,7 +325,7 @@ type Acl struct {
 
 type AclRule struct {
 	baseObj
-	RuleName    string `SNAPROUTE: "KEY", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name"`
+	RuleName    string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name"`
 	SourceMac   string `DESCRIPTION: "Source MAC address."`
 	DestMac     string `DESCRIPTION: "Destination MAC address"`
 	SourceIp    string `DESCRIPTION: "Source IP address"`
@@ -345,7 +345,7 @@ type AclRule struct {
 
 type AclState struct {
 	baseObj
-	AclName      string   `SNAPROUTE: "KEY", ACCESS:"r",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL", USESTATEDB:"true"`
+	AclName      string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL", USESTATEDB:"true"`
 	RuleNameList []string `DESCRIPTION: "List of acl rules  to be applied to this ACL. This should match with Acl rule key"`
 	IntfList     []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
 	Direction    string   `SNAPROUTE: "IN/OUT direction in which ACL to be applied"`
@@ -353,7 +353,7 @@ type AclState struct {
 
 type AclRuleState struct {
 	baseObj
-	RuleName   string   `SNAPROUTE: "KEY", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION: "Acl rule name"`
+	RuleName   string   `SNAPROUTE: "KEY", CATEGORY:"L3", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION: "Acl rule name"`
 	AclType    string   `DESCRIPTION: "Type can be IP/MAC/SVI"`
 	IntfList   []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
 	HwPresence string   `DESCRIPTION: "Check if the rule is installed in hardware. Applied/Not Applied/Failed"`
@@ -363,7 +363,7 @@ type AclRuleState struct {
 // NEED TO ADD SUPPORT TO MAKE THIS INTERNAL ONLY
 type LinkScopeIpState struct {
 	baseObj
-	LinkScopeIp string `SNAPROUTE: "KEY", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION:"Link scope IP Address", USESTATEDB:"true"`
+	LinkScopeIp string `SNAPROUTE: "KEY", CATEGORY:"L3", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION:"Link scope IP Address", USESTATEDB:"true"`
 	IntfRef     string `DESCRIPTION: "Interface where the link scope ip is configured"`
 	IfIndex     int32  `DESCRIPTION: "System Generated Unique Interface Id"`
 	Used        bool   `DESCRIPTION : "states whether the ip being used"`
@@ -371,7 +371,7 @@ type LinkScopeIpState struct {
 
 type CoppStatState struct {
 	baseObj
-	Protocol     string `SNAPROUTE: "KEY", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION:"Protocol type for which CoPP is configured."`
+	Protocol     string `SNAPROUTE: "KEY", CATEGORY:"Physical", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION:"Protocol type for which CoPP is configured."`
 	PeakRate     int32  `DESCRIPTION:"Peak rate (packets) for policer."`
 	BurstRate    int32  `DESCRIPTION:"Burst rate (packets) for policer."`
 	GreenPackets int64  `DESCRIPTION:"Packets marked with green for tri color policer."`

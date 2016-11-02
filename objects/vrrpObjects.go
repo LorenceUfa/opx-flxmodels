@@ -28,8 +28,8 @@ package objects
  */
 type VrrpIntf struct {
 	baseObj
-	IfIndex               int32  `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: ""Interface index for which VRRP Config needs to be done"`
-	VRID                  int32  `SNAPROUTE: "KEY", DESCRIPTION: "Virtual Router's Unique Identifier"`
+	IfIndex               int32  `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: ""Interface index for which VRRP Config needs to be done"`
+	VRID                  int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier"`
 	Priority              int32  `DESCRIPTION: "Sending VRRP router's priority for the virtual router", DEFAULT:"100", MIN:"1", MAX:"255"`
 	VirtualIPv4Addr       string `DESCRIPTION: "Virtual Router Identifier", STRLEN:"17"`
 	AdvertisementInterval int32  `DESCRIPTION: "Time interval between ADVERTISEMENTS", DEFAULT:"1", MIN:"1", MAX:"4095"`
@@ -39,8 +39,8 @@ type VrrpIntf struct {
 
 type VrrpIntfState struct {
 	baseObj
-	IfIndex                 int32  `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Interface index for which VRRP state is requested"`
-	VRID                    int32  `SNAPROUTE: "KEY", DESCRIPTION: "Virtual Router's Unique Identifier"`
+	IfIndex                 int32  `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Interface index for which VRRP state is requested"`
+	VRID                    int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier"`
 	IntfIpAddr              string `DESCRIPTION: "Ip Address of Interface where VRRP is configured"`
 	Priority                int32  `DESCRIPTION: "Virtual router's Priority"`
 	VirtualIPv4Addr         string `DESCRIPTION: "Ip Address of Virtual Router"`
@@ -54,8 +54,8 @@ type VrrpIntfState struct {
 
 type VrrpVridState struct {
 	baseObj
-	IfIndex          int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION:"Interface index for which VRRP state is requested"`
-	VRID             int32  `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION:"Virtual Router's Unique Identifier""`
+	IfIndex          int32  `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION:"Interface index for which VRRP state is requested"`
+	VRID             int32  `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION:"Virtual Router's Unique Identifier""`
 	AdverRx          int32  `DESCRIPTION:"Total number of advertisement packets received"`
 	AdverTx          int32  `DESCRIPTION:"Total number of advertisement packets send"`
 	LastAdverRx      string `DESCRIPTION:"Time when last advertisement packet was received"`
