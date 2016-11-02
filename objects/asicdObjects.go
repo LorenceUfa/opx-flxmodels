@@ -320,7 +320,7 @@ type Acl struct {
 	AclType      string   `DESCRIPTION: "Type can be IP/MAC"`
 	IntfList     []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
 	RuleNameList []string `DESCRIPTION: "List of rules to be applied to this ACL. This should match with AclRule RuleName"`
-	Direction    string   `SNAPROUTE: "IN/OUT direction in which ACL to be applied"`
+	Direction    string   `DESCRIPTION: "IN/OUT direction in which ACL to be applied"`
 }
 
 type AclRule struct {
