@@ -346,9 +346,10 @@ type AclRule struct {
 type AclState struct {
 	baseObj
 	AclName      string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL", USESTATEDB:"true"`
+	AclType      string   `DESCRIPTION: "Type can be IP/MAC"`
 	RuleNameList []string `DESCRIPTION: "List of acl rules  to be applied to this ACL. This should match with Acl rule key"`
 	IntfList     []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
-	Direction    string   `SNAPROUTE: "IN/OUT direction in which ACL to be applied"`
+	Direction    string   `DESCRIPTION: "IN/OUT direction in which ACL to be applied"`
 }
 
 type AclRuleState struct {
