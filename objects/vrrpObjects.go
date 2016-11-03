@@ -37,7 +37,7 @@ type VrrpV4Intf struct {
 	IntfRef               string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 2 aka VRRP with ipv4 Config needs to be done"`
 	VRID                  int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier", MIN:1, MAX:10`
 	Priority              int32  `DESCRIPTION: "Sending VRRP router's priority for the virtual router", DEFAULT:100, MIN:1, MAX:255`
-	VirtualIPv4Addr       string `DESCRIPTION: "Virtual Router IPv4 address", STRLEN:"17"`
+	Address               string `DESCRIPTION: "Virtual Router IPv4 address", STRLEN:"17"`
 	AdvertisementInterval int32  `DESCRIPTION: "Time interval between ADVERTISEMENTS", DEFAULT:1, MIN:1, MAX:4095`
 	PreemptMode           bool   `DESCRIPTION: "Controls whether a (starting or restarting) higher-priority Backup router preempts a lower-priority Master router", DEFAULT: true`
 	AcceptMode            bool   `DESCRIPTION: "Controls whether a virtual router in Master state will accept packets addressed to the address owner's IPv4 address as its own if it is not the IPv4 address owner.", DEFAULT:false`
@@ -48,7 +48,7 @@ type VrrpV6Intf struct {
 	IntfRef               string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: ""Interface (name) for which VRRP Version 3 aka VRRP with ipv6 Config needs to be done"`
 	VRID                  int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier",MIN:1, MAX:10`
 	Priority              int32  `DESCRIPTION: "Sending VRRP router's priority for the virtual router", DEFAULT:100, MIN:1, MAX:255`
-	VirtualIPv6Addr       string `DESCRIPTION: "Virtual Router IPv6 Address", STRLEN:"43"`
+	Address               string `DESCRIPTION: "Virtual Router IPv6 Address", STRLEN:"43"`
 	AdvertisementInterval int32  `DESCRIPTION: "Time interval between ADVERTISEMENTS", DEFAULT:1, MIN:1, MAX:4095`
 	PreemptMode           bool   `DESCRIPTION: "Controls whether a (starting or restarting) higher-priority Backup router preempts a lower-priority Master router", DEFAULT: true`
 	AcceptMode            bool   `DESCRIPTION: "Controls whether a virtual router in Master state will accept packets addressed to the address owner's IPv6 address as its own if it is not the IPv6 address owner.", DEFAULT:false`
