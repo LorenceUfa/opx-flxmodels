@@ -25,7 +25,7 @@ package objects
 
 type VrrpGlobal struct {
 	baseObj
-	Vrf    string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "System Vrf", DEFAULT:"default"`
+	Vrf    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "System Vrf", DEFAULT:"default"`
 	Enable bool   `DESCRIPTION: "Enable/Disable VRRP Globally", DEFAULT:false`
 }
 
@@ -35,7 +35,7 @@ type VrrpGlobal struct {
 type VrrpV4Intf struct {
 	baseObj
 	IntfRef               string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 2 aka VRRP with ipv4 Config needs to be done"`
-	VRID                  int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier"`
+	VRID                  int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier", MIN:1, MAX:10`
 	Priority              int32  `DESCRIPTION: "Sending VRRP router's priority for the virtual router", DEFAULT:100, MIN:1, MAX:255`
 	VirtualIPv4Addr       string `DESCRIPTION: "Virtual Router IPv4 address", STRLEN:"17"`
 	AdvertisementInterval int32  `DESCRIPTION: "Time interval between ADVERTISEMENTS", DEFAULT:1, MIN:1, MAX:4095`
@@ -45,9 +45,8 @@ type VrrpV4Intf struct {
 
 type VrrpV6Intf struct {
 	baseObj
-	//	IfIndex               int32  `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: ""Interface index for which VRRP Config needs to be done"`
-	IntfRef               string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: ""Interface (name) for which VRRP Version 3 aka VRRP with ipv6 Config needs to be done"`
-	VRID                  int32  `SNAPROUTE: "KEY", DESCRIPTION: "Virtual Router's Unique Identifier"`
+	IntfRef               string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: ""Interface (name) for which VRRP Version 3 aka VRRP with ipv6 Config needs to be done"`
+	VRID                  int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier",MIN:1, MAX:10`
 	Priority              int32  `DESCRIPTION: "Sending VRRP router's priority for the virtual router", DEFAULT:100, MIN:1, MAX:255`
 	VirtualIPv6Addr       string `DESCRIPTION: "Virtual Router IPv6 Address", STRLEN:"43"`
 	AdvertisementInterval int32  `DESCRIPTION: "Time interval between ADVERTISEMENTS", DEFAULT:1, MIN:1, MAX:4095`
