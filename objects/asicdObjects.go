@@ -326,7 +326,7 @@ type AclGroup struct {
 type Acl struct {
 	baseObj
 	AclName     string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name"`
-	Priority    string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl priority"`
+	Priority    int32  `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl priority"`
 	SourceMac   string `DESCRIPTION: "Source MAC address.", DEFAULT:""`
 	DestMac     string `DESCRIPTION: "Destination MAC address", DEFAULT:""`
 	SourceIp    string `DESCRIPTION: "Source IP address", DEFAULT:""`
