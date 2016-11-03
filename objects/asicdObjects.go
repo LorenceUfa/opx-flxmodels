@@ -99,9 +99,9 @@ type AsicSummaryState struct {
 type Vlan struct {
 	baseObj
 	VlanId        int32    `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"w", MULTIPLICITY: "*", MIN:"1", MAX: "4094", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
+	AdminState    string   `DESCRIPTION: "Administrative state of this vlan interface", SELECTION:"UP/DOWN", DEFAULT:"UP"`
 	IntfList      []string `DESCRIPTION: "List of interface names or ifindex values to  be added as tagged members of the vlan"`
 	UntagIntfList []string `DESCRIPTION: "List of interface names or ifindex values to  be added as untagged members of the vlan"`
-	AdminState    string   `DESCRIPTION: "Administrative state of this vlan interface", SELECTION:"UP/DOWN", DEFAULT:"UP"`
 }
 
 type VlanState struct {
@@ -314,46 +314,48 @@ type BufferGlobalStatState struct {
 	IngressBufferStat uint64 `DESCRIPTION: "Ingress buffer stats "`
 }
 
-type Acl struct {
+type AclGroup struct {
 	baseObj
-	AclName      string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL"`
-	AclType      string   `DESCRIPTION: "Type can be IP/MAC"`
-	IntfList     []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
-	RuleNameList []string `DESCRIPTION: "List of rules to be applied to this ACL. This should match with AclRule RuleName"`
-	Direction    string   `SNAPROUTE: "IN/OUT direction in which ACL to be applied"`
+	GroupName string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL"`
+	//	AclType      string   `DESCRIPTION: "Type can be IP/MAC", SELECTION:"IP/MAC", DEFAULT:"IP"`
+	IntfList []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
+	//	AclName      []string `DESCRIPTION: "List of rules to be applied to this ACL. This should match with AclRule RuleName"`
+	Direction string `DESCRIPTION: "IN/OUT direction in which ACL to be applied", SELECTION:"IN/OUT", DEFAULT:"IN"`
 }
 
-type AclRule struct {
+type Acl struct {
 	baseObj
-	RuleName    string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name"`
-	SourceMac   string `DESCRIPTION: "Source MAC address."`
-	DestMac     string `DESCRIPTION: "Destination MAC address"`
-	SourceIp    string `DESCRIPTION: "Source IP address"`
-	DestIp      string `DESCRIPTION: "Destination IP address"`
-	SourceMask  string `DESCRIPTION: "Network mask for source IP"`
-	DestMask    string `DESCRIPTION: "Network mark for dest IP"`
-	Action      string `DESCRIPTION: "Type of action (ALLOW/DENY)", DEFAULT:"Allow", STRLEN:"16"`
-	Proto       string `DESCRIPTION: "Protocol type TCP/UDP/ICMPv4/ICMPv6"`
+	AclName     string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name"`
+	Priority    string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl priority"`
+	SourceMac   string `DESCRIPTION: "Source MAC address.", DEFAULT:""`
+	DestMac     string `DESCRIPTION: "Destination MAC address", DEFAULT:""`
+	SourceIp    string `DESCRIPTION: "Source IP address", DEFAULT:""`
+	DestIp      string `DESCRIPTION: "Destination IP address", DEFAULT:""`
+	SourceMask  string `DESCRIPTION: "Network mask for source IP", DEFAULT:""`
+	DestMask    string `DESCRIPTION: "Network mark for dest IP", DEFAULT:""`
+	Action      string `DESCRIPTION: "Type of action (ALLOW/DENY)",SELECTION:"ALLOW/DENY",  DEFAULT:"Allow", STRLEN:"16"`
+	Proto       string `DESCRIPTION: "Protocol type TCP/UDP/ICMPv4/ICMPv6", SELECTION:"TCP/UDP/ICMPv4/ICMPv6", DEFAULT:""`
 	SrcPort     string `DESCRIPTION: "Source Port(used for mlag)", DEAULT:0`
 	DstPort     string `DESCRIPTION: "Dest Port(used for mlag)", DEFAULT:0`
 	L4SrcPort   int32  `DESCRIPTION: "TCP/UDP source port", DEFAULT:0`
 	L4DstPort   int32  `DESCRIPTION: "TCP/UDP destionation port", DEAULT:0`
-	L4PortMatch string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), LT(larger than), GT(greater than), RANGE(port range)", DEFAULT:"NA"`
+	L4PortMatch string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), LT(larger than), GT(greater than), RANGE(port range)",SELECTION:"EQ/NEQ/LT/GT/RANGE", DEFAULT:"NA"`
 	L4MinPort   int32  `DESCRIPTION: "Min port when l4 port is specified as range", DEFAULT:0`
 	L4MaxPort   int32  `DESCRIPTION: "Max port when l4 port is specified as range", DEFAULT:0`
 }
 
-type AclState struct {
+type AclGroupState struct {
 	baseObj
-	AclName      string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL", USESTATEDB:"true"`
-	RuleNameList []string `DESCRIPTION: "List of acl rules  to be applied to this ACL. This should match with Acl rule key"`
-	IntfList     []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
-	Direction    string   `SNAPROUTE: "IN/OUT direction in which ACL to be applied"`
+	GroupName   string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL", USESTATEDB:"true"`
+	AclType     string   `DESCRIPTION: "Type can be IP/MAC"`
+	AclNameList []string `DESCRIPTION: "List of acl rules  to be applied to this ACL. This should match with Acl rule key"`
+	IntfList    []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
+	Direction   string   `DESCRIPTION: "IN/OUT direction in which ACL to be applied"`
 }
 
-type AclRuleState struct {
+type AclState struct {
 	baseObj
-	RuleName   string   `SNAPROUTE: "KEY", CATEGORY:"L3", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION: "Acl rule name"`
+	AclName    string   `SNAPROUTE: "KEY", CATEGORY:"L3", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION: "Acl rule name"`
 	AclType    string   `DESCRIPTION: "Type can be IP/MAC/SVI"`
 	IntfList   []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
 	HwPresence string   `DESCRIPTION: "Check if the rule is installed in hardware. Applied/Not Applied/Failed"`
