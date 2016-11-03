@@ -260,7 +260,7 @@ type LogicalIntfState struct {
 type SubIPv4Intf struct {
 	baseObj
 	IntfRef string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Intf name for which ipv4Intf sub interface is to be configured"`
-	Type    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Type of interface, e.g. Secondary", STRLEN:"16"`
+	Type    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Type of interface, e.g. Secondary", STRLEN:"16", SELECTION: "Secondary`
 	IpAddr  string `DESCRIPTION:"Ip Address for sub interface", STRLEN:"18"`
 	MacAddr string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv4Intf mac address will be used", STRLEN:"17", DEFAULT:""`
 	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:false`
@@ -291,7 +291,7 @@ type IPv6IntfState struct {
 type SubIPv6Intf struct {
 	baseObj
 	IntfRef string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Intf name for which ipv6Intf sub interface is to be configured"`
-	Type    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Type of interface, e.g. Secondary", STRLEN:"16"`
+	Type    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Type of interface, e.g. Secondary", STRLEN:"16", SELECTION: "Secondary"`
 	IpAddr  string `DESCRIPTION:"Ip Address for sub interface", STRLEN:"43"`
 	MacAddr string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv6Intf mac address will be used", STRLEN:"17", DEFAULT:""`
 	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:false`
@@ -316,17 +316,17 @@ type BufferGlobalStatState struct {
 
 type Acl struct {
 	baseObj
-	AclName string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL"`
+	AclName      string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL"`
 	AclType      string   `DESCRIPTION: "Type can be IP/MAC", SELECTION:"IP/MAC", DEFAULT:"IP"`
-	IntfList []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
-	RuleNameList      []string `DESCRIPTION: "List of rules to be applied to this ACL. This should match with AclRule RuleName"`
-	Direction string `SNAPROUTE: "IN/OUT direction in which ACL to be applied", SELECTION:"IN/OUT", DEFAULT:"IN"`
+	IntfList     []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
+	RuleNameList []string `DESCRIPTION: "List of rules to be applied to this ACL. This should match with AclRule RuleName"`
+	Direction    string   `SNAPROUTE: "IN/OUT direction in which ACL to be applied", SELECTION:"IN/OUT", DEFAULT:"IN"`
 }
 
 type AclRule struct {
 	baseObj
-	RuleName     string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name"`
-//	Priority    string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl priority"`
+	RuleName string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name"`
+	//	Priority    string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl priority"`
 	SourceMac   string `DESCRIPTION: "Source MAC address.", DEFAULT:""`
 	DestMac     string `DESCRIPTION: "Destination MAC address", DEFAULT:""`
 	SourceIp    string `DESCRIPTION: "Source IP address", DEFAULT:""`
@@ -346,15 +346,15 @@ type AclRule struct {
 
 type AclState struct {
 	baseObj
-	AclName   string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL", USESTATEDB:"true"`
+	AclName      string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL", USESTATEDB:"true"`
 	RuleNameList []string `DESCRIPTION: "List of acl rules  to be applied to this ACL. This should match with Acl rule key"`
-	IntfList    []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
-	Direction   string   `DESCRIPTION: "IN/OUT direction in which ACL to be applied"`
+	IntfList     []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
+	Direction    string   `DESCRIPTION: "IN/OUT direction in which ACL to be applied"`
 }
 
 type AclRuleState struct {
 	baseObj
-	RuleName    string   `SNAPROUTE: "KEY", CATEGORY:"L3", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION: "Acl rule name"`
+	RuleName   string   `SNAPROUTE: "KEY", CATEGORY:"L3", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION: "Acl rule name"`
 	AclType    string   `DESCRIPTION: "Type can be IP/MAC/SVI"`
 	IntfList   []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
 	HwPresence string   `DESCRIPTION: "Check if the rule is installed in hardware. Applied/Not Applied/Failed"`
