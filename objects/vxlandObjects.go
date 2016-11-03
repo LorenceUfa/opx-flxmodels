@@ -3,15 +3,15 @@ package objects
 type VxlanInstance struct {
 	baseObj
 	Vni            uint32   `SNAPROUTE: "KEY", CATEGORY:"Tunnel",  ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: VXLAN Network Id, MIN: "1" ,  MAX: "16777215"`
+	AdminState     string   `DESCRIPTION: Administrative state of VXLAN layer, UP will allow for traffic to be processed in the VNI, DOWN will drop traffic within this layer, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: "UP"`
 	UntaggedVlanId []uint16 `DESCRIPTION: Vlan associated with the untagged traffic.  Used in conjunction with a given VTEP inner-vlan-handling-mode, MIN: "1" ,  MAX: "4094"`
 	VlanId         []uint16 `DESCRIPTION: Vlan associated with the Access targets.  Used in conjunction with a given VTEP inner-vlan-handling-mode, MIN: "1" ,  MAX: "4094"`
-	AdminState     string   `DESCRIPTION: Administrative state of VXLAN layer, UP will allow for traffic to be processed in the VNI, DOWN will drop traffic within this layer, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: UP`
 }
 
 type VxlanInstanceState struct {
 	baseObj
 	Vni       uint32   `SNAPROUTE: "KEY", CATEGORY:"Tunnel",  ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: VXLAN Network Id, MIN: "1" ,  MAX: "16777215"`
-	OperState string   `DESCRIPTION: Operational state of VXLAN layer, UP will allow for traffic to be processed in the VNI, DOWN will drop traffic within this layer, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: DOWN`
+	OperState string   `DESCRIPTION: Operational state of VXLAN layer, UP will allow for traffic to be processed in the VNI, DOWN will drop traffic within this layer, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: "UP"`
 	VlanId    []uint16 `DESCRIPTION: Vlan associated with the Access targets.  Used in conjunction with a given VTEP inner-vlan-handling-mode, MIN: "1" ,  MAX: "4094"`
 }
 
@@ -28,7 +28,7 @@ type VxlanVtepInstance struct {
 	SrcIp                 string `DESCRIPTION: Source IP address for the VxLAN tunnel, if this is supplied it is assumed that the intf-ref is this vtep.  This  attribute will be ignored if intf-ref is set", DEFAULT: "0.0.0.0"`
 	VlanId                uint16 `DESCRIPTION: Vlan Id to encapsulate with the vtep tunnel ethernet header`
 	Mtu                   uint32 `DESCRIPTION: Set the MTU to be applied to all VTEP within this VxLAN, DEFAULT: 1450`
-	AdminState            string `DESCRIPTION: Administrative state of VXLAN MAC/IP layer, UP will allow for traffic to be processed in the VNI, DOWN will drop traffic within this layer, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: DOWN`
+	AdminState            string `DESCRIPTION: Administrative state of VXLAN MAC/IP layer, UP will allow for traffic to be processed in the VNI, DOWN will drop traffic within this layer, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: "UP"`
 }
 
 type VxlanVtepInstanceState struct {
@@ -43,8 +43,6 @@ type VxlanVtepInstanceState struct {
 	InnerVlanHandlingMode int32  `DESCRIPTION: The inner vlan tag handling mode., SELECTION: DISCARD_INNER_VLAN(0)/NO_DISCARD_INNER_VLAN(1), DEFAULT: 0`
 	DstIp                 string `DESCRIPTION: Destination IP address for the static VxLAN tunnel"`
 	SrcIp                 string `DESCRIPTION: Source IP address for the VxLAN tunnel, if this is supplied it is assumed that the intf-ref is this vtep.  This  attribute will be ignored if intf-ref is set", DEFAULT: "0.0.0.0"`
-	DstMac                string `DESCRIPTION: Destination MAC address for the VxLAN tunnel, next hop MAC"`
-	SrcMac                string `DESCRIPTION: Source MAC address for the VxLAN tunnel, taken from the IntfRef interface"`
 	VlanId                uint16 `DESCRIPTION: Vlan Id to encapsulate with the vtep tunnel ethernet header`
 	Mtu                   uint32 `DESCRIPTION: Set the MTU to be applied to all VTEP within this VxLAN, DEFAULT: 1550`
 	RxSwPkts              uint64 `DESCRIPTION: Rx Packets`
@@ -67,13 +65,13 @@ type VxlanVtepInstanceState struct {
 	TxHwBytes             uint64 `DESCRIPTION: Rx Bytes from HW`
 	VtepFsmState          string `DESCRIPTION: Current state of the VTEP FSM UNINITIALIZED/DISABLED/INIT/DETACHED/INTERFACE/NEXT HOP INFO/RESOLVE NEXT HOP INFO/HW CONFIG/LISTENER`
 	VtepFsmPrevState      string `DESCRIPTION: Previous state of the VTEP FSM UNINITIALIZED/DISABLED/INIT/DETACHED/INTERFACE/NEXT HOP INFO/RESOLVE NEXT HOP INFO/HW CONFIG/LISTENER`
-	OperState             string `DESCRIPTION: Operational state of VXLAN MAC/IP layer, UP will allow for traffic to be processed in the VNI, DOWN will drop traffic within this layer, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: DOWN`
+	OperState             string `DESCRIPTION: Operational state of VXLAN MAC/IP layer, UP will allow for traffic to be processed in the VNI, DOWN will drop traffic within this layer, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: "DOWN"`
 }
 
 type VxlanGlobal struct {
 	baseObj
 	Vrf        string `SNAPROUTE: "KEY", CATEGORY:"Tunnel", ACCESS:"w",  MULTIPLICITY:"1", AUTOCREATE: "true", DEFAULT: "default", DESCRIPTION: global system object defining the global state of VXLAND.`
-	AdminState string `DESCRIPTION: Administrative state of VXLAND, UP will allow for vxlan configuration to be applied, DOWN will disallow and de-provision from daemon, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: UP`
+	AdminState string `DESCRIPTION: Administrative state of VXLAND, UP will allow for vxlan configuration to be applied, DOWN will disallow and de-provision from daemon, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: "UP"`
 }
 
 type VxlanGlobalState struct {
