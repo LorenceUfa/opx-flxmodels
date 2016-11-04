@@ -129,11 +129,12 @@ type PolicyStmt struct {
 }
 type PolicyStmtState struct {
 	baseObj
-	Name            string   `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "PolicyStmtState"`
-	MatchConditions string   `DESCRIPTION :"Specifies whether to match all/any of the conditions of this policy statement"`
-	Conditions      []string `DESCRIPTION :"List of conditions added to this policy statement"`
-	Action          string   `DESCRIPTION :"Action corresponding to this policy statement"`
-	PolicyList      []string `DESCRIPTION :"List of policies using this policy statement"`
+	Name            string         `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "PolicyStmtState"`
+	MatchConditions string         `DESCRIPTION :"Specifies whether to match all/any of the conditions of this policy statement"`
+	Conditions      []string       `DESCRIPTION :"List of conditions added to this policy statement"`
+	Action          string         `DESCRIPTION :"Action corresponding to this policy statement"`
+	SetActions      []PolicyAction `DESCRIPTION : "A set of attr/value pairs to be set associatded with this statement."`
+	PolicyList      []string       `DESCRIPTION :"List of policies using this policy statement"`
 }
 type PolicyDefinitionStmtPriority struct {
 	Priority  int32 `DESCRIPTION:"Priority of the policy w.r.t other policies configured", MIN:0, MAX:255`
