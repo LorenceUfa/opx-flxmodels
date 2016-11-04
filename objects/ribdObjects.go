@@ -98,12 +98,14 @@ type PolicyPrefixSetState struct {
 }
 type PolicyCondition struct {
 	baseObj
-	Name            string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "PolicyConditionName"`
-	ConditionType   string `DESCRIPTION: "Specifies the match criterion this condition defines", SELECTION: "MatchProtocol"/"MatchDstIpPrefix"/"MatchSrcIpPrefix"`
-	Protocol        string `DESCRIPTION: "Protocol to match on if the ConditionType is set to MatchProtocol",SELECTION:"CONNECTED"/"STATIC"/"OSPF"/"BGP"`
-	IpPrefix        string `DESCRIPTION: "Used in conjunction with MaskLengthRange to specify the IP Prefix to match on when the ConditionType is MatchDstIpPrefix/MatchSrcIpPrefix."`
-	MaskLengthRange string `DESCRIPTION: "Used in conjuction with IpPrefix to specify specify the IP Prefix to match on when the ConditionType is MatchDstIpPrefix/MatchSrcIpPrefix."`
-	PrefixSet       string `DESCRIPTION: "Name of a pre-defined prefix set to be used as a condition qualifier.", OPTIONAL, DEFAULT:""`
+	Name              string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "PolicyConditionName"`
+	ConditionType     string `DESCRIPTION: "Specifies the match criterion this condition defines", SELECTION: "MatchProtocol"/"MatchDstIpPrefix"/"MatchSrcIpPrefix"/"MatchCommunity"/"MatchExtendedCommunity"`
+	Protocol          string `DESCRIPTION: "Protocol to match on if the ConditionType is set to MatchProtocol",SELECTION:"CONNECTED"/"STATIC"/"OSPF"/"BGP"`
+	IpPrefix          string `DESCRIPTION: "Used in conjunction with MaskLengthRange to specify the IP Prefix to match on when the ConditionType is MatchDstIpPrefix/MatchSrcIpPrefix."`
+	MaskLengthRange   string `DESCRIPTION: "Used in conjuction with IpPrefix to specify specify the IP Prefix to match on when the ConditionType is MatchDstIpPrefix/MatchSrcIpPrefix."`
+	PrefixSet         string `DESCRIPTION: "Name of a pre-defined prefix set to be used as a condition qualifier.", OPTIONAL, DEFAULT:""`
+	Community         string `DESCRIPTION: "BGP Community attrribute value to match on when the conditionType is MatchCommunity - based on RFC 1997. Can either specify the well-known communities or any other community value in the format AA:NN or 0x1234abcd format or a number."`
+	ExtendedCommunity string `DESCRIPTION: "BGP Extended Community attribute value to match on when the conditionType is MatchExtendedCommunity - based on RFC 4360."`
 }
 type PolicyConditionState struct {
 	baseObj
@@ -111,21 +113,28 @@ type PolicyConditionState struct {
 	ConditionInfo  string
 	PolicyStmtList []string `DESCRIPTION: "List of policy statements using this condition"`
 }
-
+type PolicyAction struct {
+	Attr              string `DESCRIPTION:"Attribute on which action is being applied",SELECTION:"Community"/"LocalPref"/"ExtendedCommunity"`
+	Community         string `DESCRIPTION: "BGP Community attribute value when the action attr is Community.Can either specify the well-known communities or any other community value in the format AA:NN or 0x1234abcd format or a number."`
+	ExtendedCommunity string `DESCRIPTION: "BGP Extended Community attribute value when the action attr is ExtendedCommunity."`
+	LocalPref         uint32 `DESCRIPTION: "BGP LocalPreference attribute value when the action attr is LocalPref."`
+}
 type PolicyStmt struct {
 	baseObj
-	Name            string   `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Policy Statement Name"`
-	MatchConditions string   `DESCRIPTION :"Specifies whether to match all/any of the conditions of this policy statement",SELECTION:"any"/"all",DEFAULT:"all"`
-	Conditions      []string `DESCRIPTION :"List of conditions added to this policy statement"`
-	Action          string   `DESCRIPTION :"Action for this policy statement", SELECTION:"permit"/"deny",DEFAULT: "deny"`
+	SetActions      []PolicyAction `DESCRIPTION : "A set of attr/value pairs to be set associatded with this statement."`
+	Name            string         `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Policy Statement Name"`
+	MatchConditions string         `DESCRIPTION :"Specifies whether to match all/any of the conditions of this policy statement",SELECTION:"any"/"all",DEFAULT:"all"`
+	Conditions      []string       `DESCRIPTION :"List of conditions added to this policy statement"`
+	Action          string         `DESCRIPTION :"Action for this policy statement", SELECTION:"permit"/"deny",DEFAULT: "deny"`
 }
 type PolicyStmtState struct {
 	baseObj
-	Name            string   `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "PolicyStmtState"`
-	MatchConditions string   `DESCRIPTION :"Specifies whether to match all/any of the conditions of this policy statement"`
-	Conditions      []string `DESCRIPTION :"List of conditions added to this policy statement"`
-	Action          string   `DESCRIPTION :"Action corresponding to this policy statement"`
-	PolicyList      []string `DESCRIPTION :"List of policies using this policy statement"`
+	Name            string         `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "PolicyStmtState"`
+	MatchConditions string         `DESCRIPTION :"Specifies whether to match all/any of the conditions of this policy statement"`
+	Conditions      []string       `DESCRIPTION :"List of conditions added to this policy statement"`
+	Action          string         `DESCRIPTION :"Action corresponding to this policy statement"`
+	SetActions      []PolicyAction `DESCRIPTION : "A set of attr/value pairs to be set associatded with this statement."`
+	PolicyList      []string       `DESCRIPTION :"List of policies using this policy statement"`
 }
 type PolicyDefinitionStmtPriority struct {
 	Priority  int32 `DESCRIPTION:"Priority of the policy w.r.t other policies configured", MIN:0, MAX:255`

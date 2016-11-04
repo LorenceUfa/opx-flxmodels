@@ -335,8 +335,8 @@ type Acl struct {
 	DestMask    string `DESCRIPTION: "Network mark for dest IP", DEFAULT:""`
 	Action      string `DESCRIPTION: "Type of action (ALLOW/DENY)",SELECTION:"ALLOW/DENY",  DEFAULT:"Allow", STRLEN:"16"`
 	Proto       string `DESCRIPTION: "Protocol type TCP/UDP/ICMPv4/ICMPv6", SELECTION:"TCP/UDP/ICMPv4/ICMPv6", DEFAULT:""`
-	SrcPort     string `DESCRIPTION: "Source Port(used for mlag)", DEFAULT:''`
-	DstPort     string `DESCRIPTION: "Dest Port(used for mlag)", DEFAULT:''`
+	SrcPort     string `DESCRIPTION: "Source Port(used for mlag)", DEFAULT:""`
+	DstPort     string `DESCRIPTION: "Dest Port(used for mlag)", DEFAULT:""`
 	L4SrcPort   int32  `DESCRIPTION: "TCP/UDP source port", DEFAULT:0`
 	L4DstPort   int32  `DESCRIPTION: "TCP/UDP destionation port", DEFAULT:0`
 	L4PortMatch string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), LT(larger than), GT(greater than), RANGE(port range)",SELECTION:"EQ/NEQ/LT/GT/RANGE", DEFAULT:"NA"`
