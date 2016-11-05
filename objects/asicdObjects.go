@@ -316,30 +316,17 @@ type BufferGlobalStatState struct {
 
 type AclGroup struct {
 	baseObj
-<<<<<<< HEAD
-	AclName      string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL"`
-	AclType      string   `DESCRIPTION: "Type can be IP/MAC", SELECTION:"IP/MAC", DEFAULT:"IP"`
-	IntfList     []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
-	RuleNameList []string `DESCRIPTION: "List of rules to be applied to this ACL. This should match with AclRule RuleName"`
-	Direction    string   `SNAPROUTE: "IN/OUT direction in which ACL to be applied", SELECTION:"IN/OUT", DEFAULT:"IN"`
-=======
 	GroupName string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL"`
 	//	AclType      string   `DESCRIPTION: "Type can be IP/MAC", SELECTION:"IP/MAC", DEFAULT:"IP"`
 	IntfList []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
 	//	AclName      []string `DESCRIPTION: "List of rules to be applied to this ACL. This should match with AclRule RuleName"`
 	Direction string `DESCRIPTION: "IN/OUT direction in which ACL to be applied", SELECTION:"IN/OUT", DEFAULT:"IN"`
->>>>>>> 24543a8e68476aeb2e9b63c0b925bfb979b83b5f
 }
 
 type Acl struct {
 	baseObj
-<<<<<<< HEAD
-	RuleName string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name"`
-	//	Priority    string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl priority"`
-=======
 	AclName     string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name"`
 	Priority    int32  `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl priority"`
->>>>>>> 24543a8e68476aeb2e9b63c0b925bfb979b83b5f
 	SourceMac   string `DESCRIPTION: "Source MAC address.", DEFAULT:""`
 	DestMac     string `DESCRIPTION: "Destination MAC address", DEFAULT:""`
 	SourceIp    string `DESCRIPTION: "Source IP address", DEFAULT:""`
@@ -359,27 +346,16 @@ type Acl struct {
 
 type AclGroupState struct {
 	baseObj
-<<<<<<< HEAD
-	AclName      string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL", USESTATEDB:"true"`
-	RuleNameList []string `DESCRIPTION: "List of acl rules  to be applied to this ACL. This should match with Acl rule key"`
-	IntfList     []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
-	Direction    string   `DESCRIPTION: "IN/OUT direction in which ACL to be applied"`
-=======
 	GroupName   string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL", USESTATEDB:"true"`
 	AclType     string   `DESCRIPTION: "Type can be IP/MAC"`
 	AclNameList []string `DESCRIPTION: "List of acl rules  to be applied to this ACL. This should match with Acl rule key"`
 	IntfList    []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
 	Direction   string   `DESCRIPTION: "IN/OUT direction in which ACL to be applied"`
->>>>>>> 24543a8e68476aeb2e9b63c0b925bfb979b83b5f
 }
 
 type AclState struct {
 	baseObj
-<<<<<<< HEAD
-	RuleName   string   `SNAPROUTE: "KEY", CATEGORY:"L3", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION: "Acl rule name"`
-=======
 	AclName    string   `SNAPROUTE: "KEY", CATEGORY:"L3", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION: "Acl rule name"`
->>>>>>> 24543a8e68476aeb2e9b63c0b925bfb979b83b5f
 	AclType    string   `DESCRIPTION: "Type can be IP/MAC/SVI"`
 	IntfList   []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
 	HwPresence string   `DESCRIPTION: "Check if the rule is installed in hardware. Applied/Not Applied/Failed"`
