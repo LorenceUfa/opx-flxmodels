@@ -263,7 +263,7 @@ type SubIPv4Intf struct {
 	Type    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Type of interface, e.g. Secondary", STRLEN:"16", SELECTION: "Secondary`
 	IpAddr  string `DESCRIPTION:"Ip Address for sub interface", STRLEN:"18"`
 	MacAddr string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv4Intf mac address will be used", STRLEN:"17", DEFAULT:""`
-	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:false`
+	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:true`
 }
 
 type IPv6Intf struct {
@@ -294,7 +294,7 @@ type SubIPv6Intf struct {
 	Type    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Type of interface, e.g. Secondary", STRLEN:"16", SELECTION: "Secondary"`
 	IpAddr  string `DESCRIPTION:"Ip Address for sub interface", STRLEN:"43"`
 	MacAddr string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv6Intf mac address will be used", STRLEN:"17", DEFAULT:""`
-	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:false`
+	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:true`
 }
 
 type BufferPortStatState struct {
