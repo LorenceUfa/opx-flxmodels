@@ -314,13 +314,17 @@ type BufferGlobalStatState struct {
 	IngressBufferStat uint64 `DESCRIPTION: "Ingress buffer stats "`
 }
 
+type AclGlobal struct {
+	baseObj
+	Unit             int32  `SNAPROUTE:"KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "1", DESCRIPTION: "Hardware unit."`
+	GlobalDropEnable string `SELECTION:"TRUE/FALSE", DEFAULT:"FALSE", DESCRIPTION:"Global traffic drop  flag"`
+}
+
 type AclGroup struct {
 	baseObj
-	GroupName string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL"`
-	//	AclType      string   `DESCRIPTION: "Type can be IP/MAC", SELECTION:"IP/MAC", DEFAULT:"IP"`
-	IntfList []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
-	//	AclName      []string `DESCRIPTION: "List of rules to be applied to this ACL. This should match with AclRule RuleName"`
-	Direction string `DESCRIPTION: "IN/OUT direction in which ACL to be applied", SELECTION:"IN/OUT", DEFAULT:"IN"`
+	GroupName string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL"`
+	IntfList  []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
+	Direction string   `DESCRIPTION: "IN/OUT direction in which ACL to be applied", SELECTION:"IN/OUT", DEFAULT:"IN"`
 }
 
 type Acl struct {
