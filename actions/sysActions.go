@@ -25,8 +25,8 @@ package actions
 
 type Daemon struct {
 	baseAction
-	Name     string `DESCRIPTION: "Daemon name"`
-	Enable   bool   `DESCRIPTION: "Enable the flexswitch daemon"`
+	Name     string `DESCRIPTION: "FlexSwitch daemon name"`
+	Op       string `DESCRIPTION: "Start, stop, or restart the daemon"`
 	WatchDog bool   `DESCRIPTION: "Enable watchdog for daemon"`
 }
 
