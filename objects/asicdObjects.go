@@ -329,23 +329,27 @@ type AclGroup struct {
 
 type Acl struct {
 	baseObj
-	AclName     string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name"`
-	Priority    int32  `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl priority"`
-	SourceMac   string `DESCRIPTION: "Source MAC address.", DEFAULT:""`
-	DestMac     string `DESCRIPTION: "Destination MAC address", DEFAULT:""`
-	SourceIp    string `DESCRIPTION: "Source IP address", DEFAULT:""`
-	DestIp      string `DESCRIPTION: "Destination IP address", DEFAULT:""`
-	SourceMask  string `DESCRIPTION: "Network mask for source IP", DEFAULT:""`
-	DestMask    string `DESCRIPTION: "Network mark for dest IP", DEFAULT:""`
-	Action      string `DESCRIPTION: "Type of action (ALLOW/DENY)",SELECTION:"ALLOW/DENY",  DEFAULT:"Allow", STRLEN:"16"`
-	Proto       string `DESCRIPTION: "Protocol type TCP/UDP/ICMPv4/ICMPv6", SELECTION:"TCP/UDP/ICMPv4/ICMPv6", DEFAULT:""`
-	SrcPort     string `DESCRIPTION: "Source Port(used for mlag)", DEFAULT:""`
-	DstPort     string `DESCRIPTION: "Dest Port(used for mlag)", DEFAULT:""`
-	L4SrcPort   int32  `DESCRIPTION: "TCP/UDP source port", DEFAULT:0`
-	L4DstPort   int32  `DESCRIPTION: "TCP/UDP destionation port", DEFAULT:0`
-	L4PortMatch string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), LT(larger than), GT(greater than), RANGE(port range)",SELECTION:"EQ/NEQ/LT/GT/RANGE", DEFAULT:"NA"`
-	L4MinPort   int32  `DESCRIPTION: "Min port when l4 port is specified as range", DEFAULT:0`
-	L4MaxPort   int32  `DESCRIPTION: "Max port when l4 port is specified as range", DEFAULT:0`
+	AclName      string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name"`
+	Priority     int32  `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl priority"`
+	SourceMac    string `DESCRIPTION: "Source MAC address.", DEFAULT:""`
+	DestMac      string `DESCRIPTION: "Destination MAC address", DEFAULT:""`
+	SourceIp     string `DESCRIPTION: "Source IP address", DEFAULT:""`
+	DestIp       string `DESCRIPTION: "Destination IP address", DEFAULT:""`
+	SourceIpv6   string `DESCRIPTION: "Source IPv6 address", DEFAULT:""`
+	DestIpv6     string `DESCRIPTION: "Destination IPv6 address", DEFAULT:""`
+	SourceMaskv6 string `DESCRIPTION: "Network mask for source IPv6", DEFAULT:""`
+	DestMaskv6   string `DESCRIPTION: "Network mark for dest IPv6", DEFAULT:""`
+	SourceMask   string `DESCRIPTION: "Network mask for source IP", DEFAULT:""`
+	DestMask     string `DESCRIPTION: "Network mark for dest IP", DEFAULT:""`
+	Action       string `DESCRIPTION: "Type of action (ALLOW/DENY)",SELECTION:"ALLOW/DENY",  DEFAULT:"Allow", STRLEN:"16"`
+	Proto        string `DESCRIPTION: "Protocol type TCP/UDP/ICMPv4/ICMPv6", SELECTION:"TCP/UDP/ICMPv4/ICMPv6", DEFAULT:""`
+	SrcPort      string `DESCRIPTION: "Source Port(used for mlag)", DEFAULT:""`
+	DstPort      string `DESCRIPTION: "Dest Port(used for mlag)", DEFAULT:""`
+	L4SrcPort    int32  `DESCRIPTION: "TCP/UDP source port", DEFAULT:0`
+	L4DstPort    int32  `DESCRIPTION: "TCP/UDP destionation port", DEFAULT:0`
+	L4PortMatch  string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), LT(larger than), GT(greater than), RANGE(port range)",SELECTION:"EQ/NEQ/LT/GT/RANGE", DEFAULT:"NA"`
+	L4MinPort    int32  `DESCRIPTION: "Min port when l4 port is specified as range", DEFAULT:0`
+	L4MaxPort    int32  `DESCRIPTION: "Max port when l4 port is specified as range", DEFAULT:0`
 }
 
 type AclGroupState struct {
