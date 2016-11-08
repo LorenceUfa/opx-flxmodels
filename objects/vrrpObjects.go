@@ -69,6 +69,7 @@ type VrrpV4IntfState struct {
 	SkewTime                int32  `DESCRIPTION: "Time to skew Master Down Interval"`
 	MasterDownTimer         int32  `DESCRIPTION: "Time interval for Backup to declare Master down"`
 	VrrpState               string `DESCRIPTION: "Current vrrp state i.e. backup or master"`
+	AdminState              string `DESCRIPTION:"Vrrp State up or down"`
 }
 
 type VrrpV6IntfState struct {
@@ -84,20 +85,19 @@ type VrrpV6IntfState struct {
 	SkewTime                int32  `DESCRIPTION: "Time to skew Master Down Interval"`
 	MasterDownTimer         int32  `DESCRIPTION: "Time interval for Backup to declare Master down"`
 	VrrpState               string `DESCRIPTION: "Current vrrp state i.e. backup or master"`
+	AdminState              string `DESCRIPTION:"Vrrp State up or down"`
 }
 
-/*
-type VrrpVridState struct {
+type VrrpStatsState struct {
 	baseObj
-	IfIndex          int32  `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION:"Interface index for which VRRP state is requested"`
-	VRID             int32  `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION:"Virtual Router's Unique Identifier""`
-	AdverRx          int32  `DESCRIPTION:"Total number of advertisement packets received"`
-	AdverTx          int32  `DESCRIPTION:"Total number of advertisement packets send"`
-	LastAdverRx      string `DESCRIPTION:"Time when last advertisement packet was received"`
-	LastAdverTx      string `DESCRIPTION:"Time when last advertisement packet was send out"`
-	MasterIp         string `DESCRIPTION:"Ip Address of the Master VRRP"`
-	CurrentState     string `DESCRIPTION:"Current State of Local VRRP"`
-	PreviousState    string `DESCRIPTION:"Previous State of Local VRRP"`
-	TransitionReason string `DESCRIPTION:"Reason why we moved from previous state -> current state"`
+	IntfRef       string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 2 or Version 3"`
+	VRID          int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier"`
+	AdverRx       int32  `DESCRIPTION:"Total number of advertisement packets received"`
+	AdverTx       int32  `DESCRIPTION:"Total number of advertisement packets send"`
+	LastAdverRx   string `DESCRIPTION:"Time when last advertisement packet was received"`
+	LastAdverTx   string `DESCRIPTION:"Time when last advertisement packet was send out"`
+	MasterIp      string `DESCRIPTION:"Ip Address of the Master VRRP"`
+	CurrentState  string `DESCRIPTION:"Current State of Local VRRP"`
+	PreviousState string `DESCRIPTION:"Previous State of Local VRRP"`
+	IntfIpAddr    string `DESCRIPTION: "Ipv6 Address of Interface where VRRP is configured"`
 }
-*/
