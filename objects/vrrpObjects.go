@@ -41,6 +41,7 @@ type VrrpV4Intf struct {
 	AdvertisementInterval int32  `DESCRIPTION: "Time interval between ADVERTISEMENTS", DEFAULT:1, MIN:1, MAX:4095`
 	PreemptMode           bool   `DESCRIPTION: "Controls whether a (starting or restarting) higher-priority Backup router preempts a lower-priority Master router", DEFAULT: true`
 	AcceptMode            bool   `DESCRIPTION: "Controls whether a virtual router in Master state will accept packets addressed to the address owner's IPv4 address as its own if it is not the IPv4 address owner.", DEFAULT:false`
+	AdminState            bool   `DESCRIPTION:"Vrrp State up or down", DEFAULT:true`
 }
 
 type VrrpV6Intf struct {
@@ -52,6 +53,7 @@ type VrrpV6Intf struct {
 	AdvertisementInterval int32  `DESCRIPTION: "Time interval between ADVERTISEMENTS", DEFAULT:1, MIN:1, MAX:4095`
 	PreemptMode           bool   `DESCRIPTION: "Controls whether a (starting or restarting) higher-priority Backup router preempts a lower-priority Master router", DEFAULT: true`
 	AcceptMode            bool   `DESCRIPTION: "Controls whether a virtual router in Master state will accept packets addressed to the address owner's IPv6 address as its own if it is not the IPv6 address owner.", DEFAULT:false`
+	AdminState            bool   `DESCRIPTION:"Vrrp State up or down", DEFAULT:true`
 }
 
 type VrrpV4IntfState struct {
