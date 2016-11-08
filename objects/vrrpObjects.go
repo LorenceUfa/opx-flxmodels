@@ -61,19 +61,14 @@ type VrrpV4IntfState struct {
 	IntfRef                 string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 2 aka VRRP with ipv4 state information needs to be retreived"`
 	VRID                    int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier"`
 	CurrentState            string `DESCRIPTION: "Current vrrp state i.e. backup or master"`
-	AdminState              string `DESCRIPTION:"Vrrp State up or down"`
 	MasterIp                string `DESCRIPTION:"Ip Address of the Master VRRP"`
 	AdverRx                 int32  `DESCRIPTION:"Total number of advertisement packets received"`
 	AdverTx                 int32  `DESCRIPTION:"Total number of advertisement packets send"`
 	LastAdverRx             string `DESCRIPTION:"Time when last advertisement packet was received"`
 	LastAdverTx             string `DESCRIPTION:"Time when last advertisement packet was send out"`
 	IntfIpAddr              string `DESCRIPTION: "Ip Address of l3 Interface where VRRP is configured"`
-	Priority                int32  `DESCRIPTION: "Virtual router's Priority"`
 	Address                 string `DESCRIPTION: "Ip Address of Virtual Router"`
-	AdvertisementInterval   int32  `DESCRIPTION: "Time interval between Advertisements"`
-	PreemptMode             bool   `DESCRIPTION: "States Whether Preempt is Supported or not"`
 	VirtualRouterMACAddress string `DESCRIPTION: "VRRP router's Mac Address"`
-	SkewTime                int32  `DESCRIPTION: "Time to skew Master Down Interval"`
 	MasterDownTimer         int32  `DESCRIPTION: "Time interval for Backup to declare Master down"`
 }
 
@@ -82,18 +77,13 @@ type VrrpV6IntfState struct {
 	IntfRef                 string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 3 aka VRRP with ipv4 state information needs to be retreived"`
 	VRID                    int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier"`
 	CurrentState            string `DESCRIPTION: "Current vrrp state i.e. backup or master"`
-	AdminState              string `DESCRIPTION:"Vrrp State up or down"`
 	MasterIp                string `DESCRIPTION:"Ip Address of the Master VRRP"`
 	AdverRx                 int32  `DESCRIPTION:"Total number of advertisement packets received"`
 	AdverTx                 int32  `DESCRIPTION:"Total number of advertisement packets send"`
 	LastAdverRx             string `DESCRIPTION:"Time when last advertisement packet was received"`
 	LastAdverTx             string `DESCRIPTION:"Time when last advertisement packet was send out"`
 	IntfIpAddr              string `DESCRIPTION: "Ipv6 Address of l3 Interface where VRRP is configured"`
-	Priority                int32  `DESCRIPTION: "Virtual router's Priority"`
 	Address                 string `DESCRIPTION: "Ipv6 Address of Virtual Router"`
-	AdvertisementInterval   int32  `DESCRIPTION: "Time interval between Advertisements"`
-	PreemptMode             bool   `DESCRIPTION: "States Whether Preempt is Supported or not"`
 	VirtualRouterMACAddress string `DESCRIPTION: "VRRP router's Mac Address"`
-	SkewTime                int32  `DESCRIPTION: "Time to skew Master Down Interval"`
 	MasterDownTimer         int32  `DESCRIPTION: "Time interval for Backup to declare Master down"`
 }
