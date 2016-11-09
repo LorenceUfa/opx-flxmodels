@@ -60,6 +60,7 @@ type VrrpV4IntfState struct {
 	baseObj
 	IntfRef               string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 2 aka VRRP with ipv4 state information needs to be retreived"`
 	VRID                  int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier"`
+	OperState             string `DESCRIPTION: "Informs whether vrrp is up or down"`
 	CurrentState          string `DESCRIPTION: "Current vrrp state i.e. backup or master"`
 	MasterIp              string `DESCRIPTION:"Ip Address of the Master VRRP"`
 	AdverRx               int32  `DESCRIPTION:"Total number of advertisement packets received"`
@@ -77,6 +78,7 @@ type VrrpV6IntfState struct {
 	baseObj
 	IntfRef               string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 3 aka VRRP with ipv4 state information needs to be retreived"`
 	VRID                  int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier"`
+	OperState             string `DESCRIPTION: "Informs whether vrrp is up or down"`
 	CurrentState          string `DESCRIPTION: "Current vrrp state i.e. backup or master"`
 	MasterIp              string `DESCRIPTION:"Ip Address of the Master VRRP"`
 	AdverRx               int32  `DESCRIPTION:"Total number of advertisement packets received"`
