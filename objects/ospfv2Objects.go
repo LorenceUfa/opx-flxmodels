@@ -26,6 +26,7 @@ package objects
 type Ospfv2Area struct {
 	ConfigObj
 	AreaId         string `SNAPROUTE: "KEY", CATEGORY:"L3",  ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: A 32-bit integer uniquely identifying an area. Area ID 0.0.0.0 is used for the OSPF backbone.`
+	AdminState     string `DESCRIPTION: Indiacates if OSPF is enabled on this area, DEFAULT:"DOWN"`
 	AuthType       string `DESCRIPTION: The authentication type specified for an area., SELECTION: none(0)/simplePassword(1)/md5(2), DEFAULT:"None"`
 	ImportASExtern bool   `DESCRIPTION: ExternalRoutingCapability if false AS External LSA will not be flooded into this area, DEFAULT: true`
 }
