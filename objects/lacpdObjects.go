@@ -2,7 +2,7 @@ package objects
 
 type LaPortChannelIntfRefListState struct {
 	baseObj
-	IntfRef                    string `SNAPROUTE: "KEY",  ACCESS:"r", DESCRIPTION: Reference to aggregate member interface`
+	IntfRef                    string `SNAPROUTE: "KEY", CATEGORY:"L2",  ACCESS:"r", DESCRIPTION: Reference to aggregate member interface`
 	LagIntfRef                 string `DESCRIPTION: Id of the lag group to which this port is associated with`
 	OperState                  string `DESCRIPTION: The operation state, typically UP IN BUNDLE, or DOWN`
 	IfIndex                    int32  `DESCRIPTION: Interface member of the LACP aggregate`
@@ -51,7 +51,7 @@ type LaPortChannelIntfRefListState struct {
 
 type LaPortChannel struct {
 	baseObj
-	IntfRef        string   `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: Id of the lag group`
+	IntfRef        string   `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: Id of the lag group`
 	LagType        int32    `DESCRIPTION: Sets the type of LAG, i.e., how it is configured / maintained, SELECTION: LACP(0)/STATIC(1), DEFAULT: 0`
 	MinLinks       uint16   `DESCRIPTION: Specifies the mininum number of member interfaces that must be active for the aggregate interface to be available, DEFAULT: 1`
 	Interval       int32    `DESCRIPTION: Set the period between LACP messages -- uses the lacp-period-type enumeration., SELECTION: SLOW(1)/FAST(0), DEFAULT: 1`
@@ -65,7 +65,7 @@ type LaPortChannel struct {
 
 type LaPortChannelState struct {
 	baseObj
-	IntfRef               string   `SNAPROUTE: "KEY",  ACCESS:"r", DESCRIPTION: Id of the lag group`
+	IntfRef               string   `SNAPROUTE: "KEY", CATEGORY:"L2",  ACCESS:"r", DESCRIPTION: Id of the lag group`
 	IfIndex               int32    `DESCRIPTION: the ifindex of the bonded interface`
 	LagType               int32    `DESCRIPTION: Sets the type of LAG, i.e., how it is configured / maintained, SELECTION: LACP(0)/STATIC(1)`
 	MinLinks              uint16   `DESCRIPTION: Specifies the mininum number of member interfaces that must be active for the aggregate interface to be available`
@@ -82,8 +82,8 @@ type LaPortChannelState struct {
 
 type IppLinkState struct {
 	baseObj
-	DrNameRef                    string  `SNAPROUTE: "KEY", ACCESS:"r", DESCRIPTION: A human-readable text string containing the Distributed Relay Instance name to which this IPP is associated`
-	IntfRef                      string  `SNAPROUTE: "KEY", ACCESS:"r", DESCRIPTION: A human-readable text string containing a locally significant name for the Distributed Relay IPP port link`
+	DrNameRef                    string  `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"r", DESCRIPTION: A human-readable text string containing the Distributed Relay Instance name to which this IPP is associated`
+	IntfRef                      string  `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"r", DESCRIPTION: A human-readable text string containing a locally significant name for the Distributed Relay IPP port link`
 	IPPID                        uint32  `DESCRIPTION: The unique identifier allocated to this IPP by the local Portal System. This attribute identifies an IPP instance among the subordinate managed objects of the containing object.`
 	PortConversationPasses       []uint8 `DESCRIPTION: A read-only current operational vector of Boolean values, with one value for each possible Port Conversation ID. A 1 indicates that the Port Conversation ID is allowed to be transmitted through this IPP Intra-Portal Port, and a 0 indicates that it cannot. aIPPPortConversationPasses is referencing Ipp_Port_Conversation_Passes (9.3.4.3).`
 	GatewayConversationDirection []uint8 `DESCRIPTION: A read-only current operational vector of Boolean values, with one value for each possible Port Conversation ID. A 1 indicates that the Port Conversation ID is allowed to be transmitted through this IPP Intra-Portal Port, and a 0 indicates that it cannot. aIPPPortConversationPasses is referencing Ipp_Port_Conversation_Passes (9.3.4.3).`
@@ -96,12 +96,12 @@ type IppLinkState struct {
 
 type DistributedRelay struct {
 	baseObj
-	DrniName                  string   `SNAPROUTE: "KEY", ACCESS:"w", DESCRIPTION: The unique identifier allocated to this Distributed Relay by the local System. This attribute identifies a Distributed Relay instance among the subordinate managed objects of the containing object.`
+	DrniName                  string   `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"w", DESCRIPTION: The unique identifier allocated to this Distributed Relay by the local System. This attribute identifies a Distributed Relay instance among the subordinate managed objects of the containing object.`
 	PortalAddress             string   `DESCRIPTION: A read-write identifier of a particular Portal. Portal-Addr has to be unique among at least all of the potential Portal Systems to which a given Portal System might be attached via an IPL Intra-Portal Link. Also used as the Actors System ID (6.3.2) for the emulated system`
 	PortalPriority            uint16   `DESCRIPTION: A 2octet read-write value indicating the priority value associated with the Portals System ID. Also used as the Actors System Priority (6.3.2) for the emulated system., MIN: "1" ,  MAX: "65535", DEFAULT: 32768`
 	ThreePortalSystem         bool     `DESCRIPTION: A read-write Boolean value indicating whether this Portal System is part of a Portal consisting of three Portal Systems or not. Value 1 stands for a Portal of three Portal Systems, value 0 stands for a Portal of two or one Portal Systems. The default value is 0, DEFAULT: "false"`
 	PortalSystemNumber        uint8    `DESCRIPTION: A read-write identifier of this particular Portal System within a Portal. It is the responsibility of the network administrator to ensure that these numbers are unique among the Portal Systems with the same aDrniPortalAddr (7.4.1.1.4), MIN: "1" ,  MAX: "2"`
-	Intfreflist               []string `DESCRIPTION: Read-write list of the Interface Identifiers of the Ports to the Intra-Portal Links assigned to this Distributed Relay. Each Interface Identifier, a Port ID (6.3.4), has the two least significant bits of its Port Priority (7.3.2.1.15) configured to match the Portal System Number of the attached Portal System. The number of IPLs in the list depends on the Portal topology. For a Portal of three Portal Systems two or three IPLs can be used, for a Portal of two Portal Systems a single IPL is required and for a single Portal System no IPL is required`
+	IntfReflist               []string `DESCRIPTION: Read-write list of the Interface Identifiers of the Ports to the Intra-Portal Links assigned to this Distributed Relay. Each Interface Identifier, a Port ID (6.3.4), has the two least significant bits of its Port Priority (7.3.2.1.15) configured to match the Portal System Number of the attached Portal System. The number of IPLs in the list depends on the Portal topology. For a Portal of three Portal Systems two or three IPLs can be used, for a Portal of two Portal Systems a single IPL is required and for a single Portal System no IPL is required`
 	IntfRef                   string   `DESCRIPTION: Read-write Interface Identifier of the Aggregator Port assigned to this Distributed Relay`
 	GatewayAlgorithm          string   `DESCRIPTION: This object identifies the algorithm used by the DR Function to assign frames to a Gateway Conversation ID. Table 9-7 provides the IEEE 802.1 OUI (00:80:C2) Gateway Algorithm encodings, DEFAULT: "00-80-C2-01"`
 	NeighborGatewayAlgorithm  string   `DESCRIPTION: TThis object identifies the value for the Gateway algorithm of the Neighbor Portal System, assigned by administrator or System policy for use when the Neighbor Portal Systems information is unknown. Table 9-7 provides the IEEE 802.1 OUI (00-80-C2) Gateway Algorithm encodings, DEFAULT: "00-80-C2-01"`
@@ -113,7 +113,7 @@ type DistributedRelay struct {
 
 type DistributedRelayState struct {
 	baseObj
-	DrniName                           string   `SNAPROUTE: "KEY", ACCESS:"r",  DESCRIPTION: The unique identifier allocated to this Distributed Relay by the local System. This attribute identifies a Distributed Relay instance among the subordinate managed objects of the containing object.`
+	DrniName                           string   `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"r",  DESCRIPTION: The unique identifier allocated to this Distributed Relay by the local System. This attribute identifies a Distributed Relay instance among the subordinate managed objects of the containing object.`
 	Description                        string   `DESCRIPTION: A human-readable text string containing information about the Distribute Relay. This string is read-only. The contents are vendor specific`
 	PortalAddress                      string   `DESCRIPTION: A read-write identifier of a particular Portal. Portal-Addr has to be unique among at least all of the potential Portal Systems to which a given Portal System might be attached via an IPL Intra-Portal Link. Also used as the Actors System ID (6.3.2) for the emulated system, SELECTION: "[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}"`
 	PortalPriority                     uint16   `DESCRIPTION: A 2 octet read-write value indicating the priority value associated with the Portals System ID. Also used as the Actors System Priority (6.3.2) for the emulated system.`
@@ -139,13 +139,13 @@ type DistributedRelayState struct {
 
 type LacpGlobal struct {
 	baseObj
-	Vrf        string `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"1", AUTOCREATE: "true", DEFAULT: "default", DESCRIPTION: global system object defining the global state of LACPD.`
+	Vrf        string `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"w",  MULTIPLICITY:"1", AUTOCREATE: "true", DEFAULT: "default", DESCRIPTION: global system object defining the global state of LACPD.`
 	AdminState string `DESCRIPTION: Administrative state of LACPD, UP will allow for lacp configuration to be applied, DOWN will disallow and de-provision from daemon, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: "DOWN"`
 }
 
 type LacpGlobalState struct {
 	baseObj
-	Vrf                          string   `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"1", DEFAULT: "default", DESCRIPTION: global system object defining the global state of LACPD.`
+	Vrf                          string   `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"r",  MULTIPLICITY:"1", DEFAULT: "default", DESCRIPTION: global system object defining the global state of LACPD.`
 	AdminState                   string   `DESCRIPTION: Administrative state of LACPD, UP will allow for lacp configuration to be applied, DOWN will disallow and de-provision from daemon, STRLEN:"4", SELECTION: UP/DOWN, DEFAULT: "DOWN"`
 	AggList                      []string `DESCRIPTION: List of Aggregation objects that have been created`
 	DistributedRelayList         []string `DESCRIPTION: List of Distributed Relay objects`

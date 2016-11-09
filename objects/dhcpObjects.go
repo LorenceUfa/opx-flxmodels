@@ -29,7 +29,7 @@ package objects
 type DhcpGlobalConfig struct {
 	baseObj
 	// placeholder to create a key
-	DhcpConfigKey    string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: "DHCP global config"`
+	DhcpConfigKey    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: "DHCP global config", DEFAULT:"default"`
 	Enable           bool   `DESCRIPTION: "DHCP Server enable/disable control DEFAULT: false"`
 	DefaultLeaseTime uint32 `DESCRIPTION: "Default Lease Time in seconds DEFAULT: 600"`
 	MaxLeaseTime     uint32 `DESCRIPTION: "Max Lease Time in seconds DEFAULT: 7200"`
@@ -38,7 +38,7 @@ type DhcpGlobalConfig struct {
 type DhcpIntfConfig struct {
 	baseObj
 	// placeholder to create a key
-	IntfRef       string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface name or ifindex of L3 interface object on which Dhcp Server need to be configured"`
+	IntfRef       string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface name or ifindex of L3 interface object on which Dhcp Server need to be configured"`
 	Subnet        string `DESCRIPTION: "Subnet"`
 	SubnetMask    string `DESCRIPTION: "Subnet Mask"`
 	IPAddrRange   string `DESCRIPTION: "Range of IP Addresses DEFAULT: All the IP Addresses in the given subnet"`

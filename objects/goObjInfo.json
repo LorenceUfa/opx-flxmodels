@@ -25,7 +25,7 @@
                      "svcName" : "asicdInt",
                      "finalSvcName" : "asicdServices"},
 "dhcprelayObjects.go" : {"owner": "dhcprelayd",
-                         "location" : "l3/dhcp_relay/server", 
+                         "location" : "l3/dhcp_relay/rpc", 
                          "svcName" : "nil"},
 "lldpObjects.go" : {"owner": "lldpd",
                     "location" : "l2/lldp/flexswitch", 
@@ -60,5 +60,8 @@
                     "svcName" : "nil"},
 "stpdObjects.go" :  {"owner": "stpd",
                     "location" : "l2/stp/rpc",
+                    "svcName" : "nil"},
+"vxlandObjects.go" : {"owner": "vxland",
+                    "location" : "l3/tunnel/vxlan/rpc",
                     "svcName" : "nil"}
 }

@@ -25,14 +25,16 @@ package objects
 
 type LLDPGlobal struct {
 	baseObj
-	Vrf             string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: "LLDP Global Config For Default VRF", DEFAULT:"default", AUTOCREATE:"true"`
+	Vrf             string `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"w", MULTIPLICITY:"1", DESCRIPTION: "LLDP Global Config For Default VRF", DEFAULT:"default", AUTOCREATE:"true"`
 	Enable          bool   `DESCRIPTION: "Enable/Disable LLDP Globally", DEFAULT:false`
 	TranmitInterval int32  `DESCRIPTION: "LLDP Re-Transmit Interval in seconds", DEFAULT:30`
+	TxRxMode        string `DESCRIPTION: "Transmit/Receive mode configruration for the LLDP agent", SELECTION:"TxOnly/RxOnly/TxRx", DEFAULT:"TxRx"`
+	SnoopAndDrop    bool   `DESCRIPTION: "Operational mode to determine whether LLDP traffic is bi-directionally forwarded. This configuration is only available on select platforms", DEFAULT:false`
 }
 
 type LLDPGlobalState struct {
 	baseObj
-	Vrf             string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION:"Vrf where LLDP Global Config is running"`
+	Vrf             string `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION:"Vrf where LLDP Global Config is running"`
 	Enable          bool   `DESCRIPTION: "Enable/Disable LLDP Globally"`
 	TranmitInterval int32  `DESCRIPTION: "LLDP Re-Transmit Interval in seconds"`
 	Neighbors       int32  `DESCRIPTION: "Total lldp Neighbors learned on the system"`
@@ -42,13 +44,14 @@ type LLDPGlobalState struct {
 
 type LLDPIntf struct {
 	baseObj
-	IntfRef string `SNAPROUTE: "KEY", ACCESS:"rw", MULTIPLICITY:"*", DESCRIPTION: "IfIndex where lldp needs is enabled/disabled", DEFAULT: "None", AUTODISCOVER:"true"`
-	Enable  bool   `DESCRIPTION: "Enable/Disable lldp config Per Port", DEFAULT:true`
+	IntfRef  string `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"rw", MULTIPLICITY:"*", DESCRIPTION: "IfIndex where lldp needs is enabled/disabled", DEFAULT: "None", AUTODISCOVER:"true"`
+	Enable   bool   `DESCRIPTION: "Enable/Disable lldp config Per Port", DEFAULT:true`
+	TxRxMode string `DESCRIPTION: "Transmit/Receive mode configruration for the LLDP agent specific to an interface", SELECTION:"TxOnly/RxOnly/TxRx", DEFAULT:"TxRx"`
 }
 
 type LLDPIntfState struct {
 	baseObj
-	IntfRef             string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY:"*",DESCRIPTION: "IntfRef where lldp is configured"`
+	IntfRef             string `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"r", MULTIPLICITY:"*",DESCRIPTION: "IntfRef where lldp is configured"`
 	IfIndex             int32  `DESCRIPTION: "IfIndex where lldp needs to be configured"`
 	SendFrames          int32  `DESCRIPTION: "Total Frames send to the neighbor"`
 	ReceivedFrames      int32  `DESCRIPTION: "Total Frames received from neighbor"`

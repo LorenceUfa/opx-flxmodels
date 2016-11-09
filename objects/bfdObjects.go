@@ -30,7 +30,7 @@ import ()
  */
 type BfdGlobal struct {
 	baseObj
-	Vrf    string `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"1", AUTOCREATE: "true", DEFAULT: "default", DESCRIPTION: "VRF id where BFD is globally enabled or disabled"`
+	Vrf    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w",  MULTIPLICITY:"1", AUTOCREATE: "true", DEFAULT: "default", DESCRIPTION: "VRF id where BFD is globally enabled or disabled"`
 	Enable bool   `DESCRIPTION: "Global BFD state in this VRF", DEFAULT: "true"`
 }
 
@@ -39,7 +39,7 @@ type BfdGlobal struct {
  */
 type BfdGlobalState struct {
 	baseObj
-	Vrf                  string `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"1", DESCRIPTION: "VRF id for which global BFD state is requested"`
+	Vrf                  string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r",  MULTIPLICITY:"1", DESCRIPTION: "VRF id for which global BFD state is requested"`
 	Enable               bool   `DESCRIPTION: "Global BFD state in this VRF"`
 	NumTotalSessions     uint32 `DESCRIPTION: "Total number of BFD sessions"`
 	NumUpSessions        uint32 `DESCRIPTION: "Number of BFD sessions in up state"`
@@ -52,7 +52,7 @@ type BfdGlobalState struct {
  */
 type BfdSession struct {
 	baseObj
-	IpAddr    string `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: "BFD neighbor IP address"`
+	IpAddr    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: "BFD neighbor IP address"`
 	ParamName string `DESCRIPTION: "Name of the session parameters object to be applied on this session", DEFAULT: "default"`
 	Interface string `DESCRIPTION: "Name of the interface this session has to be established on", DEFAULT: "None"`
 	PerLink   bool   `DESCRIPTION: "Run BFD sessions on individual link of a LAG if the neighbor is reachable through LAG", DEFAULT: "false"`
@@ -64,7 +64,7 @@ type BfdSession struct {
  */
 type BfdSessionState struct {
 	baseObj
-	IpAddr                    string `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"*",DESCRIPTION: "Neighbor IP address"`
+	IpAddr                    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r",  MULTIPLICITY:"*",DESCRIPTION: "Neighbor IP address"`
 	SessionId                 int32  `DESCRIPTION: "Session index"`
 	ParamName                 string `DESCRIPTION: "Session parameters config"`
 	IntfRef                   string `DESCRIPTION: "Interface on which this session is running"`
@@ -101,7 +101,7 @@ type BfdSessionState struct {
  */
 type BfdSessionParam struct {
 	baseObj
-	Name                      string `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: "Session parameters"`
+	Name                      string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: "Session parameters"`
 	LocalMultiplier           uint32 `DESCRIPTION: "Detection multiplier", DEFAULT: "3"`
 	DesiredMinTxInterval      uint32 `DESCRIPTION: "Desired minimum tx interval in ms", DEFAULT: "1000"`
 	RequiredMinRxInterval     uint32 `DESCRIPTION: "Required minimum rx interval in ms", DEFAULT: "1000"`
@@ -118,7 +118,7 @@ type BfdSessionParam struct {
  */
 type BfdSessionParamState struct {
 	baseObj
-	Name                      string `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Session parameters"`
+	Name                      string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Session parameters"`
 	NumSessions               int32  `DESCRIPTION: "Number of sessions using these params"`
 	LocalMultiplier           int32  `DESCRIPTION: "Detection multiplier"`
 	DesiredMinTxInterval      string `DESCRIPTION: "Desired minimum tx interval"`
