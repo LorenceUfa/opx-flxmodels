@@ -266,6 +266,18 @@ type SubIPv4Intf struct {
 	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:true`
 }
 
+type SubIPv4IntfState struct {
+	baseObj
+	IntfRef       string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", DESCRIPTION:"Intf name for which ipv4Intf sub interface is to be configured"`
+	Type          string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", DESCRIPTION:"Type of interface, e.g. Secondary or Virtual"`
+	IfIndex       int32  `DESCRIPTION:"System assigned interface id for this sub IPv4 interface"`
+	IfName        string `DESCRIPTION:"System generated sub interface name"`
+	ParentIfIndex int32  `DESCRIPTION:"System assigned interface id for interface parent interface"`
+	IpAddr        string `DESCRIPTION:"Ip Address for sub interface"`
+	MacAddr       string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv4Intf mac address will be used"`
+	OperState     string `DESCRIPTION:"Operational state of this SubIPv4 interface"`
+}
+
 type IPv6Intf struct {
 	baseObj
 	IntfRef    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION: "Interface name or ifindex of port/lag or vlan on which this IPv4 object is configured", RELTN:"DEP:[Vlan, Port]`
