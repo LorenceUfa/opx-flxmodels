@@ -23,8 +23,6 @@
 
 package objects
 
-import ()
-
 type ComponentLogging struct {
 	baseObj
 	Module string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: "Module name to set logging level"`
@@ -57,7 +55,7 @@ type DaemonState struct {
 	baseObj
 	Name          string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Daemon name", USESTATEDB:"true"`
 	Enable        bool   `DESCRIPTION: "If the daemon configured to be enabled"`
-	State         string `DESCRIPTION: "State of the daemon, running or restarting"`
+	State         string `DESCRIPTION: "State of the daemon, up, starting, restarting or stopped"`
 	Reason        string `DESCRIPTION: "Reason for current state of the daemon"`
 	StartTime     string `DESCRIPTION: "Daemon start time"`
 	KeepAlive     string `DESCRIPTION: "KeepAlive state of the daemon"`
