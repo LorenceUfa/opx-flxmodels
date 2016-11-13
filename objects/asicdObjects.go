@@ -306,6 +306,7 @@ type SubIPv6Intf struct {
 	Type    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Type of interface, e.g. Secondary", STRLEN:"16", SELECTION: "Secondary"`
 	IpAddr  string `DESCRIPTION:"Ip Address for sub interface", STRLEN:"43"`
 	MacAddr string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv6Intf mac address will be used", STRLEN:"17", DEFAULT:""`
+	LinkIp  bool   `DESCRIPTION: "Interface Link Scope IP Address auto-configured", DEFAULT:true`
 	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:true`
 }
 
