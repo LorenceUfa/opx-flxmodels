@@ -96,16 +96,21 @@ type PolicyPrefixSetState struct {
 	PrefixList          []PolicyPrefix `DESCRIPTION:"List of policy prefixes part of this prefix set."`
 	PolicyConditionList []string       `DESCRIPTION:"List of policy conditions using this prefix set"`
 }
+type PolicyExtendedCommunity struct {
+	Type  string `DESCRIPTION: "Type of extended community",SELECTION:"Route-Target"/"Route-Origin"`
+	Value string `DESCRIPTION: "A : separated value of the extended community, examples: 200:10 / 192.168.0.2:300 / 3000.200:210"`
+}
 type PolicyCondition struct {
 	baseObj
-	Name              string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "PolicyConditionName"`
-	ConditionType     string `DESCRIPTION: "Specifies the match criterion this condition defines", SELECTION: "MatchProtocol"/"MatchDstIpPrefix"/"MatchSrcIpPrefix"/"MatchCommunity"/"MatchExtendedCommunity"`
-	Protocol          string `DESCRIPTION: "Protocol to match on if the ConditionType is set to MatchProtocol",SELECTION:"CONNECTED"/"STATIC"/"OSPF"/"BGP"`
-	IpPrefix          string `DESCRIPTION: "Used in conjunction with MaskLengthRange to specify the IP Prefix to match on when the ConditionType is MatchDstIpPrefix/MatchSrcIpPrefix."`
-	MaskLengthRange   string `DESCRIPTION: "Used in conjuction with IpPrefix to specify specify the IP Prefix to match on when the ConditionType is MatchDstIpPrefix/MatchSrcIpPrefix."`
-	PrefixSet         string `DESCRIPTION: "Name of a pre-defined prefix set to be used as a condition qualifier.", OPTIONAL, DEFAULT:""`
-	Community         string `DESCRIPTION: "BGP Community attrribute value to match on when the conditionType is MatchCommunity - based on RFC 1997. Can either specify the well-known communities or any other community value in the format AA:NN or 0x1234abcd format or a number."`
-	ExtendedCommunity string `DESCRIPTION: "BGP Extended Community attribute value to match on when the conditionType is MatchExtendedCommunity - based on RFC 4360."`
+	Name                   string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "PolicyConditionName"`
+	ConditionType          string `DESCRIPTION: "Specifies the match criterion this condition defines", SELECTION: "MatchProtocol"/"MatchDstIpPrefix"/"MatchSrcIpPrefix"/"MatchCommunity"/"MatchExtendedCommunity"`
+	Protocol               string `DESCRIPTION: "Protocol to match on if the ConditionType is set to MatchProtocol",SELECTION:"CONNECTED"/"STATIC"/"OSPF"/"BGP"`
+	IpPrefix               string `DESCRIPTION: "Used in conjunction with MaskLengthRange to specify the IP Prefix to match on when the ConditionType is MatchDstIpPrefix/MatchSrcIpPrefix."`
+	MaskLengthRange        string `DESCRIPTION: "Used in conjuction with IpPrefix to specify specify the IP Prefix to match on when the ConditionType is MatchDstIpPrefix/MatchSrcIpPrefix."`
+	PrefixSet              string `DESCRIPTION: "Name of a pre-defined prefix set to be used as a condition qualifier.", OPTIONAL, DEFAULT:""`
+	Community              string `DESCRIPTION: "BGP Community attrribute value to match on when the conditionType is MatchCommunity - based on RFC 1997. Can either specify the well-known communities or any other community value in the format AA:NN or 0x1234abcd format or a number."`
+	ExtendedCommunityType  string `DESCRIPTION: "Specifies BGP Extended Community type (used along with value)to match on when the conditionType is MatchExtendedCommunity - based on RFC 4360.",SELECTION:"Route-Target"/"Route-Origin"`
+	ExtendedCommunityValue string `DESCRIPTION: "Specifies BGP Extended Community value (used along with type)to match on when the conditionType is MatchExtendedCommunity - based on RFC 4360.This is a ":" separated string.Examples: 200:10 / 192.168.0.2:300 / 3000.200:210"`
 }
 type PolicyConditionState struct {
 	baseObj
@@ -114,10 +119,11 @@ type PolicyConditionState struct {
 	PolicyStmtList []string `DESCRIPTION: "List of policy statements using this condition"`
 }
 type PolicyAction struct {
-	Attr              string `DESCRIPTION:"Attribute on which action is being applied",SELECTION:"Community"/"LocalPref"/"ExtendedCommunity"`
-	Community         string `DESCRIPTION: "BGP Community attribute value when the action attr is Community.Can either specify the well-known communities or any other community value in the format AA:NN or 0x1234abcd format or a number."`
-	ExtendedCommunity string `DESCRIPTION: "BGP Extended Community attribute value when the action attr is ExtendedCommunity."`
-	LocalPref         uint32 `DESCRIPTION: "BGP LocalPreference attribute value when the action attr is LocalPref."`
+	Attr                   string `DESCRIPTION:"Attribute on which action is being applied",SELECTION:"Community"/"LocalPref"/"ExtendedCommunity"`
+	Community              string `DESCRIPTION: "BGP Community attribute value when the action attr is Community.Can either specify the well-known communities or any other community value in the format AA:NN or 0x1234abcd format or a number."`
+	ExtendedCommunityType  string `DESCRIPTION: "Specifies BGP Extended Community type (used along with value)to match on when the conditionType is MatchExtendedCommunity - based on RFC 4360.",SELECTION:"Route-Target"/"Route-Origin"`
+	ExtendedCommunityValue string `DESCRIPTION: "Specifies BGP Extended Community value (used along with type)to match on when the conditionType is MatchExtendedCommunity - based on RFC 4360.This is a ":" separated string.Examples: 200:10 / 192.168.0.2:300 / 3000.200:210"`
+	LocalPref              uint32 `DESCRIPTION: "BGP LocalPreference attribute value when the action attr is LocalPref."`
 }
 type PolicyStmt struct {
 	baseObj
