@@ -1,6 +1,6 @@
 {
 "vrrpObjects.go" : {"owner": "vrrpd",
-                    "location" : "l3/vrrp/rpc",
+                    "location" : "l3/vrrp/flexswitch",
                     "svcName" : "nil"},
 "bfdObjects.go" : {"owner": "bfdd",
                    "location" : "l3/bfd/rpc",
