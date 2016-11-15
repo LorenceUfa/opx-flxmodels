@@ -329,21 +329,21 @@ type BufferGlobalStatState struct {
 
 type AclGlobal struct {
 	baseObj
-	Unit             int32  `SNAPROUTE:"KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "1", DESCRIPTION: "Hardware unit."`
+	Unit             int32  `SNAPROUTE:"KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "1", DESCRIPTION: "Indicates aclGlobal instance.", DEFAULT:0`
 	GlobalDropEnable string `SELECTION:"TRUE/FALSE", DEFAULT:"FALSE", DESCRIPTION:"Global traffic drop  flag"`
 }
 
 type AclGroup struct {
 	baseObj
-	GroupName string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL"`
+	GroupName string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "*", DESCRIPTION: "Acl group name to be used to refer to this ACL. This name is matched with AclName from Acl and  corresponding Acls are added in the order of priority of Acl."`
 	IntfList  []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
 	Direction string   `DESCRIPTION: "IN/OUT direction in which ACL to be applied", SELECTION:"IN/OUT", DEFAULT:"IN"`
 }
 
 type Acl struct {
 	baseObj
-	AclName      string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name"`
-	Priority     int32  `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl priority"`
+	AclName      string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name. Rule Name should match with GroupName from AclGroup."`
+	Priority     int32  `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl priority. Acls with higher priority will have precedence over with lower."`
 	SourceMac    string `DESCRIPTION: "Source MAC address.", DEFAULT:""`
 	DestMac      string `DESCRIPTION: "Destination MAC address", DEFAULT:""`
 	SourceIp     string `DESCRIPTION: "Source IP address", DEFAULT:""`
@@ -356,8 +356,8 @@ type Acl struct {
 	DestMask     string `DESCRIPTION: "Network mark for dest IP", DEFAULT:""`
 	Action       string `DESCRIPTION: "Type of action (ALLOW/DENY)",SELECTION:"ALLOW/DENY",  DEFAULT:"Allow", STRLEN:"16"`
 	Proto        string `DESCRIPTION: "Protocol type TCP/UDP/ICMPv4/ICMPv6", SELECTION:"TCP/UDP/ICMPv4/ICMPv6", DEFAULT:""`
-	SrcPort      string `DESCRIPTION: "Source Port(used for mlag)", DEFAULT:""`
-	DstPort      string `DESCRIPTION: "Dest Port(used for mlag)", DEFAULT:""`
+	SrcIntf      string `DESCRIPTION: "Source Intf(used for mlag)", DEFAULT:""`
+	DstIntf      string `DESCRIPTION: "Dest Intf(used for mlag)", DEFAULT:""`
 	L4SrcPort    int32  `DESCRIPTION: "TCP/UDP source port", DEFAULT:0`
 	L4DstPort    int32  `DESCRIPTION: "TCP/UDP destionation port", DEFAULT:0`
 	L4PortMatch  string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), LT(larger than), GT(greater than), RANGE(port range)",SELECTION:"EQ/NEQ/LT/GT/RANGE", DEFAULT:"NA"`
