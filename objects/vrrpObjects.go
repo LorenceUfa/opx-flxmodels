@@ -29,9 +29,16 @@ type VrrpGlobal struct {
 	Enable bool   `DESCRIPTION: "Enable/Disable VRRP Globally", DEFAULT:false`
 }
 
-/*
- * This DS will be used while Created/Deleting Vrrp Intf Config
- */
+type VrrpGlobalState struct {
+	baseObj
+	Vrf           string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "System Vrf"`
+	Status        string `DESCRIPTION: "Enable/Disable VRRP Globally"`
+	V4Intfs       int32  `DESCRIPTION: "vrrp v4 interfaces configured"`
+	V6Intfs       int32  `DESCRIPTION: "vrrp v6 interfaces configured"`
+	TotalRxFrames int32  `DESCRIPTION: "total vrrp advertisement received`
+	TotalTxFrames int32  `DESCRIPTION: "total vrrp advertisement send out"`
+}
+
 type VrrpV4Intf struct {
 	baseObj
 	IntfRef               string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 2 aka VRRP with ipv4 Config needs to be done"`
