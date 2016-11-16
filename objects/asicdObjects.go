@@ -259,11 +259,23 @@ type LogicalIntfState struct {
 
 type SubIPv4Intf struct {
 	baseObj
-	IpAddr  string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Ip Address for the interface"`
-	IntfRef string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Intf name of system generated id (ifindex) of the ipv4Intf where sub interface is to be configured"`
-	Type    string `DESCRIPTION:"Type of interface, e.g. Secondary or Virtual", STRLEN:"16"`
-	MacAddr string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv4Intf mac address will be used", STRLEN:"17"`
-	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:false`
+	IntfRef string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Intf name for which ipv4Intf sub interface is to be configured"`
+	Type    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Type of interface, e.g. Secondary", STRLEN:"16", SELECTION: "Secondary`
+	IpAddr  string `DESCRIPTION:"Ip Address for sub interface", STRLEN:"18"`
+	MacAddr string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv4Intf mac address will be used", STRLEN:"17", DEFAULT:""`
+	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:true`
+}
+
+type SubIPv4IntfState struct {
+	baseObj
+	IntfRef       string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", DESCRIPTION:"Intf name for which ipv4Intf sub interface is to be configured"`
+	Type          string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", DESCRIPTION:"Type of interface, e.g. Secondary or Virtual"`
+	IfIndex       int32  `DESCRIPTION:"System assigned interface id for this sub IPv4 interface"`
+	IfName        string `DESCRIPTION:"System generated sub interface name"`
+	ParentIfIndex int32  `DESCRIPTION:"System assigned interface id for interface parent interface"`
+	IpAddr        string `DESCRIPTION:"Ip Address for sub interface"`
+	MacAddr       string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv4Intf mac address will be used"`
+	OperState     string `DESCRIPTION:"Operational state of this SubIPv4 interface"`
 }
 
 type IPv6Intf struct {
@@ -290,11 +302,12 @@ type IPv6IntfState struct {
 
 type SubIPv6Intf struct {
 	baseObj
-	IpAddr  string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Ip Address for the interface", STRLEN:"43"`
-	IntfRef string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Intf name of system generated id (ifindex) of the ipv4Intf where sub interface is to be configured"`
-	Type    string `DESCRIPTION:"Type of interface, e.g. Secondary or Virtual", STRLEN:"16"`
-	MacAddr string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv4Intf mac address will be used", STRLEN:"17"`
-	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:false`
+	IntfRef string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Intf name for which ipv6Intf sub interface is to be configured"`
+	Type    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Type of interface, e.g. Secondary", STRLEN:"16", SELECTION: "Secondary"`
+	IpAddr  string `DESCRIPTION:"Ip Address for sub interface", STRLEN:"43"`
+	MacAddr string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv6Intf mac address will be used", STRLEN:"17", DEFAULT:""`
+	LinkIp  bool   `DESCRIPTION: "Interface Link Scope IP Address auto-configured", DEFAULT:true`
+	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:true`
 }
 
 type BufferPortStatState struct {
@@ -316,21 +329,21 @@ type BufferGlobalStatState struct {
 
 type AclGlobal struct {
 	baseObj
-	Unit             int32  `SNAPROUTE:"KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "1", DESCRIPTION: "Hardware unit."`
+	Unit             int32  `SNAPROUTE:"KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "1", DESCRIPTION: "Indicates aclGlobal instance.", DEFAULT:0`
 	GlobalDropEnable string `SELECTION:"TRUE/FALSE", DEFAULT:"FALSE", DESCRIPTION:"Global traffic drop  flag"`
 }
 
 type AclGroup struct {
 	baseObj
-	GroupName string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "*", DESCRIPTION: "Acl name to be used to refer to this ACL"`
+	GroupName string   `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w",MULTIPLICITY: "*", DESCRIPTION: "Acl group name to be used to refer to this ACL. This name is matched with AclName from Acl and  corresponding Acls are added in the order of priority of Acl."`
 	IntfList  []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
 	Direction string   `DESCRIPTION: "IN/OUT direction in which ACL to be applied", SELECTION:"IN/OUT", DEFAULT:"IN"`
 }
 
 type Acl struct {
 	baseObj
-	AclName      string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name"`
-	Priority     int32  `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl priority"`
+	AclName      string `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name. Rule Name should match with GroupName from AclGroup."`
+	Priority     int32  `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl priority. Acls with higher priority will have precedence over with lower."`
 	SourceMac    string `DESCRIPTION: "Source MAC address.", DEFAULT:""`
 	DestMac      string `DESCRIPTION: "Destination MAC address", DEFAULT:""`
 	SourceIp     string `DESCRIPTION: "Source IP address", DEFAULT:""`
@@ -343,8 +356,8 @@ type Acl struct {
 	DestMask     string `DESCRIPTION: "Network mark for dest IP", DEFAULT:""`
 	Action       string `DESCRIPTION: "Type of action (ALLOW/DENY)",SELECTION:"ALLOW/DENY",  DEFAULT:"Allow", STRLEN:"16"`
 	Proto        string `DESCRIPTION: "Protocol type TCP/UDP/ICMPv4/ICMPv6", SELECTION:"TCP/UDP/ICMPv4/ICMPv6", DEFAULT:""`
-	SrcPort      string `DESCRIPTION: "Source Port(used for mlag)", DEFAULT:""`
-	DstPort      string `DESCRIPTION: "Dest Port(used for mlag)", DEFAULT:""`
+	SrcIntf      string `DESCRIPTION: "Source Intf(used for mlag)", DEFAULT:""`
+	DstIntf      string `DESCRIPTION: "Dest Intf(used for mlag)", DEFAULT:""`
 	L4SrcPort    int32  `DESCRIPTION: "TCP/UDP source port", DEFAULT:0`
 	L4DstPort    int32  `DESCRIPTION: "TCP/UDP destionation port", DEFAULT:0`
 	L4PortMatch  string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), LT(larger than), GT(greater than), RANGE(port range)",SELECTION:"EQ/NEQ/LT/GT/RANGE", DEFAULT:"NA"`
