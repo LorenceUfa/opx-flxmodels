@@ -4,7 +4,7 @@ type OspfAreaEntry struct {
 	ConfigObj
 	AreaId          string `SNAPROUTE: "KEY", CATEGORY:"L3",  ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: A 32-bit integer uniquely identifying an area. Area ID 0.0.0.0 is used for the OSPF backbone.`
 	AuthType        int32  `DESCRIPTION: The authentication type specified for an area., SELECTION: none(0)/simplePassword(1)/md5(2)`
-	ImportAsExtern  int32  `DESCRIPTION: Indicates if an area is a stub area, NSSA, or standard area.  Type-5 AS-external LSAs and type-11 Opaque LSAs are not imported into stub areas or NSSAs.  NSSAs import AS-external data as type-7 LSAs, SELECTION: importExternal(1)/importNoExternal(2)/importNssa(3) add typedef`
+	ImportAsExtern  int32  `DESCRIPTION: Indicates if an area is a stub area, NSSA, or standard area.  Type-5 AS-external LSAs and type-11 Opaque LSAs are not imported into stub areas or NSSAs.  NSSAs import AS-external data as type-7 LSAs, SELECTION: importExternal(1)/importNoExternal(2)/importNssa(3)`
 	AreaSummary     int32  `DESCRIPTION: The variable ospfAreaSummary controls the import of summary LSAs into stub and NSSA areas. It has no effect on other areas.  If it is noAreaSummary, the router will not originate summary LSAs into the stub or NSSA area. It will rely entirely on its default route.  If it is sendAreaSummary, the router will both summarize and propagate summary LSAs., SELECTION: sendAreaSummary(2)/noAreaSummary(1)`
 	StubDefaultCost int32  `DESCRIPTION: "For ABR this cost indicates default cost for summary LSA.", DEFAULT:"10" `
 }
