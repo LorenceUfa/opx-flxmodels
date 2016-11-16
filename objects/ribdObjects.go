@@ -103,7 +103,7 @@ type PolicyExtendedCommunity struct {
 type PolicyCondition struct {
 	baseObj
 	Name                   string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "PolicyConditionName"`
-	ConditionType          string `DESCRIPTION: "Specifies the match criterion this condition defines", SELECTION: "MatchProtocol"/"MatchDstIpPrefix"/"MatchSrcIpPrefix"/"MatchCommunity"/"MatchExtendedCommunity"`
+	ConditionType          string `DESCRIPTION: "Specifies the match criterion this condition defines", SELECTION: "MatchProtocol"/"MatchDstIpPrefix"/"MatchSrcIpPrefix"/"MatchCommunity"/"MatchExtendedCommunity"/"MatchLocalPref"/"MatchASPath"/"MatchMED"`
 	Protocol               string `DESCRIPTION: "Protocol to match on if the ConditionType is set to MatchProtocol",SELECTION:"CONNECTED"/"STATIC"/"OSPF"/"BGP"`
 	IpPrefix               string `DESCRIPTION: "Used in conjunction with MaskLengthRange to specify the IP Prefix to match on when the ConditionType is MatchDstIpPrefix/MatchSrcIpPrefix."`
 	MaskLengthRange        string `DESCRIPTION: "Used in conjuction with IpPrefix to specify specify the IP Prefix to match on when the ConditionType is MatchDstIpPrefix/MatchSrcIpPrefix."`
@@ -111,6 +111,8 @@ type PolicyCondition struct {
 	Community              string `DESCRIPTION: "BGP Community attrribute value to match on when the conditionType is MatchCommunity - based on RFC 1997. Can either specify the well-known communities or any other community value in the format AA:NN or 0x1234abcd format or a number."`
 	ExtendedCommunityType  string `DESCRIPTION: "Specifies BGP Extended Community type (used along with value)to match on when the conditionType is MatchExtendedCommunity - based on RFC 4360.",SELECTION:"Route-Target"/"Route-Origin"`
 	ExtendedCommunityValue string `DESCRIPTION: "Specifies BGP Extended Community value (used along with type)to match on when the conditionType is MatchExtendedCommunity - based on RFC 4360.This is a ":" separated string.Examples: 200:10 / 192.168.0.2:300 / 3000.200:210"`
+	LocalPref              uint32 `DESCRIPTION: "BGP LocalPreference attribute value to match on when the ConditionType is MatchLocalPref."`
+	ASPath                 string `DESCRIPTION: "BGP ASPath value (specified using regular expressions) to match on when ConditionType is MatchASPath."`
 }
 type PolicyConditionState struct {
 	baseObj
