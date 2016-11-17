@@ -34,8 +34,18 @@ type Ospfv2Global struct {
 
 type Ospfv2GlobalState struct {
 	ConfigObj
-	Vrf              string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "VRF id for OSPF global config", DEFAULT:"Default"`
-	AreaBdrRtrStatus bool   `DESCRIPTION: A flag to note whether this router is an Area Border Router.`
+	Vrf                string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "VRF id for OSPF global config", DEFAULT:"Default"`
+	AreaBdrRtrStatus   bool   `DESCRIPTION: A flag to note whether this router is an Area Border Router.`
+	NumOfAreas         uint32 `DESCRIPTION: Number of OSPF Areas.`
+	NumOfIntfs         uint32 `DESCRIPTION: Number of OSPF interfaces.`
+	NumOfNbrs          uint32 `DESCRIPTION: Number of Neighbors.`
+	NumOfLSA           uint32 `DESCRIPTION: Number of LSAs.`
+	NumOfRouterLSA     uint32 `DESCRIPTION: Number of Router LSAs.`
+	NumOfNetworkLSA    uint32 `DESCRIPTION: Number of Network LSAs.`
+	NumOfSummary3LSA   uint32 `DESCRIPTION: Number of Summary 3 LSAs.`
+	NumOfSummary4LSA   uint32 `DESCRIPTION: Number of Summary 4 LSAs.`
+	NumOfASExternalLSA uint32 `DESCRIPTION: Number of ASExternal LSAs.`
+	NumOfRoutes        uint32 `DESCRIPTION: Number of Routes (Unsupported).`
 }
 
 type Ospfv2Area struct {
@@ -52,13 +62,15 @@ type Ospfv2AreaState struct {
 	//NumSpfRuns       uint32 `DESCRIPTION: The number of times that the intra-area route table has been calculated using this area's link state database.  This is typically done using Dijkstra's algorithm.  Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ospfDiscontinuityTime.`
 	//NumBdrRtr        uint32 `DESCRIPTION: The total number of Area Border Routers reachable within this area.  This is initially zero and is calculated in each Shortest Path First (SPF) pass.`
 	//NumAsBdrRtr      uint32 `DESCRIPTION: The total number of Autonomous System Border Routers reachable within this area.  This is initially zero and is calculated in each SPF pass.`
-	NumRouterLsa     uint32 `DESCRIPTION: The total number of link state advertisements in this area's link state database, excluding AS-external LSAs.`
-	NumNetworkLsa    uint32 `DESCRIPTION: The total number of link state advertisements in this area's link state database, excluding AS-external LSAs.`
-	NumSummary3Lsa   uint32 `DESCRIPTION: The total number of link state advertisements in this area's link state database, excluding AS-external LSAs.`
-	NumSummary4Lsa   uint32 `DESCRIPTION: The total number of link state advertisements in this area's link state database, excluding AS-external LSAs.`
-	NumASExternalLsa uint32 `DESCRIPTION: The total number of link state advertisements in this area's link state database, excluding AS-external LSAs.`
-	NumIntfs         uint32 `DESCRIPTION: Number of Interfaces`
-	NumNbrs          uint32 `DESCRIPTION: Number of Neighbors`
+	NumOfRouterLSA     uint32 `DESCRIPTION: Number of Router LSA in a given Area`
+	NumOfNetworkLSA    uint32 `DESCRIPTION: Number of Network LSA in a given Area`
+	NumOfSummary3LSA   uint32 `DESCRIPTION: Number of Summary3 LSA in a given Area`
+	NumOfSummary4LSA   uint32 `DESCRIPTION: Number of Summary4 LSA in a given Area`
+	NumOfASExternalLSA uint32 `DESCRIPTION: Number of ASExternal LSA in a given Area`
+	NumOfIntfs         uint32 `DESCRIPTION: Number of Interfaces in a given Area.`
+	NumOfLSA           uint32 `DESCRIPTION: Number of LSAs in a given Area.`
+	NumOfNbrs          uint32 `DESCRIPTION: Number of Neighbors in a given Area`
+	NumOfRoutes        uint32 `DESCRIPTION: Number of Routes in a given Area (Unsupported).`
 }
 type Ospfv2Intf struct {
 	ConfigObj
@@ -84,7 +96,18 @@ type Ospfv2IntfState struct {
 	DesignatedRouterId       string `DESCRIPTION: The Router ID of the designated router.`
 	BackupDesignatedRouter   string `DESCRIPTION: The IP address of the backup designated router.`
 	BackupDesignatedRouterId string `DESCRIPTION: The Router ID of the backup designated router.`
-	NumNbrs                  uint32 `DESCRIPTION: Number of Neighbors`
+	NumOfRouterLSA           uint32 `DESCRIPTION: Number of Router LSA in a given Area corresponding to Interface`
+	NumOfNetworkLSA          uint32 `DESCRIPTION: Number of Network LSA in a given Area corresponding to Interface`
+	NumOfSummary3LSA         uint32 `DESCRIPTION: Number of Summary3 LSA in a given Area corresponding to Interface`
+	NumOfSummary4LSA         uint32 `DESCRIPTION: Number of Summary4 LSA in a given Area corresponding to Interfaces`
+	NumOfASExternalLSA       uint32 `DESCRIPTION: Number of ASExternal LSA in a given Area`
+	NumOfLSA                 uint32 `DESCRIPTION: Number of LSAs in a given Area corresponding to Interface.`
+	NumOfNbrs                uint32 `DESCRIPTION: Number of Neighbors in a given Interface`
+	NumOfRoutes              uint32 `DESCRIPTION: Number of Routes in a given Interface (Unsupported).`
+	Mtu                      uint32 `DESCRIPTION: MTU for a given Interface.`
+	Cost                     uint32 `DESCRIPTION: Cost for a given Interface.`
+	NumOfStateChange         uint32 `DESCRIPTION: Number of FSM State Change.`
+	TimeOfStateChange        string `DESCRIPTION: Last time stamp Intf FSM State Change.`
 }
 
 type Ospfv2NbrState struct {
