@@ -78,6 +78,7 @@ type LaPortChannelState struct {
 	OperState             string   `DESCRIPTION: Operational status of the lag group.  If all ports are DOWN this will display DOWN.  If the group was admin disabled then will display DOWN.  No ports configured in group will display DOWN`
 	IntfRefList           []string `DESCRIPTION: List of current member interfaces for the aggregate, expressed as references to existing interfaces`
 	IntfRefListUpInBundle []string `DESCRIPTION: List of current member interfaces for the aggregate, expressed as references to existing interfaces`
+	PresentInHw           bool     `DESCRIPTION: Boolean value indicating whether the LAG is created in H/W`
 }
 
 type IppLinkState struct {
