@@ -41,7 +41,7 @@
                      "svcName" : "nil"},
 "ndpObjects.go" : {"owner": "ndpd",
                     "location" : "l3/ndp/flexswitch", 
-                    "svcName" : "nil"},
+                    "svcName" : "ndpdInt"},
 "platformdObjects.go" : {"owner": "platformd",
                      "location" : "infra/platformd/rpc",
                      "svcName" : "nil"},
