@@ -6,7 +6,7 @@
                    "location" : "l3/arpd/rpc",
                    "svcName" : "arpdInt"},
 "ndpActions.go" : {"owner": "ndpd",
-                   "location" : "l3/ndp/flexswitch/",
+                   "location" : "l3/ndp/flexswitch",
                    "svcName" : "ndpdInt"},
 "bgpActions.go" : {"owner": "bgpd",
                    "location" : "l3/bgpd/rpc",
