@@ -310,6 +310,18 @@ type SubIPv6Intf struct {
 	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:true`
 }
 
+type SubIPv6IntfState struct {
+	baseObj
+	IntfRef       string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", DESCRIPTION:"Intf name for which ipv6Intf sub interface is to be configured"`
+	Type          string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", DESCRIPTION:"Type of interface, e.g. Secondary or Virtual"`
+	IfIndex       int32  `DESCRIPTION:"System assigned interface id for this sub IPv6 interface"`
+	IfName        string `DESCRIPTION:"System generated sub interface name"`
+	ParentIfIndex int32  `DESCRIPTION:"System assigned interface id for interface parent interface"`
+	IpAddr        string `DESCRIPTION:"Ip Address for sub interface"`
+	MacAddr       string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv6Intf mac address will be used"`
+	OperState     string `DESCRIPTION:"Operational state of this SubIPv6 interface"`
+}
+
 type BufferPortStatState struct {
 	baseObj
 	IntfRef        string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r", DESCRIPTION: "Front panel port name interface id"`

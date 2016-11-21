@@ -29,19 +29,27 @@ type VrrpGlobal struct {
 	Enable bool   `DESCRIPTION: "Enable/Disable VRRP Globally", DEFAULT:false`
 }
 
-/*
- * This DS will be used while Created/Deleting Vrrp Intf Config
- */
+type VrrpGlobalState struct {
+	baseObj
+	Vrf           string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "System Vrf"`
+	Status        string `DESCRIPTION: "Enable/Disable VRRP Globally"`
+	V4Intfs       int32  `DESCRIPTION: "vrrp v4 interfaces configured"`
+	V6Intfs       int32  `DESCRIPTION: "vrrp v6 interfaces configured"`
+	TotalRxFrames int32  `DESCRIPTION: "total vrrp advertisement received`
+	TotalTxFrames int32  `DESCRIPTION: "total vrrp advertisement send out"`
+}
+
 type VrrpV4Intf struct {
 	baseObj
 	IntfRef               string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Interface (name) for which VRRP Version 2 aka VRRP with ipv4 Config needs to be done"`
 	VRID                  int32  `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "Virtual Router's Unique Identifier", MIN:1, MAX:10`
+	Version               string `DESCRIPTION: "vrrp should be running in which version, SELECTION:"version2/version3", DEFAULT:"version3"`
 	Priority              int32  `DESCRIPTION: "Sending VRRP router's priority for the virtual router", DEFAULT:100, MIN:1, MAX:255`
 	Address               string `DESCRIPTION: "Virtual Router IPv4 address", STRLEN:"17"`
 	AdvertisementInterval int32  `DESCRIPTION: "Time interval between ADVERTISEMENTS", DEFAULT:1, MIN:1, MAX:4095`
 	PreemptMode           bool   `DESCRIPTION: "Controls whether a (starting or restarting) higher-priority Backup router preempts a lower-priority Master router", DEFAULT: true`
 	AcceptMode            bool   `DESCRIPTION: "Controls whether a virtual router in Master state will accept packets addressed to the address owner's IPv4 address as its own if it is not the IPv4 address owner.", DEFAULT:false`
-	AdminState            bool   `DESCRIPTION:"Vrrp State up or down", DEFAULT:true`
+	AdminState            string `DESCRIPTION:"Vrrp State up or down", DEFAULT:"DOWN", SELECTION:"UP/DOWN"`
 }
 
 type VrrpV6Intf struct {
@@ -53,7 +61,7 @@ type VrrpV6Intf struct {
 	AdvertisementInterval int32  `DESCRIPTION: "Time interval between ADVERTISEMENTS", DEFAULT:1, MIN:1, MAX:4095`
 	PreemptMode           bool   `DESCRIPTION: "Controls whether a (starting or restarting) higher-priority Backup router preempts a lower-priority Master router", DEFAULT: true`
 	AcceptMode            bool   `DESCRIPTION: "Controls whether a virtual router in Master state will accept packets addressed to the address owner's IPv6 address as its own if it is not the IPv6 address owner.", DEFAULT:false`
-	AdminState            bool   `DESCRIPTION:"Vrrp State up or down", DEFAULT:true`
+	AdminState            string `DESCRIPTION:"Vrrp State up or down", DEFAULT:"DOWN", SELECTION:"UP/DOWN"`
 }
 
 type VrrpV4IntfState struct {
