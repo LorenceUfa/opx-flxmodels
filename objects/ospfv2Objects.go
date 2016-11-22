@@ -25,7 +25,7 @@ package objects
 
 type Ospfv2Global struct {
 	ConfigObj
-	Vrf                string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for OSPF global config", DEFAULT:"Default"`
+	Vrf                string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for OSPF global config", DEFAULT:"default"`
 	RouterId           string `DESCRIPTION: A 32-bit integer uniquely identifying the router in the Autonomous System. By convention, to ensure uniqueness, this should default to the value of one of the router's IP interface addresses.  This object is persistent and when written the entity SHOULD save the change to non-volatile storage., DEFAULT:"0.0.0.0"`
 	AdminState         string `DESCRIPTION: Indicates if OSPF is enabled globally., DEFAULT:"DOWN"`
 	ASBdrRtrStatus     bool   `DESCRIPTION: A flag to note whether this router is configured as an Autonomous System Border Router.  This object is persistent and when written the entity SHOULD save the change to non-volatile storage., DEFAULT:false`
