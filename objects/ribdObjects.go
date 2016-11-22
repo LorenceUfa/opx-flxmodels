@@ -158,7 +158,7 @@ type PolicyConditionState struct {
 	PolicyStmtList []string `DESCRIPTION: "List of policy statements using this condition"`
 }
 type PolicyAction struct {
-	Attr                   string `DESCRIPTION:"Attribute on which action is being applied",SELECTION:"Community"/"LocalPref"/"ExtendedCommunity"/"ASPath"/"MED"`
+	Attr                   string `DESCRIPTION:"Attribute on which action is being applied",SELECTION:"Community"/"LocalPref"/"ExtendedCommunity"/"PrependASPath"/"MED"`
 	Community              string `DESCRIPTION: "BGP Community attribute value when the action attr is Community.Can either specify the well-known communities or any other community value in the format AA:NN or 0x1234abcd format or a number."`
 	ExtendedCommunityType  string `DESCRIPTION: "Specifies BGP Extended Community type (used along with value)to set when the attr is ExtendedCommunity - based on RFC 4360.",SELECTION:"Route-Target"/"Route-Origin"`
 	ExtendedCommunityValue string `DESCRIPTION: "Specifies BGP Extended Community value (used along with type)to set when the attr is ExtendedCommunity - based on RFC 4360.This is a ":" separated string.Examples: 200:10 / 192.168.0.2:300 / 3000.200:210"`
