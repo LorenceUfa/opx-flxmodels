@@ -25,7 +25,7 @@ package objects
 
 type Ospfv2Global struct {
 	ConfigObj
-	Vrf                string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for OSPF global config", DEFAULT:"Default"`
+	Vrf                string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "VRF id for OSPF global config", DEFAULT:"default"`
 	RouterId           string `DESCRIPTION: A 32-bit integer uniquely identifying the router in the Autonomous System. By convention, to ensure uniqueness, this should default to the value of one of the router's IP interface addresses.  This object is persistent and when written the entity SHOULD save the change to non-volatile storage., DEFAULT:"0.0.0.0"`
 	AdminState         string `DESCRIPTION: Indicates if OSPF is enabled globally., DEFAULT:"DOWN"`
 	ASBdrRtrStatus     bool   `DESCRIPTION: A flag to note whether this router is configured as an Autonomous System Border Router.  This object is persistent and when written the entity SHOULD save the change to non-volatile storage., DEFAULT:false`
@@ -128,6 +128,8 @@ type Ospfv2LsdbState struct {
 	SequenceNum   uint32 `DESCRIPTION: The sequence number field is a signed 32-bit integer.  It starts with the value '80000001'h, or -'7FFFFFFF'h, and increments until '7FFFFFFF'h. Thus, a typical sequence number will be very negative. It is used to detect old and duplicate Link State Advertisements.  The space of sequence numbers is linearly ordered.  The larger the sequence number, the more recent the advertisement.`
 	Age           uint16 `DESCRIPTION: This field is the age of the link state advertisement in seconds.`
 	Checksum      uint16 `DESCRIPTION: This field is the checksum of the complete contents of the advertisement, excepting the age field.  The age field is excepted so that an advertisement's age can be incremented without updating the checksum.  The checksum used is the same that is used for ISO connectionless  datagrams; it is commonly referred to as the Fletcher checksum.`
+	Options       uint8  `DESCRIPTION: Options field in LSA.`
+	Length        uint16 `DESCRIPTION: Lenght of LSA including LSA header.`
 	Advertisement string `DESCRIPTION: The entire link state advertisement, including its header.  Note that for variable length LSAs, SNMP agents may not be able to return the largest string size.`
 }
 
