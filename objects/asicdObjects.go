@@ -100,10 +100,10 @@ type Vlan struct {
 	baseObj
 	VlanId        int32    `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"w", MULTIPLICITY: "*", MIN:"1", MAX: "4094", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
 	AdminState    string   `DESCRIPTION: "Administrative state of this vlan interface", SELECTION:"UP/DOWN", DEFAULT:"UP"`
-	IntfList      []string `DESCRIPTION: "List of interface names or ifindex values to  be added as tagged members of the vlan"`
-	UntagIntfList []string `DESCRIPTION: "List of interface names or ifindex values to  be added as untagged members of the vlan"`
 	Description   string   `DESCRIPTION: "Description about the vlan interface", DEFAULT:"none"`
 	AutoState     string   `DESCRIPTION: Auto State of this vlan interface", SELECTION:"UP/DOWN", DEFAULT:"UP"`
+	IntfList      []string `DESCRIPTION: "List of interface names or ifindex values to  be added as tagged members of the vlan"`
+	UntagIntfList []string `DESCRIPTION: "List of interface names or ifindex values to  be added as untagged members of the vlan"`
 }
 
 type VlanState struct {
