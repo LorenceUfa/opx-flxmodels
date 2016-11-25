@@ -100,6 +100,8 @@ type Vlan struct {
 	baseObj
 	VlanId        int32    `SNAPROUTE: "KEY", CATEGORY:"L2", ACCESS:"w", MULTIPLICITY: "*", MIN:"1", MAX: "4094", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
 	AdminState    string   `DESCRIPTION: "Administrative state of this vlan interface", SELECTION:"UP/DOWN", DEFAULT:"UP"`
+	Description   string   `DESCRIPTION: "Description about the vlan interface", DEFAULT:"none"`
+	AutoState     string   `DESCRIPTION: Auto State of this vlan interface", SELECTION:"UP/DOWN", DEFAULT:"UP"`
 	IntfList      []string `DESCRIPTION: "List of interface names or ifindex values to  be added as tagged members of the vlan"`
 	UntagIntfList []string `DESCRIPTION: "List of interface names or ifindex values to  be added as untagged members of the vlan"`
 }
@@ -259,11 +261,23 @@ type LogicalIntfState struct {
 
 type SubIPv4Intf struct {
 	baseObj
-	IpAddr  string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Ip Address for the interface"`
-	IntfRef string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Intf name of system generated id (ifindex) of the ipv4Intf where sub interface is to be configured"`
-	Type    string `DESCRIPTION:"Type of interface, e.g. Secondary or Virtual", STRLEN:"16"`
-	MacAddr string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv4Intf mac address will be used", STRLEN:"17"`
-	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:false`
+	IntfRef string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Intf name for which ipv4Intf sub interface is to be configured"`
+	Type    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Type of interface, e.g. Secondary", STRLEN:"16", SELECTION: "Secondary`
+	IpAddr  string `DESCRIPTION:"Ip Address for sub interface", STRLEN:"18"`
+	MacAddr string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv4Intf mac address will be used", STRLEN:"17", DEFAULT:""`
+	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:true`
+}
+
+type SubIPv4IntfState struct {
+	baseObj
+	IntfRef       string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", DESCRIPTION:"Intf name for which ipv4Intf sub interface is to be configured"`
+	Type          string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", DESCRIPTION:"Type of interface, e.g. Secondary or Virtual"`
+	IfIndex       int32  `DESCRIPTION:"System assigned interface id for this sub IPv4 interface"`
+	IfName        string `DESCRIPTION:"System generated sub interface name"`
+	ParentIfIndex int32  `DESCRIPTION:"System assigned interface id for interface parent interface"`
+	IpAddr        string `DESCRIPTION:"Ip Address for sub interface"`
+	MacAddr       string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv4Intf mac address will be used"`
+	OperState     string `DESCRIPTION:"Operational state of this SubIPv4 interface"`
 }
 
 type IPv6Intf struct {
@@ -290,11 +304,24 @@ type IPv6IntfState struct {
 
 type SubIPv6Intf struct {
 	baseObj
-	IpAddr  string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Ip Address for the interface", STRLEN:"43"`
-	IntfRef string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Intf name of system generated id (ifindex) of the ipv4Intf where sub interface is to be configured"`
-	Type    string `DESCRIPTION:"Type of interface, e.g. Secondary or Virtual", STRLEN:"16"`
-	MacAddr string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv4Intf mac address will be used", STRLEN:"17"`
-	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:false`
+	IntfRef string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Intf name for which ipv6Intf sub interface is to be configured"`
+	Type    string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", DESCRIPTION:"Type of interface, e.g. Secondary", STRLEN:"16", SELECTION: "Secondary"`
+	IpAddr  string `DESCRIPTION:"Ip Address for sub interface", STRLEN:"43"`
+	MacAddr string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv6Intf mac address will be used", STRLEN:"17", DEFAULT:""`
+	LinkIp  bool   `DESCRIPTION: "Interface Link Scope IP Address auto-configured", DEFAULT:true`
+	Enable  bool   `DESCRIPTION:"Enable or disable this interface", DEFAULT:true`
+}
+
+type SubIPv6IntfState struct {
+	baseObj
+	IntfRef       string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", DESCRIPTION:"Intf name for which ipv6Intf sub interface is to be configured"`
+	Type          string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", DESCRIPTION:"Type of interface, e.g. Secondary or Virtual"`
+	IfIndex       int32  `DESCRIPTION:"System assigned interface id for this sub IPv6 interface"`
+	IfName        string `DESCRIPTION:"System generated sub interface name"`
+	ParentIfIndex int32  `DESCRIPTION:"System assigned interface id for interface parent interface"`
+	IpAddr        string `DESCRIPTION:"Ip Address for sub interface"`
+	MacAddr       string `DESCRIPTION:"Mac address to be used for the sub interface. If none specified IPv6Intf mac address will be used"`
+	OperState     string `DESCRIPTION:"Operational state of this SubIPv6 interface"`
 }
 
 type BufferPortStatState struct {

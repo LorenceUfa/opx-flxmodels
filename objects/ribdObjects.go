@@ -96,21 +96,60 @@ type PolicyPrefixSetState struct {
 	PrefixList          []PolicyPrefix `DESCRIPTION:"List of policy prefixes part of this prefix set."`
 	PolicyConditionList []string       `DESCRIPTION:"List of policy conditions using this prefix set"`
 }
+type PolicyCommunitySet struct {
+	baseObj
+	Name          string   `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w",MULTIPLICITY:"*",DESCRIPTION:"Policy Community List name.`
+	CommunityList []string `DESCRIPTION:"List of policy communities part of this community list."`
+}
+type PolicyCommunitySetState struct {
+	baseObj
+	Name                string   `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r",MULTIPLICITY:"*",DESCRIPTION:"Policy Community list name.`
+	CommunityList       []string `DESCRIPTION:"List of policy communities part of this community list."`
+	PolicyConditionList []string `DESCRIPTION:"List of policy conditions using this community list"`
+}
 type PolicyExtendedCommunity struct {
 	Type  string `DESCRIPTION: "Type of extended community",SELECTION:"Route-Target"/"Route-Origin"`
 	Value string `DESCRIPTION: "A : separated value of the extended community, examples: 200:10 / 192.168.0.2:300 / 3000.200:210"`
 }
+type PolicyExtendedCommunitySet struct {
+	baseObj
+	Name                  string                    `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w",MULTIPLICITY:"*",DESCRIPTION:"Policy Extended Community List name.`
+	ExtendedCommunityList []PolicyExtendedCommunity `DESCRIPTION:"List of policy communities part of this community list."`
+}
+type PolicyExtendedCommunitySetState struct {
+	baseObj
+	Name                  string                    `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r",MULTIPLICITY:"*",DESCRIPTION:"Policy Community list name.`
+	ExtendedCommunityList []PolicyExtendedCommunity `DESCRIPTION:"List of policy extended communities part of this extended community list."`
+	PolicyConditionList   []string                  `DESCRIPTION:"List of policy conditions using this extended community list"`
+}
+type PolicyASPathSet struct {
+	baseObj
+	Name       string   `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w",MULTIPLICITY:"*",DESCRIPTION:"Policy ASPath List name.`
+	ASPathList []string `DESCRIPTION:"List of ASPaths part of this list."`
+}
+type PolicyASPathSetState struct {
+	baseObj
+	Name                string   `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r",MULTIPLICITY:"*",DESCRIPTION:"Policy ASPath list name.`
+	ASPathList          []string `DESCRIPTION:"List of ASPaths part of this community list."`
+	PolicyConditionList []string `DESCRIPTION:"List of policy conditions using this aspath list"`
+}
 type PolicyCondition struct {
 	baseObj
 	Name                   string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "PolicyConditionName"`
-	ConditionType          string `DESCRIPTION: "Specifies the match criterion this condition defines", SELECTION: "MatchProtocol"/"MatchDstIpPrefix"/"MatchSrcIpPrefix"/"MatchCommunity"/"MatchExtendedCommunity"`
+	ConditionType          string `DESCRIPTION: "Specifies the match criterion this condition defines", SELECTION: "MatchProtocol"/"MatchDstIpPrefix"/"MatchSrcIpPrefix"/"MatchCommunity"/"MatchExtendedCommunity"/"MatchLocalPref"/"MatchASPath"/"MatchMED"`
 	Protocol               string `DESCRIPTION: "Protocol to match on if the ConditionType is set to MatchProtocol",SELECTION:"CONNECTED"/"STATIC"/"OSPF"/"BGP"`
-	IpPrefix               string `DESCRIPTION: "Used in conjunction with MaskLengthRange to specify the IP Prefix to match on when the ConditionType is MatchDstIpPrefix/MatchSrcIpPrefix."`
-	MaskLengthRange        string `DESCRIPTION: "Used in conjuction with IpPrefix to specify specify the IP Prefix to match on when the ConditionType is MatchDstIpPrefix/MatchSrcIpPrefix."`
+	IpPrefix               string `DESCRIPTION: "Used in conjunction with MaskLengthRange to specify the IP Prefix to match on when the ConditionType is MatchDstIpPrefix/MatchSrcIpPrefix.", OPTIONAL, DEFAULT:""`
+	MaskLengthRange        string `DESCRIPTION: "Used in conjuction with IpPrefix to specify specify the IP Prefix to match on when the ConditionType is MatchDstIpPrefix/MatchSrcIpPrefix.", OPTIONAL, DEFAULT:""`
 	PrefixSet              string `DESCRIPTION: "Name of a pre-defined prefix set to be used as a condition qualifier.", OPTIONAL, DEFAULT:""`
-	Community              string `DESCRIPTION: "BGP Community attrribute value to match on when the conditionType is MatchCommunity - based on RFC 1997. Can either specify the well-known communities or any other community value in the format AA:NN or 0x1234abcd format or a number."`
-	ExtendedCommunityType  string `DESCRIPTION: "Specifies BGP Extended Community type (used along with value)to match on when the conditionType is MatchExtendedCommunity - based on RFC 4360.",SELECTION:"Route-Target"/"Route-Origin"`
-	ExtendedCommunityValue string `DESCRIPTION: "Specifies BGP Extended Community value (used along with type)to match on when the conditionType is MatchExtendedCommunity - based on RFC 4360.This is a ":" separated string.Examples: 200:10 / 192.168.0.2:300 / 3000.200:210"`
+	Community              string `DESCRIPTION: "BGP Community attrribute value to match on when the conditionType is MatchCommunity - based on RFC 1997. Can either specify the well-known communities or any other community value in the format AA:NN or 0x1234abcd format or a number.", OPTIONAL, DEFAULT:""`
+	CommunitySet           string `DESCRIPTION: "List of BGP communities attribute to match on when the conditionType is MatchCommunity", OPTIONAL, DEFAULT:""`
+	ExtendedCommunityType  string `DESCRIPTION: "Specifies BGP Extended Community type (used along with value)to match on when the conditionType is MatchExtendedCommunity - based on RFC 4360.",SELECTION:"Route-Target"/"Route-Origin", OPTIONAL, DEFAULT:""`
+	ExtendedCommunityValue string `DESCRIPTION: "Specifies BGP Extended Community value (used along with type)to match on when the conditionType is MatchExtendedCommunity - based on RFC 4360.This is a ":" separated string.Examples: 200:10 / 192.168.0.2:300 / 3000.200:210", OPTIONAL, DEFAULT:""`
+	ExtendedCommunitySet   string `DESCRIPTIONL "List of BGP Extended Community type/values to match on when the ConditionType is MatchExtendedCommunity", OPTIONAL, DEFAULT:""`
+	LocalPref              uint32 `DESCRIPTION: "BGP LocalPreference attribute value to match on when the ConditionType is MatchLocalPref.", OPTIONAL, DEFAULT:0`
+	ASPath                 string `DESCRIPTION: "BGP ASPath value (specified using regular expressions) to match on when ConditionType is MatchASPath.", OPTIONAL, DEFAULT:""`
+	ASPathSet              string `DESCRIPTION: "List of ASPath values to match on when ConditionType is MATCHASPath", OPTIONAL, DEFAULT:""`
+	MED                    uint32 `DESCRIPTION: "BGP MED value ro match on when ConditionType is MatchMED", OPTIONAL, DEFAULT:0`
 }
 type PolicyConditionState struct {
 	baseObj
@@ -119,15 +158,17 @@ type PolicyConditionState struct {
 	PolicyStmtList []string `DESCRIPTION: "List of policy statements using this condition"`
 }
 type PolicyAction struct {
-	Attr                   string `DESCRIPTION:"Attribute on which action is being applied",SELECTION:"Community"/"LocalPref"/"ExtendedCommunity"`
-	Community              string `DESCRIPTION: "BGP Community attribute value when the action attr is Community.Can either specify the well-known communities or any other community value in the format AA:NN or 0x1234abcd format or a number."`
-	ExtendedCommunityType  string `DESCRIPTION: "Specifies BGP Extended Community type (used along with value)to match on when the conditionType is MatchExtendedCommunity - based on RFC 4360.",SELECTION:"Route-Target"/"Route-Origin"`
-	ExtendedCommunityValue string `DESCRIPTION: "Specifies BGP Extended Community value (used along with type)to match on when the conditionType is MatchExtendedCommunity - based on RFC 4360.This is a ":" separated string.Examples: 200:10 / 192.168.0.2:300 / 3000.200:210"`
-	LocalPref              uint32 `DESCRIPTION: "BGP LocalPreference attribute value when the action attr is LocalPref."`
+	Attr                   string `DESCRIPTION:"Attribute on which action is being applied",SELECTION:"Community"/"LocalPref"/"ExtendedCommunity"/"PrependASPath"/"MED"`
+	Community              string `DESCRIPTION: "BGP Community attribute value when the action attr is Community.Can either specify the well-known communities or any other community value in the format AA:NN or 0x1234abcd format or a number.", OPTIONAL, DEFAULT:""`
+	ExtendedCommunityType  string `DESCRIPTION: "Specifies BGP Extended Community type (used along with value)to set when the attr is ExtendedCommunity - based on RFC 4360.",SELECTION:"Route-Target"/"Route-Origin", OPTIONAL, DEFAULT:""`
+	ExtendedCommunityValue string `DESCRIPTION: "Specifies BGP Extended Community value (used along with type)to set when the attr is ExtendedCommunity - based on RFC 4360.This is a ":" separated string.Examples: 200:10 / 192.168.0.2:300 / 3000.200:210", OPTIONAL, DEFAULT:""`
+	LocalPref              uint32 `DESCRIPTION: "BGP LocalPreference attribute value when the action attr is LocalPref.", OPTIONAL, DEFAULT:0`
+	PrependASPath          string `DESCRIPTION: "BGP ASPath Value (specified using regular expressions) to prepend when the attr is ASPath", OPTIONAL, DEFAULT:""`
+	MED                    uint32 `DESCRIPTION: "BGP MED Value to set when attr is MED", OPTIONAL, DEFAULT:0`
 }
 type PolicyStmt struct {
 	baseObj
-	SetActions      []PolicyAction `DESCRIPTION : "A set of attr/value pairs to be set associatded with this statement."`
+	SetActions      []PolicyAction `DESCRIPTION : "A set of attr/value pairs to be set associatded with this statement.", OPTIONAL`
 	Name            string         `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Policy Statement Name"`
 	MatchConditions string         `DESCRIPTION :"Specifies whether to match all/any of the conditions of this policy statement",SELECTION:"any"/"all",DEFAULT:"all"`
 	Conditions      []string       `DESCRIPTION :"List of conditions added to this policy statement"`
@@ -160,6 +201,18 @@ type PolicyDefinitionState struct {
 	IpPrefixList []string `DESCRIPTION :"List of networks/IP Prefixes this policy has been applied on to."`
 }
 
+type RedistributionPolicy struct {
+	baseObj
+	Target string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Target protocol for redistribution"`
+	Source string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Source Protocol for redistribution"`
+	Policy string `DESCRIPTION:"Policy to be applied from source to Target"`
+}
+type RedistributionPolicyState struct {
+	baseObj
+	Target string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Target protocol for redistribution"`
+	Source string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "Source Protocol for redistribution"`
+	Policy string `DESCRIPTION:"Policy to be applied from source to Target"`
+}
 type RouteDistanceState struct {
 	baseObj
 	Protocol string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "RouteDistanceState protocol"`
