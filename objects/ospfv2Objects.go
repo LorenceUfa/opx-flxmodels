@@ -140,23 +140,19 @@ type Ospfv2NextHop struct {
 	AdvRtrId      string `DESCRIPTION: Advertising router id`
 }
 
-type Ospfv2LsaKey struct {
-	LSType    uint8  `DESCRIPTION: Link state type`
-	LSId      string `DESCRIPTION: Link state id`
-	AdvRouter string `DESCRIPTION: Advertising router`
-}
-
 type Ospfv2RouteState struct {
 	baseObj
-	DestId          string          `SNAPROUTE: "KEY", CATEGORY:"L3",  ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Dest ip" , USESTATEDB:"true"`
-	AddrMask        string          ` SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "netmask"`
-	DestType        string          `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: destination type`
-	OptCapabilities int32           `DESCRIPTION: "capabilities", MIN: 0, MAX:2147483647`
-	AreaId          string          `DESCRIPTION: area id for the route`
-	PathType        string          `DESCRIPTION: "Path type such as direct / connected / ext"`
-	Cost            uint32          `DESCRIPTION: "Cost to reach the destination", MIN: 0, MAX:2147483647`
-	Type2Cost       uint32          `DESCRIPTION: "Type2 cost used for external routes.", MIN: 0, MAX:2147483647`
-	NumOfPaths      uint16          `DESCRIPTION: "Total number of paths", MIN: 0, MAX: 2147483647`
-	NextHops        []Ospfv2NextHop `DESCRIPTION: "Nexthops for this route"`
-	LSOrigin        Ospfv2LsaKey    `DESCRIPTION: "Ls dabatase key"`
+	DestId            string          `SNAPROUTE: "KEY", CATEGORY:"L3",  ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Dest ip" , USESTATEDB:"true"`
+	AddrMask          string          ` SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "netmask"`
+	DestType          string          `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: destination type`
+	OptCapabilities   int32           `DESCRIPTION: "capabilities", MIN: 0, MAX:2147483647`
+	AreaId            string          `DESCRIPTION: area id for the route`
+	PathType          string          `DESCRIPTION: "Path type such as direct / connected / ext"`
+	Cost              uint32          `DESCRIPTION: "Cost to reach the destination", MIN: 0, MAX:2147483647`
+	Type2Cost         uint32          `DESCRIPTION: "Type2 cost used for external routes.", MIN: 0, MAX:2147483647`
+	NumOfPaths        uint16          `DESCRIPTION: "Total number of paths", MIN: 0, MAX: 2147483647`
+	LSOriginLSType    string          `DESCRIPTION: "Link State Type only valid for Intra Area"`
+	LSOriginLSId      string          `DESCRIPTION: "Link State Id only valid for Intra Area"`
+	LSOriginAdvRouter string          `DESCRIPTION: "Advertising router Id only valid for Intra Area"`
+	NextHops          []Ospfv2NextHop `DESCRIPTION: "Nexthops for this route"`
 }
