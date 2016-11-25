@@ -204,7 +204,7 @@ type PolicyDefinitionState struct {
 type RedistributionPolicy struct {
 	baseObj
 	Target string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Target protocol for redistribution"`
-	Source string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Source Protocol for redistribution", DEFAULT:"ALL"`
+	Source string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Source Protocol for redistribution"`
 	Policy string `DESCRIPTION:"Policy to be applied from source to Target"`
 }
 type RedistributionPolicyState struct {
