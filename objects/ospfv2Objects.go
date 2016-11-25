@@ -125,7 +125,7 @@ type Ospfv2LsdbState struct {
 	LSId          string `SNAPROUTE: "KEY", CATEGORY:"L3",  DESCRIPTION: The Link State ID is an LS Type Specific field containing either a Router ID or an IP address; it identifies the piece of the routing domain that is being described by the advertisement.`
 	AreaId        string `SNAPROUTE: "KEY", CATEGORY:"L3",  DESCRIPTION: The 32-bit identifier of the area from which the LSA was received.`
 	AdvRouterId   string `SNAPROUTE: "KEY", CATEGORY:"L3",  DESCRIPTION: The 32-bit number that uniquely identifies the originating router in the Autonomous System.`
-	SequenceNum   uint32 `DESCRIPTION: The sequence number field is a signed 32-bit integer.  It starts with the value '80000001'h, or -'7FFFFFFF'h, and increments until '7FFFFFFF'h. Thus, a typical sequence number will be very negative. It is used to detect old and duplicate Link State Advertisements.  The space of sequence numbers is linearly ordered.  The larger the sequence number, the more recent the advertisement.`
+	SequenceNum   string `DESCRIPTION: The sequence number field is a signed 32-bit integer.  It starts with the value '80000001'h, or -'7FFFFFFF'h, and increments until '7FFFFFFF'h. Thus, a typical sequence number will be very negative. It is used to detect old and duplicate Link State Advertisements.  The space of sequence numbers is linearly ordered.  The larger the sequence number, the more recent the advertisement.`
 	Age           uint16 `DESCRIPTION: This field is the age of the link state advertisement in seconds.`
 	Checksum      uint16 `DESCRIPTION: This field is the checksum of the complete contents of the advertisement, excepting the age field.  The age field is excepted so that an advertisement's age can be incremented without updating the checksum.  The checksum used is the same that is used for ISO connectionless  datagrams; it is commonly referred to as the Fletcher checksum.`
 	Options       uint8  `DESCRIPTION: Options field in LSA.`
@@ -140,23 +140,19 @@ type Ospfv2NextHop struct {
 	AdvRtrId      string `DESCRIPTION: Advertising router id`
 }
 
-type Ospfv2LsaKey struct {
-	LSType    uint8  `DESCRIPTION: Link state type`
-	LSId      string `DESCRIPTION: Link state id`
-	AdvRouter string `DESCRIPTION: Advertising router`
-}
-
 type Ospfv2RouteState struct {
 	baseObj
-	DestId          string          `SNAPROUTE: "KEY", CATEGORY:"L3",  ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Dest ip" , USESTATEDB:"true"`
-	AddrMask        string          ` SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "netmask"`
-	DestType        string          `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: destination type`
-	OptCapabilities int32           `DESCRIPTION: "capabilities", MIN: 0, MAX:2147483647`
-	AreaId          string          `DESCRIPTION: area id for the route`
-	PathType        string          `DESCRIPTION: "Path type such as direct / connected / ext"`
-	Cost            uint32          `DESCRIPTION: "Cost to reach the destination", MIN: 0, MAX:2147483647`
-	Type2Cost       uint32          `DESCRIPTION: "Type2 cost used for external routes.", MIN: 0, MAX:2147483647`
-	NumOfPaths      uint16          `DESCRIPTION: "Total number of paths", MIN: 0, MAX: 2147483647`
-	NextHops        []Ospfv2NextHop `DESCRIPTION: "Nexthops for this route"`
-	LSOrigin        Ospfv2LsaKey    `DESCRIPTION: "Ls dabatase key"`
+	DestId            string          `SNAPROUTE: "KEY", CATEGORY:"L3",  ACCESS:"r",  MULTIPLICITY:"*", DESCRIPTION: "Dest ip" , USESTATEDB:"true"`
+	AddrMask          string          ` SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: "netmask"`
+	DestType          string          `SNAPROUTE: "KEY", CATEGORY:"L3", DESCRIPTION: destination type`
+	OptCapabilities   int32           `DESCRIPTION: "capabilities", MIN: 0, MAX:2147483647`
+	AreaId            string          `DESCRIPTION: area id for the route`
+	PathType          string          `DESCRIPTION: "Path type such as direct / connected / ext"`
+	Cost              uint32          `DESCRIPTION: "Cost to reach the destination", MIN: 0, MAX:2147483647`
+	Type2Cost         uint32          `DESCRIPTION: "Type2 cost used for external routes.", MIN: 0, MAX:2147483647`
+	NumOfPaths        uint16          `DESCRIPTION: "Total number of paths", MIN: 0, MAX: 2147483647`
+	LSOriginLSType    string          `DESCRIPTION: "Link State Type only valid for Intra Area"`
+	LSOriginLSId      string          `DESCRIPTION: "Link State Id only valid for Intra Area"`
+	LSOriginAdvRouter string          `DESCRIPTION: "Advertising router Id only valid for Intra Area"`
+	NextHops          []Ospfv2NextHop `DESCRIPTION: "Nexthops for this route"`
 }
