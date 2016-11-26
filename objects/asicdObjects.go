@@ -145,11 +145,11 @@ type Port struct {
 	AdminState     string `DESCRIPTION: "Administrative state of this port", STRLEN:"4" SELECTION:"UP/DOWN", DEFAULT:"DOWN"`
 	MacAddr        string `DESCRIPTION: "Mac address associated with this port", STRLEN:"17"`
 	Speed          int32  `DESCRIPTION: "Port speed in Mbps", MIN: 10, MAX: "100000"`
-	Duplex         string `DESCRIPTION: "Duplex setting for this port", STRLEN:"16" SELECTION:"Half Duplex/Full Duplex", DEFAULT:"Full Duplex"`
+	Duplex         string `DESCRIPTION: "Duplex setting for this port", STRLEN:"16" SELECTION:"Half_Duplex/Full_Duplex", DEFAULT:"Full_Duplex"`
 	Autoneg        string `DESCRIPTION: "Autonegotiation setting for this port", STRLEN:"4" SELECTION:"ON/OFF", DEFAULT:"OFF"`
 	MediaType      string `DESCRIPTION: "Type of media inserted into this port", STRLEN:"16"`
 	Mtu            int32  `DESCRIPTION: "Maximum transmission unit size for this port"`
-	BreakOutMode   string `DESCRIPTION: "Break out mode for the port. Only applicable on ports that support breakout. Valid modes - 1x40, 4x10", STRLEN:"6" SELECTION:"1x40(1)/4x10(2)"`
+	BreakOutMode   string `DESCRIPTION: "Break out mode for the port. Only applicable on ports that support breakout. Valid modes - 1x40, 4x10", STRLEN:"6" SELECTION:"1x40/4x10"`
 	LoopbackMode   string `DESCRIPTION: "Desired loopback setting for this port", SELECTION:"NONE/MAC/PHY/RMT", DEFAULT:"NONE"`
 	EnableFEC      bool   `DESCRIPTION: "Enable/Disable 802.3bj FEC on this interface", DEFAULT: false`
 	PRBSTxEnable   bool   `DESCRIPTION: "Enable/Disable generation of PRBS on this port", DEFAULT: false`
