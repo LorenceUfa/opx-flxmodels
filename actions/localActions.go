@@ -44,7 +44,17 @@ type ApplyConfig struct {
 	ConfigData map[string][]json.RawMessage `json:"ConfigData"`
 }
 
+type ApplyConfigByFile struct {
+	baseAction
+	FileName string `DESCRIPTION: "FileName for the config to be applied", QPARAM: "optional" , DEFAULT:"startup-config"`
+}
+
 type ForceApplyConfig struct {
 	baseAction
 	ConfigData map[string][]json.RawMessage `json:"ConfigData"`
+}
+
+type ForceApplyConfigByFile struct {
+	baseAction
+	FileName string `DESCRIPTION: "FileName for the config to be applied", QPARAM: "optional" , DEFAULT:"startup-config"`
 }
