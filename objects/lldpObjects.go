@@ -60,6 +60,8 @@ type LLDPIntfState struct {
 	PeerMac             string `DESCRIPTION: "Mac address of direct connection"`
 	PeerPort            string `DESCRIPTION: "Name of directtly connected pors"`
 	PeerHostName        string `DESCRIPTION: "Name of the peer host`
+	PortDescription     string `DESCRIPTION: "peer port description"`
+	VlanId              int32  `DESCRIPTION: "Port Vlan Identifier"`
 	HoldTime            string `DESCRIPTION: "Validity of the peer information"`
 	SystemDescription   string `DESCRIPTION: "System Description of the peer port"`
 	SystemCapabilities  string `DESCRIPTION: "System Capabilities of the peer port"`
