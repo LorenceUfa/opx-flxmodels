@@ -149,7 +149,7 @@ type Port struct {
 	Autoneg        string `DESCRIPTION: "Autonegotiation setting for this port", STRLEN:"4" SELECTION:"ON/OFF", DEFAULT:"OFF"`
 	MediaType      string `DESCRIPTION: "Type of media inserted into this port", STRLEN:"16"`
 	Mtu            int32  `DESCRIPTION: "Maximum transmission unit size for this port"`
-	BreakOutMode   string `DESCRIPTION: "Break out mode for the port. Only applicable on ports that support breakout. Valid modes - 1x40, 4x10", STRLEN:"6" SELECTION:"1x40/4x10"`
+	BreakOutMode   string `DESCRIPTION: "Break out mode for the port. Only applicable on ports that support breakout.", STRLEN:"6" SELECTION:"1x100/1x40/2x50/4x25/4x10"`
 	LoopbackMode   string `DESCRIPTION: "Desired loopback setting for this port", SELECTION:"NONE/MAC/PHY/RMT", DEFAULT:"NONE"`
 	EnableFEC      bool   `DESCRIPTION: "Enable/Disable 802.3bj FEC on this interface", DEFAULT: false`
 	PRBSTxEnable   bool   `DESCRIPTION: "Enable/Disable generation of PRBS on this port", DEFAULT: false`
