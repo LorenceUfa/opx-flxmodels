@@ -33,9 +33,9 @@ type IpTableAcl struct {
 	baseObj
 	Name         string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "Ip Table ACL rule name"`
 	PhysicalPort string `DESCRIPTION: "IfIndex where the acl rule is to be applied", DEFAULT: "all"`
-	Action       string `DESCRIPTION: "ACCEPT or DROP"`
+	Action       string `DESCRIPTION: "ACCEPT or DROP", SELECTION:"ACCEPT/DROP"`
 	IpAddr       string `DESCRIPTION: "ip address of subnet or host, e.g: 192.168.1.0/24, 192.168.1.1"`
-	Protocol     string `DESCRITION: "protocol for which rule is to be applied, e.g TCP, UDP"`
+	Protocol     string `DESCRITION: "protocol for which rule is to be applied, e.g TCP, UDP", SELECTION:"tcp/udp/icmp"`
 	Port         string `DESCRITION: "port for protocol, e.g for dhcprelay port is 68", DEFAULT: "all"`
 }
 
