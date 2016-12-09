@@ -38,6 +38,7 @@ type BGPGlobal struct {
 	EBGPMaxPaths        uint32             `DESCRIPTION: "Max ECMP paths from External BGP neighbors", DEFAULT: "0"`
 	EBGPAllowMultipleAS bool               `DESCRIPTION: "Enable/diable ECMP paths from multiple ASes", DEFAULT: "false"`
 	IBGPMaxPaths        uint32             `DESCRIPTION: "Max ECMP paths from Internal BGP neighbors", DEFAULT: "0"`
+	DefaultMED          uint32             `DESCRIPTION: "Default MED to advertise to External BGP neighbors", DEFAULT: "0"`
 	Defaultv4Route      bool               `DESCRIPTION: "Default IPv4 route originate", DEFAULT: "false"`
 	Defaultv6Route      bool               `DESCRIPTION: "Default IPv6 route originate", DEFAULT: "false"`
 	Redistribution      []SourcePolicyList `DESCRIPTION: "Provide redistribution policies for BGP from different sources", DEFAULT: "[]"`
@@ -53,6 +54,7 @@ type BGPGlobalState struct {
 	EBGPMaxPaths        uint32 `DESCRIPTION: "Max ECMP paths from External BGP neighbors"`
 	EBGPAllowMultipleAS bool   `DESCRIPTION: "Enable/diable ECMP paths from multiple ASes"`
 	IBGPMaxPaths        uint32 `DESCRIPTION: "Max ECMP paths from Internal BGP neighbors"`
+	DefaultMED          uint32 `DESCRIPTION: "Default MED to advertise to External BGP neighbors"`
 	Defaultv4Route      bool   `DESCRIPTION: "Default IPv4 route originate"`
 	Defaultv6Route      bool   `DESCRIPTION: "Default IPv6 route originate"`
 	TotalPaths          uint32 `DESCRIPTION: "Total number of paths received from neighbors"`
