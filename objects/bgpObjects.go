@@ -307,3 +307,16 @@ type BGPv6Aggregate struct {
 	GenerateASSet   bool   `DESCRIPTION: "Generate AS set when aggregating routes", DEFAULT: "false"`
 	SendSummaryOnly bool   `DESCRIPTION: "Send summary route only when aggregating routes", DEFAULT: "false"`
 }
+
+type BGPNetworkStatement struct {
+	baseObj
+	IpPrefix string `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "IP Prefix in CIDR format to match"`
+	Policy   string `DESCRIPTION: "Policy that is applied for this network", DEFAULT: ""`
+}
+
+type BGPNetworkStatementState struct {
+	baseObj
+	IpPrefix       string   `SNAPROUTE: "KEY", CATEGORY:"L3", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "IP Prefix in CIDR format to match"`
+	Policy         string   `DESCRIPTION: "Policy that is applied for this network"`
+	PolicyStmtList []string `DESCRIPTION: "List of policy statements applied for this network"`
+}
