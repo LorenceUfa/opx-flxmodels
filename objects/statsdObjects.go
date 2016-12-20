@@ -30,14 +30,14 @@ type SflowGlobal struct {
 	AgentIpAddr         string `DESCRIPTION: "Source ip address to use for the Sflow agent"`
 	MaxSampledSize      int32  `DESCRIPTION: "Maximum number of bytes sampled per packet", MIN: 64, MAX: 256, DEFAULT: 128`
 	CounterPollInterval int32  `DESCRIPTION: "Interval between successive poll cycles of sflow counters in seconds. Set to 0 to disable polling", DEFAULT:20`
+	MaxDatagramSize     int32  `DESCRIPTION: "Maximum number of data bytes that can be sent in a single datagram", DEFAULT: 1400`
 }
 
 type SflowCollector struct {
 	baseObj
-	IpAddr          string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY: "*", DESCRIPTION: "IP address corresponding to the sflow collector/analyzer"`
-	UdpPort         int32  `DESCRIPTION: "UDP port number that the sflow collector/analyzer is listening on", DEFAULT: 6343`
-	AdminState      string `DESCRIPTION: "Administrative state for this collector. When set to 'DOWN', sflow data is not exported to this collector", SELECTION: "UP"/"DOWN", DEFAULT: "UP"`
-	MaxDatagramSize int32  `DESCRIPTION: "Maximum number of data bytes that can be sent in a single datagram", DEFAULT: 1400`
+	IpAddr     string `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY: "*", DESCRIPTION: "IP address corresponding to the sflow collector/analyzer"`
+	UdpPort    int32  `DESCRIPTION: "UDP port number that the sflow collector/analyzer is listening on", DEFAULT: 6343`
+	AdminState string `DESCRIPTION: "Administrative state for this collector. When set to 'DOWN', sflow data is not exported to this collector", SELECTION: "UP"/"DOWN", DEFAULT: "UP"`
 }
 
 type SflowCollectorState struct {
@@ -57,7 +57,7 @@ type SflowIntf struct {
 
 type SflowIntfState struct {
 	baseObj
-	IntfRef            string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "Physical interface name that this interface configuration applies to" `
-	OperState          string `DESCRIPTION: "Operational state of this sflow collector"`
-	NumRecordsExported int32  `DESCRIPTION: "Number of sflow records that have been exported for this interface"`
+	IntfRef                 string `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "Physical interface name that this interface configuration applies to" `
+	OperState               string `DESCRIPTION: "Operational state of this sflow collector"`
+	NumSflowSamplesExported int32  `DESCRIPTION: "Number of sflow records that have been exported for this interface"`
 }
