@@ -370,7 +370,7 @@ type AclIpv4Filter struct {
 	DstIntf     string `DESCRIPTION: "Dest Intf(used for mlag)", DEFAULT:""`
 	L4SrcPort   int32  `DESCRIPTION: "TCP/UDP source port", DEFAULT:0`
 	L4DstPort   int32  `DESCRIPTION: "TCP/UDP destionation port", DEFAULT:0`
-	L4PortMatch string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), RANGE(port range)",SELECTION:"EQ/NEQ/RANGE", DEFAULT:"NA"`
+	L4PortMatch string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), RANGE(port range)",SELECTION:"EQ/NEQ/RANGE", DEFAULT:""`
 	L4MinPort   int32  `DESCRIPTION: "Min port when l4 port is specified as range", DEFAULT:0`
 	L4MaxPort   int32  `DESCRIPTION: "Max port when l4 port is specified as range", DEFAULT:0`
 }
@@ -396,7 +396,7 @@ type AclIpv6Filter struct {
 	DstIntf      string `DESCRIPTION: "Dest Intf(used for mlag)", DEFAULT:""`
 	L4SrcPort    int32  `DESCRIPTION: "TCP/UDP source port", DEFAULT:0`
 	L4DstPort    int32  `DESCRIPTION: "TCP/UDP destionation port", DEFAULT:0`
-	L4PortMatch  string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), LT(larger than), GT(greater than), RANGE(port range)",SELECTION:"EQ/NEQ/LT/GT/RANGE", DEFAULT:"NA"`
+	L4PortMatch  string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), RANGE(port range)",SELECTION:"EQ/NEQ/LT/GT/RANGE", DEFAULT:""`
 	L4MinPort    int32  `DESCRIPTION: "Min port when l4 port is specified as range", DEFAULT:0`
 	L4MaxPort    int32  `DESCRIPTION: "Max port when l4 port is specified as range", DEFAULT:0`
 }
