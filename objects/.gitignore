@@ -23,7 +23,5 @@ _testmain.go
 *.test
 *.prof
 genObjectConfig.json
-genActionMap.go
-genObjectAction.json
 gen_*.go
 genObjMap.go
