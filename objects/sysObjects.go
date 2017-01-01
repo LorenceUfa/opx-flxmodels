@@ -85,3 +85,40 @@ type SystemParamState struct {
 	Distro      string `DESCRIPTION: "Linux distro running on this system"`
 	Kernel      string `DESCRIPTION: "Kernel version running on this system"`
 }
+
+type TacacsConfig struct {
+	baseObj
+	ServerIp       string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w", MULTIPLICITY:"*", DESCRIPTION: "TACACS Server IP"`
+	SourceIntf     string `DESCRIPTION: "Interface on which the source IP is configured", DEFAULT: "ma1"`
+	AuthService    string `DESCRIPTION: "Service requesting auth to grant user different privileges", DEFAULT:"ppp", SELECTION:"login/enable/ppp/arap/pt/rcmd/x25/nasi/fwproxy"`
+	Secret         string `DESCRIPTION: "TACACS Server Secret"`
+	Port           int16 `DESCRIPTION: "TCP port of TACACS+ Server", DEFAULT:49`
+	PrivilegeLevel int32  `DESCRIPTION: "Privilege level for the cli user", MIN:1, MAX:15, DEFAULT:15`
+	Debug          int32  `DESCRIPTION: "Debug level for the cli user", SELECTION:0/1, DEFAULT:0`
+}
+
+type TacacsState struct {
+	baseObj
+	ServerIp       string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r", MULTIPLICITY:"*", DESCRIPTION: "TACACS Server IP"`
+	SourceIntf     string `DESCRIPTION: "Interface on which the source IP is configured"`
+	AuthService    string `DESCRIPTION: "Service requesting auth to grant user different privileges"`
+	Secret         string `DESCRIPTION: "TACACS Server Secret"`
+	Port           int16 `DESCRIPTION: "TCP port of TACACS+ Server"`
+	PrivilegeLevel int32  `DESCRIPTION: "Privilege level for the cli user"`
+	Debug          int32  `DESCRIPTION: "Debug level for the cli user, used to display TACAC's debug information"`
+	ConnFailReason string `DESCRIPTION: "Connection to server failure reason`
+}
+
+type TacacsGlobalConfig struct {
+	baseObj
+	ProfileName string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"w", MULTIPLICITY:"1", AUTOCREATE: "true", DESCRIPTION: "System Profile Name", DEFAULT:"default"`
+	Enable      string `DESCRIPTION: "Enable TACACS Servers", DEFAULT: "false", SELECTION: "true/false"`
+	Timeout     int32  `DESCRIPTION: TCP timeout value used to determine if a connection to server is dead. DEFAULT:10`
+}
+
+type TacacsGlobalState struct {
+	baseObj
+	ProfileName       string `SNAPROUTE: "KEY", CATEGORY:"System", ACCESS:"r", MULTIPLICITY:"1", DESCRIPTION: "System Profile Name"`
+	OperStatus        string `DESCRIPTION: "Operational Status of TACACS Servers"`
+	NumActiveSessions int32  `DESCRIPTION: Number of active sessions`
+}
