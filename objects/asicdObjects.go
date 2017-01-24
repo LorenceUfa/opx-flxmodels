@@ -349,11 +349,11 @@ type AclGlobal struct {
 
 type Acl struct {
 	baseObj
-	AclName    string   `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl rule name. Rule Name should match with GroupName from AclGroup."`
+	AclName    string   `SNAPROUTE: "KEY", CATEGORY:"System", MULTIPLICITY: "*", ACCESS:"w", DESCRIPTION: "Acl name."`
 	IntfList   []string `DESCRIPTION: "list of IntfRef can be port/lag object"`
 	Stage      string   `DESCRIPTION: "Ingress or Egress where ACL to be applied", SELECTION:"IN/OUT", DEFAULT:"IN"`
 	Priority   int32    `DESCRIPTION: "Acl priority. Acls with higher priority will have precedence over with lower.", DEFAULT:1`
-	AclType    string   `DESCRIPTION: "Acl type IPv4/MAC/Ipv6", SELECTION:"IPv4/MAC/IPv6", DEFAULT:"IPv4", STRLEN:"16"`
+	AclType    string   `DESCRIPTION: "Acl type IPv4/Mac/Ipv6", SELECTION:"IPv4/Mac/IPv6", DEFAULT:"IPv4", STRLEN:"16"`
 	Action     string   `DESCRIPTION: "Type of action (ALLOW/DENY)",SELECTION:"ALLOW/DENY",  DEFAULT:"ALLOW", STRLEN:"16"`
 	FilterName string   `DESCRIPTION: "Filter name for acl . ", DEFAULT:""`
 }
@@ -370,7 +370,7 @@ type AclIpv4Filter struct {
 	DstIntf     string `DESCRIPTION: "Dest Intf(used for mlag)", DEFAULT:""`
 	L4SrcPort   int32  `DESCRIPTION: "TCP/UDP source port", DEFAULT:0`
 	L4DstPort   int32  `DESCRIPTION: "TCP/UDP destionation port", DEFAULT:0`
-	L4PortMatch string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), RANGE(port range)",SELECTION:"EQ/NEQ/RANGE", DEFAULT:"NA"`
+	L4PortMatch string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), RANGE(port range)",SELECTION:"EQ/NEQ/RANGE", DEFAULT:""`
 	L4MinPort   int32  `DESCRIPTION: "Min port when l4 port is specified as range", DEFAULT:0`
 	L4MaxPort   int32  `DESCRIPTION: "Max port when l4 port is specified as range", DEFAULT:0`
 }
@@ -396,7 +396,7 @@ type AclIpv6Filter struct {
 	DstIntf      string `DESCRIPTION: "Dest Intf(used for mlag)", DEFAULT:""`
 	L4SrcPort    int32  `DESCRIPTION: "TCP/UDP source port", DEFAULT:0`
 	L4DstPort    int32  `DESCRIPTION: "TCP/UDP destionation port", DEFAULT:0`
-	L4PortMatch  string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), LT(larger than), GT(greater than), RANGE(port range)",SELECTION:"EQ/NEQ/LT/GT/RANGE", DEFAULT:"NA"`
+	L4PortMatch  string `DESCRIPTION: "match condition can be EQ(equal) , NEQ(not equal), RANGE(port range)",SELECTION:"EQ/NEQ/LT/GT/RANGE", DEFAULT:""`
 	L4MinPort    int32  `DESCRIPTION: "Min port when l4 port is specified as range", DEFAULT:0`
 	L4MaxPort    int32  `DESCRIPTION: "Max port when l4 port is specified as range", DEFAULT:0`
 }
