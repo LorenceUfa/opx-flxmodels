@@ -420,6 +420,14 @@ type LinkScopeIpState struct {
 	Used        bool   `DESCRIPTION : "states whether the ip being used"`
 }
 
+type Copp struct {
+	baseObj
+	Protocol                string `SNAPROUTE: "KEY", MULTIPLICITY: "*", ACCESS:"rw", AUTODISCOVER:"true", SELECTION:"ArpUC/ArpMC/BGP/ICMPv4UC/ICMPv4BC/STP/LACP/BFD/ICMPv6/LLDP", DESCRIPTION:"Protocol for which COPP is configured"`
+	Cpuqueue                int32  `DESCRIPTION: "CPU queue to which the protocol traffic is mapped."`
+	PolicerPeakRatePPS      int32  `DESCRIPTION: "Policer peak rate in pps"`
+	PolicerPeakRateBurstPPS int32  `DESCRIPTION: "Policer peak burst rate in pps"`
+}
+
 type CoppStatState struct {
 	baseObj
 	Protocol     string `SNAPROUTE: "KEY", CATEGORY:"Physical", MULTIPLICITY: "*", ACCESS:"r", DESCRIPTION:"Protocol type for which CoPP is configured."`

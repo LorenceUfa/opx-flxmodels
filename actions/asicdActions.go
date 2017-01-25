@@ -28,3 +28,10 @@ type AsicdClearCounters struct {
 	Type    string `DESCRIPTION: "Clear counter for specific type like port, vlan", DEFAULT:"Port"`
 	IntfRef string `DESCRIPTION: "Clear counters on given interface", DEFAULT:"All"`
 }
+
+type FlushMacTableEntry struct {
+	baseAction
+	MacAddr     string `DESCRIPTION: "Flush specific Mac Address from Mac Table Entry", DEFAULT:"All"`
+	VlanIntfRef string `DESCRIPTION: "Flush Mac Table Entry for given Vlan", DEFAULT:"All"`
+	PortIntfRef string `DESCRIPTION: "Flush Mac Table Entry for given Port", DEFAULT:"All"`
+}
